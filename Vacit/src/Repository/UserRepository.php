@@ -36,32 +36,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function saveUser($params) {
 
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if(isset($params["id"])) {
+            $user = $this->find($params["id"]);
+        } else {
+            $user = new User();
+        }
+
+        $user->setUsername($params["username"]);
+        $user->setPassword($params["password"]);
+        $user->setUserPicture($params["user_picture"]);
+        $user->setUserSurname($params["user_surname"]);
+        $user->setUserLastname($params["user_lastname"]);
+        $user->setUserEmail($params["user_email"]);
+        $user->setUserDob($params["user_dob"]);
+        $user->setUserPhoneNumber($params["user_phone_number"]);
+        $user->setUserAddress($params["user_address"]);
+        $user->setUserPostcode($params["user_postcode"]);
+        $user->setUserCity($params["user_city"]);
+        $user->setUserMotivation($params["user_motivation"]);
+        $user->setUserCv($params["user_cv"]);
+        
+        $em = $this->getEntityManager();
+        $em->persist($user);
+        $em->flush();
     }
-    */
 }
