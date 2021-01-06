@@ -20,10 +20,10 @@ class Job
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="Job_title")
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $User_id;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,30 +33,30 @@ class Job
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Job_description;
+    private $job_description;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Job_picture;
+    private $job_picture;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $Job_date;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $Job_level;
+    private $job_date;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Job_location;
+    private $job_level;
 
     /**
-     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="Job")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $job_location;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="job")
      */
     private $applications;
 
@@ -70,14 +70,14 @@ class Job
         return $this->id;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
-        return $this->User_id;
+        return $this->user;
     }
 
-    public function setUserId(?user $User_id): self
+    public function setUser(?user $user): self
     {
-        $this->User_id = $User_id;
+        $this->user = $user;
 
         return $this;
     }
@@ -96,60 +96,60 @@ class Job
 
     public function getJobDescription(): ?string
     {
-        return $this->Job_description;
+        return $this->job_description;
     }
 
-    public function setJobDescription(string $Job_description): self
+    public function setJobDescription(string $job_description): self
     {
-        $this->Job_description = $Job_description;
+        $this->job_description = $job_description;
 
         return $this;
     }
 
     public function getJobPicture(): ?string
     {
-        return $this->Job_picture;
+        return $this->job_picture;
     }
 
-    public function setJobPicture(string $Job_picture): self
+    public function setJobPicture(string $job_picture): self
     {
-        $this->Job_picture = $Job_picture;
+        $this->job_picture = $job_picture;
 
         return $this;
     }
 
     public function getJobDate(): ?\DateTimeInterface
     {
-        return $this->Job_date;
+        return $this->job_date;
     }
 
-    public function setJobDate(\DateTimeInterface $Job_date): self
+    public function setJobDate(\DateTimeInterface $job_date): self
     {
-        $this->Job_date = $Job_date;
+        $this->job_date = $job_date;
 
         return $this;
     }
 
     public function getJobLevel(): ?string
     {
-        return $this->Job_level;
+        return $this->job_level;
     }
 
-    public function setJobLevel(string $Job_level): self
+    public function setJobLevel(string $job_level): self
     {
-        $this->Job_level = $Job_level;
+        $this->job_level = $job_level;
 
         return $this;
     }
 
     public function getJobLocation(): ?string
     {
-        return $this->Job_location;
+        return $this->job_location;
     }
 
-    public function setJobLocation(string $Job_location): self
+    public function setJobLocation(string $job_location): self
     {
-        $this->Job_location = $Job_location;
+        $this->job_location = $job_location;
 
         return $this;
     }

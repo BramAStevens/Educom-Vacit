@@ -18,16 +18,16 @@ class Application
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Applications")
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $User;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Job::class, inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity=job::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Job;
+    private $job;
 
     /**
      * @ORM\Column(type="datetime")
@@ -37,38 +37,38 @@ class Application
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Application_Company;
+    private $application_company;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    private $Application_invitation;
+    private $application_invitation;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?user
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): self
+    public function setUser(?user $user): self
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getJob(): ?Job
+    public function getJob(): ?job
     {
-        return $this->Job;
+        return $this->job;
     }
 
-    public function setJob(?Job $Job): self
+    public function setJob(?job $job): self
     {
-        $this->Job = $Job;
+        $this->job = $job;
 
         return $this;
     }
@@ -87,24 +87,24 @@ class Application
 
     public function getApplicationCompany(): ?string
     {
-        return $this->Application_Company;
+        return $this->application_company;
     }
 
-    public function setApplicationCompany(string $Application_Company): self
+    public function setApplicationCompany(string $application_company): self
     {
-        $this->Application_Company = $Application_Company;
+        $this->application_company = $application_company;
 
         return $this;
     }
 
-    public function getApplicationInvitation(): ?string
+    public function getApplicationInvitation(): ?int
     {
-        return $this->Application_invitation;
+        return $this->application_invitation;
     }
 
-    public function setApplicationInvitation(string $Application_invitation): self
+    public function setApplicationInvitation(int $application_invitation): self
     {
-        $this->Application_invitation = $Application_invitation;
+        $this->application_invitation = $application_invitation;
 
         return $this;
     }

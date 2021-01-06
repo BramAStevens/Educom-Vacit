@@ -6,11 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,24 +21,35 @@ class User
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $User_picture;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $User_surname;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $User_lastname;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $User_role = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -45,9 +57,9 @@ class User
     private $User_email;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=255)
      */
-    private $User_DOB;
+    private $User_dob;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -80,24 +92,92 @@ class User
     private $User_cv;
 
     /**
-     * @ORM\OneToMany(targetEntity=Job::class, mappedBy="User", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Job::class, mappedBy="user")
      */
-    private $Jobs;
+    private $jobs;
 
     /**
-     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="User", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="user")
      */
-    private $Applications;
+    private $applications;
 
     public function __construct()
     {
-        $this->Jobs = new ArrayCollection();
-        $this->Applications = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
+        $this->applications = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getUserPicture(): ?string
@@ -136,17 +216,6 @@ class User
         return $this;
     }
 
-    public function getUserRole(): ?array
-    {
-        return $this->User_role;
-    }
-
-    public function setUserRole(array $User_role): self
-    {
-        $this->User_role = $User_role;
-
-        return $this;
-    }
 
     public function getUserEmail(): ?string
     {
@@ -160,14 +229,14 @@ class User
         return $this;
     }
 
-    public function getUserDOB(): ?\DateTimeInterface
+    public function getUserDob(): ?string
     {
-        return $this->User_DOB;
+        return $this->User_dob;
     }
 
-    public function setUserDOB(\DateTimeInterface $User_DOB): self
+    public function setUserDob(string $User_dob): self
     {
-        $this->User_DOB = $User_DOB;
+        $this->User_dob = $User_dob;
 
         return $this;
     }
@@ -249,22 +318,22 @@ class User
      */
     public function getJobs(): Collection
     {
-        return $this->Jobs;
+        return $this->jobs;
     }
 
-    public function addJobs(Job $job): self
+    public function addJob(Job $job): self
     {
-        if (!$this->Jobs->contains($job)) {
-            $this->Jobs[] = $job;
+        if (!$this->jobs->contains($job)) {
+            $this->jobs[] = $job;
             $job->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeJobs(Job $job): self
+    public function removeJob(Job $job): self
     {
-        if ($this->Jobs->removeElement($job)) {
+        if ($this->jobs->removeElement($job)) {
             // set the owning side to null (unless already changed)
             if ($job->getUser() === $this) {
                 $job->setUser(null);
@@ -279,13 +348,13 @@ class User
      */
     public function getApplications(): Collection
     {
-        return $this->Applications;
+        return $this->applications;
     }
 
     public function addApplication(Application $application): self
     {
-        if (!$this->Applications->contains($application)) {
-            $this->Applications[] = $application;
+        if (!$this->applications->contains($application)) {
+            $this->applications[] = $application;
             $application->setUser($this);
         }
 
@@ -294,7 +363,7 @@ class User
 
     public function removeApplication(Application $application): self
     {
-        if ($this->Applications->removeElement($application)) {
+        if ($this->applications->removeElement($application)) {
             // set the owning side to null (unless already changed)
             if ($application->getUser() === $this) {
                 $application->setUser(null);
