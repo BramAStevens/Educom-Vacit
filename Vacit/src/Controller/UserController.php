@@ -14,20 +14,6 @@ use App\Entity\User;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/registerUser", name="registerUser")
-     */
-    public function registerUser(UserService $userService, Request $request)
-    {
-        
-        $params['username'] = $request->request->get('username');
-        $params['password'] = $request->request->get('password');
-
-        $data = $userService->saveUser($params);
-        return $this->render('user/register.html.twig');
-        
-    }
-
-    /**
      * @Route("/showUsers", name="showUsers")
      */
     public function showUsers(UserService $userService)
@@ -66,8 +52,7 @@ class UserController extends AbstractController
                 'controller_name' => 'UserController', 
                 'user'=>$user,
             ]);
-        }
-
+        } return $this->render('user/noaccess.html.twig');
     }
 
     /**
