@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User profile!{% endblock %}
+
+{% block body %}
+<form method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Please fill in your user profile.</h1>
+    <label for="inputPicture">Picture</label>
+    <input type="text" name="user_picture" id="inputPicture" class="form-control" required autofocus>
+    <label for="inputSurname">Surname</label>
+    <input type="text" name="user_surname" id="inputSurname" class="form-control" required>
+    <label for="inputLastname">Last name</label>
+    <input type="text" name="user_lastname" id="inputLastname" class="form-control" required>
+    <label for="inputEmail">Email</label>
+    <input type="text" name="user_email" id="inputEmail" class="form-control" required>
+    <label for="inputDOB">Date of Birth</label>
+    <input type="text" name="user_dob" id="inputDOB" class="form-control" required>
+    <label for="inputPhone">Phone Number</label>
+    <input type="text" name="user_phone_number" id="inputPhone" class="form-control" required>
+    <label for="inputAddress">address</label>
+    <input type="text" name="user_address" id="inputAddress" class="form-control" required>
+    <label for="inputPostcode">Postcode</label>
+    <input type="text" name="user_postcode" id="inputPostcode" class="form-control" required>
+    <label for="inputCity">City</label>
+    <input type="text" name="user_city" id="inputCity" class="form-control" required>
+    <label for="inputMotivation">Motivation Letter</label>
+    <input type="text" name="user_motivation" id="inputMotivation" class="form-control" required>
+    <label for="inputCV">CV</label>
+    <input type="text" name="user_cv" id="inputCV" class="form-control" required>
+    <button class="btn btn-lg btn-primary" type="submit">
+        Submit
+    </button>
+</form>
+{% endblock %}
