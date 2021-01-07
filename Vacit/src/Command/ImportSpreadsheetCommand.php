@@ -46,7 +46,7 @@ class ImportSpreadsheetCommand extends Command
 
                 "username" => $worksheet->getCell('A' .$row)->getValue(),
                 "password" => $worksheet->getCell('B' .$row)->getValue(),
-                "roles" =>(['']),
+                "roles" =>(['ROLE_EMPLOYER']),
                 "user_picture" => $worksheet->getCell('C' .$row)->getValue(),
                 "user_surname" => $worksheet->getCell('D' .$row)->getValue(),
                 "user_lastname" => $worksheet->getCell('E' .$row)->getValue(),

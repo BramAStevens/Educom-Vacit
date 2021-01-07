@@ -6,10 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -21,7 +24,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=true, nullable=true)
      */
     private $username;
 
@@ -39,10 +42,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $User_picture;
+    private $user_picture;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(allowNull = true)
      */
     private $User_surname;
 
@@ -100,6 +104,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Application::class, mappedBy="User")
      */
     private $applications;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
 
     public function __construct()
     {
@@ -182,12 +191,12 @@ class User implements UserInterface
 
     public function getUserPicture(): ?string
     {
-        return $this->User_picture;
+        return $this->user_picture;
     }
 
-    public function setUserPicture(string $User_picture): self
+    public function setUserPicture(string $user_picture): self
     {
-        $this->User_picture = $User_picture;
+        $this->user_picture = $user_picture;
 
         return $this;
     }
@@ -369,6 +378,18 @@ class User implements UserInterface
                 $application->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
