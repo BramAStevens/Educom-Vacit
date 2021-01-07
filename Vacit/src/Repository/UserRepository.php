@@ -52,14 +52,29 @@ class UserRepository extends ServiceEntityRepository implements
 
     public function saveUser($params)
     {
-        if (isset($params['id'])) {
-            $user = $this->find($params['id']);
-        } else {
-            $user = new User();
-        }
-
+        
+        $user = new User();
         $user->setUsername($params['username']);
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
+        
+
+        if (isset($params['roles'])) {
+            $user->setRoles(['ROLE_EMPLOYER']);
+        } else {
+            $user->setRoles(['ROLE_CANDIDATE']);
+        }
+
+        $em = $this->getEntityManager();
+        $em->persist($user);
+        $em->flush();
+
+        return($user);
+    }
+
+    public function updateUserProfile($params) {
+
+        $user = $this->find($params['id']);
+      
         $user->setUserPicture($params['user_picture']);
         $user->setUserSurname($params['user_surname']);
         $user->setUserLastname($params['user_lastname']);
@@ -72,20 +87,37 @@ class UserRepository extends ServiceEntityRepository implements
         $user->setUserMotivation($params['user_motivation']);
         $user->setUserCv($params['user_cv']);
 
-        if (isset($params['roles'])) {
-            $user->setRoles(['ROLE_EMPLOYER']);
-        } else {
-            $user->setRoles(['ROLE_CANDIDATE']);
-        }
-
         $em = $this->getEntityManager();
         $em->persist($user);
         $em->flush();
+
+        return($user);
     }
 
     public function getAllUsers()
     {
         $users = $this->findAll();
         return $users;
+    }
+
+    public function findUserByUsername($username)
+    {
+        $user = $this->findOneBy(["username" => $username]);
+        return $user;
+    }
+
+    public function findUserById($id)
+    {
+        $user = $this->find($id);
+        return($user);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = $this->find($id);
+        $em = $this->getEntityManager();
+        $em->remove($user);
+        $em->flush();
+        return("User removed successfully!");
     }
 }
