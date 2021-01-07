@@ -18,13 +18,13 @@ class Application
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=job::class, inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity=Job::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
     private $job;

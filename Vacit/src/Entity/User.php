@@ -92,12 +92,12 @@ class User implements UserInterface
     private $User_cv;
 
     /**
-     * @ORM\OneToMany(targetEntity=Job::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Job::class, mappedBy="User")
      */
     private $jobs;
 
     /**
-     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="User")
      */
     private $applications;
 
@@ -136,7 +136,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_CANDIDATE';
 
         return array_unique($roles);
     }

@@ -56,7 +56,7 @@ class Job
     private $job_location;
 
     /**
-     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="job")
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="Job")
      */
     private $applications;
 
