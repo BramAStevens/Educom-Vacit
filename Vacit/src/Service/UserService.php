@@ -19,10 +19,10 @@ class UserService {
         $this->encoder = $encoder;
     }
 
-    // public function saveUser($params) {
-    //         $user = $this->ur->saveUser($params);
-    //         return($user);
-    // }
+    public function saveUser($params) {
+            $user = $this->ur->saveUser($params);
+            return($user);
+    }
 
     public function updateUserProfile($params) {
         $user = $this->ur->updateUserProfile($params);

@@ -50,26 +50,19 @@ class UserRepository extends ServiceEntityRepository implements
         $this->_em->flush();
     }
 
-    // public function saveUser($params)
-    // {
+    public function saveUser($params)
+    {
         
-    //     $user = new User();
-    //     $user->setUsername($params['username']);
-    //     $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
-        
+        $user = new User();
+        $user->setUsername($params['username']);
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
+        $user->setRoles(['ROLE_EMPLOYER']);
+        $em = $this->getEntityManager();
+        $em->persist($user);
+        $em->flush();
 
-    //     if (isset($params['roles'])) {
-    //         $user->setRoles(['ROLE_EMPLOYER']);
-    //     } else {
-    //         $user->setRoles(['ROLE_CANDIDATE']);
-    //     }
-
-    //     $em = $this->getEntityManager();
-    //     $em->persist($user);
-    //     $em->flush();
-
-    //     return($user);
-    // }
+        return($user);
+    }
 
     public function updateUserProfile($params) {
 
