@@ -38,21 +38,29 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         return new Passport(
             new UserBadge($Username),
             new PasswordCredentials($request->request->get('password', '')),
-            [
-                new CsrfTokenBadge('authenticate', $request->get('_csrf_token')),
-            ]
+            [new CsrfTokenBadge('authenticate', $request->get('_csrf_token'))]
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
-    {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+    public function onAuthenticationSuccess(
+        Request $request,
+        TokenInterface $token,
+        string $firewallName
+    ): ?Response {
+        if (
+            $targetPath = $this->getTargetPath(
+                $request->getSession(),
+                $firewallName
+            )
+        ) {
             return new RedirectResponse($targetPath);
         }
 
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        throw new \Exception(
+            'TODO: provide a valid redirect inside ' . __FILE__
+        );
     }
 
     protected function getLoginUrl(Request $request): string

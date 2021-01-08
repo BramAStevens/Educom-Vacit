@@ -78,8 +78,9 @@ class Application
         return $this->Application_date;
     }
 
-    public function setApplicationDate(\DateTimeInterface $Application_date): self
-    {
+    public function setApplicationDate(
+        \DateTimeInterface $Application_date
+    ): self {
         $this->Application_date = $Application_date;
 
         return $this;

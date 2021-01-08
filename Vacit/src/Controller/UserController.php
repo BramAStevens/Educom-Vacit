@@ -17,19 +17,19 @@ class UserController extends AbstractController
      * @Route("/showUser/{id}", name="showUser")
      */
     public function showUserById(UserService $userService, $id)
-    {   
+    {
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
 
-        if($user == $isEmployer) {
+        if ($user == $isEmployer) {
             return $this->render('user/show_employer_profile.html.twig', [
-                'controller_name' => 'UserController', 
-                'user'=>$user,
+                'controller_name' => 'UserController',
+                'user' => $user,
             ]);
         } else {
             return $this->render('user/show_candidate_profile.html.twig', [
-                'controller_name' => 'UserController', 
-                'user'=>$user,
+                'controller_name' => 'UserController',
+                'user' => $user,
             ]);
         }
     }
@@ -37,15 +37,17 @@ class UserController extends AbstractController
     /**
      * @Route("/updateUserProfile/{id}", name="updateUserProfile")
      */
-    public function updateUserProfile(Request $request, UserService $userService, $id) {
-
+    public function updateUserProfile(
+        Request $request,
+        UserService $userService,
+        $id
+    ) {
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
         if ($user == $currentUser || $currentUser == $isAdmin) {
-           
             $params['id'] = $id;
             $params['user_picture'] = $request->request->get('user_picture', $user->getUserPicture());
             $params['user_surname'] = $request->request->get('user_surname', $user->getUserSurname());
@@ -61,18 +63,20 @@ class UserController extends AbstractController
 
             $userService->updateUserProfile($params);
 
-            if ($user == $isEmployer) {    
-            return $this->render('user/update_employer_profile.html.twig', [
-                'controller_name' => 'UserController', 
-                'user'=>$user,
-            ]);
+            if ($user == $isEmployer) {
+                return $this->render('user/update_employer_profile.html.twig', [
+                    'controller_name' => 'UserController',
+                    'user' => $user,
+                ]);
             } else {
-                return $this->render('user/update_candidate_profile.html.twig', [
-                    'controller_name' => 'UserController', 
-                    'user'=>$user,
+                return $this->render(
+                    'user/update_candidate_profile.html.twig',[
+                    'controller_name' => 'UserController',
+                    'user' => $user,
                 ]);
             }
-        } return $this->render('user/noaccess.html.twig');
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
@@ -88,7 +92,8 @@ class UserController extends AbstractController
             $result = $userService->deleteUserById($id);
             dump($result);
             die();
-        } return $this->render('user/noaccess.html.twig');
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 }
 

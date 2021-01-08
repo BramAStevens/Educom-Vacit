@@ -52,22 +52,23 @@ class UserRepository extends ServiceEntityRepository implements
 
     public function saveUser($params)
     {
-        
         $user = new User();
         $user->setUsername($params['username']);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword($user, 'password')
+        );
         $user->setRoles(['ROLE_EMPLOYER']);
         $em = $this->getEntityManager();
         $em->persist($user);
         $em->flush();
 
-        return($user);
+        return $user;
     }
 
-    public function updateUserProfile($params) {
-
+    public function updateUserProfile($params)
+    {
         $user = $this->find($params['id']);
-      
+
         $user->setUserPicture($params['user_picture']);
         $user->setUserSurname($params['user_surname']);
         $user->setUserLastname($params['user_lastname']);
@@ -84,7 +85,7 @@ class UserRepository extends ServiceEntityRepository implements
         $em->persist($user);
         $em->flush();
 
-        return($user);
+        return $user;
     }
 
     public function getAllUsers()
@@ -95,26 +96,26 @@ class UserRepository extends ServiceEntityRepository implements
 
     public function findUserByUsername($username)
     {
-        $user = $this->findOneBy(["username" => $username]);
+        $user = $this->findOneBy(['username' => $username]);
         return $user;
     }
 
     public function findUserById($id)
     {
         $user = $this->find($id);
-        return($user);
+        return $user;
     }
 
     public function deleteUser($id)
     {
         $user = $this->find($id);
-        if($user) {
-        $em = $this->getEntityManager();
-        $em->remove($user);
-        $em->flush();
-        return(true);
+        if ($user) {
+            $em = $this->getEntityManager();
+            $em->remove($user);
+            $em->flush();
+            return true;
         } else {
-        return(false);
+            return false;
         }
     }
 }

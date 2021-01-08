@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Job;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,26 +20,41 @@ class JobRepository extends ServiceEntityRepository
         parent::__construct($registry, Job::class);
     }
 
-    public function createAndUpdateJob($params)
+    public function updateJob($params)
     {
-        if (isset($params["id"]) && $params["id"] != "") {
-            $job = $this->find($params["id"]);
-        } else {
-            $job = new Job();
-            $job->setJobDate(new \DateTime());
-        }
+        $job = $this->find($params['id']);
 
-        $job->setJobTitle($params["job_title"]);
-        $job->setJobDescription($params["job_description"]);
-        $job->setJobPicture($params["job_picture"]);
-        $job->setJobLevel($params["job_level"]);
-        $job->setJobLocation($params["job_location"]);
+        $job->setJobTitle($params['job_title']);
+        $job->setJobDescription($params['job_description']);
+        $job->setJobPicture($params['job_picture']);
+        $job->setJobLevel($params['job_level']);
+        $job->setJobLocation($params['job_location']);
 
         $em = $this->getEntityManager();
         $em->persist($job);
         $em->flush();
 
-        return($job);
+        return $job;
+    }
+
+    public function createJob($params)
+    {
+        $job = new Job();
+        $job->setJobDate(new \DateTime());
+
+        $em = $this->getEntityManager();
+
+        $userRepository = $em->getRepository(User::class);
+
+        $user = $userRepository->find($params['user_id']);
+
+        $job->setUser($user);
+
+        $em = $this->getEntityManager();
+        $em->persist($job);
+        $em->flush();
+
+        return $job;
     }
 
     public function deleteJob($id)
@@ -54,21 +70,17 @@ class JobRepository extends ServiceEntityRepository
         }
     }
 
-    public function findJobById($id) 
+    public function findJobById($id)
     {
         $job = $this->find($id);
-        return($job);
+        return $job;
     }
 
     public function findAllJobs()
     {
-
     }
 
-    public function findJobsByEmployer() {
-
+    public function findJobsByEmployer()
+    {
     }
-
-    
-
 }

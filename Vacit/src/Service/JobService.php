@@ -6,29 +6,38 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\JobRepository;
 use App\Entity\Job;
 
-class JobService {
+class JobService
+{
     private $em;
     private $jr;
 
-    public function __construct(EntityManagerInterface $em, JobRepository $jr){
+    public function __construct(EntityManagerInterface $em, JobRepository $jr)
+    {
         $this->em = $em;
         $this->jr = $jr;
     }
 
-    public function deleteJobById($id) {
+    public function deleteJobById($id)
+    {
         $job = $this->jr->deleteJob($id);
-        return($job);
+        return $job;
     }
 
     public function findJobById($id)
     {
-        $job= $this->jr->findJobById($id);
-        return($job);
+        $job = $this->jr->findJobById($id);
+        return $job;
     }
 
-    public function createAndUpdateJob($params) {
-        $job = $this->jr->createAndUpdateJob($params);
-        return($job);
+    public function updateJob($params)
+    {
+        $job = $this->jr->updateJob($params);
+        return $job;
     }
 
+    public function createJob($params)
+    {
+        $job = $this->jr->createJob($params);
+        return $job;
+    }
 }
