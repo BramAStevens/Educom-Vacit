@@ -14,19 +14,23 @@ use App\Entity\User;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/showUsers/{id}", name="showUsers")
+     * @Route("/showUser/{id}", name="showUser")
      */
     public function showUserById(UserService $userService, $id)
     {   
-        $hasaccess = $this->isGranted('ROLE_EMPLOYER');
+        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
-        dump($user);
-        die();
 
-        if($user == $hasaccess) {
-
+        if($user == $isEmployer) {
+            return $this->render('user/show_employer_profile.html.twig', [
+                'controller_name' => 'UserController', 
+                'user'=>$user,
+            ]);
         } else {
-
+            return $this->render('user/show_candidate_profile.html.twig', [
+                'controller_name' => 'UserController', 
+                'user'=>$user,
+            ]);
         }
     }
 
@@ -43,17 +47,17 @@ class UserController extends AbstractController
         if ($user == $currentUser || $currentUser == $hasAccess) {
            
             $params['id'] = $id;
-            $params['user_picture'] = $request->request->get('user_picture','');
-            $params['user_surname'] = $request->request->get('user_surname','');
-            $params['user_lastname'] = $request->request->get('user_lastname','');
-            $params['user_email'] = $request->request->get('user_email','');
-            $params['user_dob'] = $request->request->get('user_dob','');
-            $params['user_phone_number'] = $request->request->get('user_phone_number','');
-            $params['user_address'] = $request->request->get('user_address','');
-            $params['user_postcode'] = $request->request->get('user_postcode','');
-            $params['user_city'] = $request->request->get('user_city','');
-            $params['user_motivation'] = $request->request->get('user_surname','');
-            $params['user_cv'] = $request->request->get('user_cv','');
+            $params['user_picture'] = $request->request->get('user_picture', $user->getUserPicture());
+            $params['user_surname'] = $request->request->get('user_surname', $user->getUserSurname());
+            $params['user_lastname'] = $request->request->get('user_lastname', $user->getUserLastname());
+            $params['user_email'] = $request->request->get('user_email', $user->getUserEmail());
+            $params['user_dob'] = $request->request->get('user_dob', $user->getUserDob());
+            $params['user_phone_number'] = $request->request->get('user_phone_number', $user->getUserPhoneNumber());
+            $params['user_address'] = $request->request->get('user_address', $user->getUserAddress());
+            $params['user_postcode'] = $request->request->get('user_postcode', $user->getUserPostcode());
+            $params['user_city'] = $request->request->get('user_city', $user->getUserCity());
+            $params['user_motivation'] = $request->request->get('user_motivation', $user->getUserMotivation());
+            $params['user_cv'] = $request->request->get('user_cv', $user->getUserCv());
 
             $userService->updateUserProfile($params);
             if ($user == $isEmployer) {    
