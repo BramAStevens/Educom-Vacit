@@ -14,31 +14,40 @@ use App\Entity\User;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/showUsers", name="showUsers")
+     * @Route("/showUsers/{id}", name="showUsers")
      */
-    public function showUsers(UserService $userService)
-    {
-        $user = $userService->getAllUsers();
+    public function showUserById(UserService $userService, $id)
+    {   
+        $hasaccess = $this->isGranted('ROLE_EMPLOYER');
+        $user = $userService->findUserById($id);
         dump($user);
         die();
+
+        if($user == $hasaccess) {
+
+        } else {
+
+        }
     }
 
     /**
      * @Route("/updateUserProfile/{id}", name="updateUserProfile")
      */
     public function updateUserProfile(Request $request, UserService $userService, $id) {
-        $hasaccess = $this->isGranted('ROLE_ADMIN');
+
+        $hasAccess = $this->isGranted('ROLE_ADMIN');
+        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
-        if ($user == $currentUser || $currentUser == $hasaccess) {
-            
+        if ($user == $currentUser || $currentUser == $hasAccess) {
+           
             $params['id'] = $id;
             $params['user_picture'] = $request->request->get('user_picture','');
             $params['user_surname'] = $request->request->get('user_surname','');
             $params['user_lastname'] = $request->request->get('user_lastname','');
             $params['user_email'] = $request->request->get('user_email','');
-            $params['user_dob'] = $request->request->get('user_dob', '','');
+            $params['user_dob'] = $request->request->get('user_dob','');
             $params['user_phone_number'] = $request->request->get('user_phone_number','');
             $params['user_address'] = $request->request->get('user_address','');
             $params['user_postcode'] = $request->request->get('user_postcode','');
@@ -47,12 +56,19 @@ class UserController extends AbstractController
             $params['user_cv'] = $request->request->get('user_cv','');
 
             $userService->updateUserProfile($params);
-            
-            return $this->render('user/update_user_profile.html.twig', [
+            if ($user == $isEmployer) {    
+            return $this->render('user/update_employer_profile.html.twig', [
                 'controller_name' => 'UserController', 
                 'user'=>$user,
             ]);
+            } else {
+                return $this->render('user/update_candidate_profile.html.twig', [
+                    'controller_name' => 'UserController', 
+                    'user'=>$user,
+                ]);
+            }
         } return $this->render('user/noaccess.html.twig');
+    
     }
 
     /**
@@ -68,7 +84,7 @@ class UserController extends AbstractController
             $user = $userService->deleteUserById($id);
             dump($user);
             die();
-        }
+        } return $this->render('user/noaccess.html.twig');
     }
 }
 
