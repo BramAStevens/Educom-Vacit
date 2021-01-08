@@ -42,8 +42,7 @@ class UserService {
     }
 
     public function deleteUserById($id) {
-        $find = $this->findUserById($id);
-        $user = $this->ur->deleteUser($find);
+        $user = $this->ur->deleteUser($id);
         return($user);
     }
 }

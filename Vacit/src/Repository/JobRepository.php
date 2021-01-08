@@ -19,32 +19,56 @@ class JobRepository extends ServiceEntityRepository
         parent::__construct($registry, Job::class);
     }
 
-    // /**
-    //  * @return Job[] Returns an array of Job objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function createAndUpdateJob($params)
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('j.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        if (isset($params["id"]) && $params["id"] != "") {
+            $job = $this->find($params["id"]);
+        } else {
+            $job = new Job();
+            $job->setJobDate(new \DateTime());
+        }
 
-    /*
-    public function findOneBySomeField($value): ?Job
-    {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $job->setJobTitle($params["job_title"]);
+        $job->setJobDescription($params["job_description"]);
+        $job->setJobPicture($params["job_picture"]);
+        $job->setJobLevel($params["job_level"]);
+        $job->setJobLocation($params["job_location"]);
+
+        $em = $this->getEntityManager();
+        $em->persist($job);
+        $em->flush();
+
+        return($job);
     }
-    */
+
+    public function deleteJob($id)
+    {
+        $job = $this->find($id);
+        if ($job) {
+            $em = $this->getEntityManager();
+            $em->remove($job);
+            $em->flush();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function findJobById($id) 
+    {
+        $job = $this->find($id);
+        return($job);
+    }
+
+    public function findAllJobs()
+    {
+
+    }
+
+    public function findJobsByEmployer() {
+
+    }
+
+    
+
 }

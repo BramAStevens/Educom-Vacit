@@ -108,9 +108,13 @@ class UserRepository extends ServiceEntityRepository implements
     public function deleteUser($id)
     {
         $user = $this->find($id);
+        if($user) {
         $em = $this->getEntityManager();
         $em->remove($user);
         $em->flush();
-        return("User removed successfully!");
+        return(true);
+        } else {
+        return(false);
+        }
     }
 }

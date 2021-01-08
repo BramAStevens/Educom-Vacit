@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update your job!{% endblock %}
+
+{% block body %}
+<form method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Please update the below fields</h1>
+    <label for="inputTitle">Job Title</label>
+    <input type="text" name="job_title" id="inputTitle" class="form-control" value="{{job.jobtitle}}" required autofocus>
+    <label for="inputDescription">Job Description</label>
+    <input type="text" name="job_description" id="inputDescription" class="form-control" value="{{job.jobdescription}}" required>
+    <label for="inputPicture">Company Icon</label>
+    <input type="text" name="job_picture" id="inputPicture" class="form-control" value="{{job.jobpicture}}" required>
+    <label for="inputLevel">Job Level</label>
+    <input type="text" name="job_level" id="inputLevel" class="form-control" value="{{job.joblevel}}" required>
+    <label for="inputLocation">Job Location</label>
+    <input type="text" name="job_location" id="inputLocation" class="form-control" value="{{job.joblocation}}" required>
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Submit
+    </button>
+</form>
+{% endblock %}

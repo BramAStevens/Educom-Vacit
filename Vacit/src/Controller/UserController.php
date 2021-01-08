@@ -39,12 +39,12 @@ class UserController extends AbstractController
      */
     public function updateUserProfile(Request $request, UserService $userService, $id) {
 
-        $hasAccess = $this->isGranted('ROLE_ADMIN');
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
-        if ($user == $currentUser || $currentUser == $hasAccess) {
+        if ($user == $currentUser || $currentUser == $isAdmin) {
            
             $params['id'] = $id;
             $params['user_picture'] = $request->request->get('user_picture', $user->getUserPicture());
@@ -60,6 +60,7 @@ class UserController extends AbstractController
             $params['user_cv'] = $request->request->get('user_cv', $user->getUserCv());
 
             $userService->updateUserProfile($params);
+
             if ($user == $isEmployer) {    
             return $this->render('user/update_employer_profile.html.twig', [
                 'controller_name' => 'UserController', 
@@ -72,7 +73,6 @@ class UserController extends AbstractController
                 ]);
             }
         } return $this->render('user/noaccess.html.twig');
-    
     }
 
     /**
@@ -80,13 +80,13 @@ class UserController extends AbstractController
      */
     public function deleteUserProfile(UserService $userService, $id)
     {
-        $hasaccess = $this->isGranted('ROLE_ADMIN');
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
-        if ($user == $currentUser || $currentUser == $hasaccess) {
-            $user = $userService->deleteUserById($id);
-            dump($user);
+        if ($user == $currentUser || $currentUser == $isAdmin) {
+            $result = $userService->deleteUserById($id);
+            dump($result);
             die();
         } return $this->render('user/noaccess.html.twig');
     }

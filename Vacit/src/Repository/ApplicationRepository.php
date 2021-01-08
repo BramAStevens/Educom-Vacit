@@ -19,6 +19,10 @@ class ApplicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Application::class);
     }
 
+    public function findAllApplicationsByJob() {
+
+    }
+
     // /**
     //  * @return Application[] Returns an array of Application objects
     //  */

@@ -20,7 +20,7 @@ class Job
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="jobs")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -31,27 +31,27 @@ class Job
     private $Job_title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $job_description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $job_picture;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $job_date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $job_level;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $job_location;
 
