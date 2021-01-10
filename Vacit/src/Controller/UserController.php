@@ -37,11 +37,8 @@ class UserController extends AbstractController
     /**
      * @Route("/updateUserProfile/{id}", name="updateUserProfile")
      */
-    public function updateUserProfile(
-        Request $request,
-        UserService $userService,
-        $id
-    ) {
+    public function updateUserProfile(Request $request,UserService $userService,$id)
+    {
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);

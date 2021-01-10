@@ -40,4 +40,9 @@ class JobService
         $job = $this->jr->createJob($params);
         return $job;
     }
+
+    public function findHighestJob($user_id) {
+        $job = $this->jr->findHighestJob($user_id);
+        return $job;
+    }
 }

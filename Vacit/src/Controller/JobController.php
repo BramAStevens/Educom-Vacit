@@ -38,7 +38,7 @@ class JobController extends AbstractController
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
-
+        
         if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
             $params['id'] = $id;
             $params['job_title'] = $request->request->get('job_title',$job->getJobTitle());
@@ -62,13 +62,24 @@ class JobController extends AbstractController
      */
     public function createJob(JobService $jobService)
     {
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
         $user_id = $currentUser->getId();
-
+        
+        if ($currentUser == $isEmployer || $currentUser == $isAdmin) {
         $params['user_id'] = $user_id;
 
         $jobService->createJob($params);
-        return $this->render('job/create_job_button.html.twig');
+
+        $job = $jobService->findHighestJob($user_id);
+
+        return $this->render('job/create_job.html.twig', [
+            'controller_name' => 'JobController',
+            'job' => $job,
+        ]);
+
+        } return $this->render('user/noaccess.html.twig');
     }
 
     public function showAllJobs() {
