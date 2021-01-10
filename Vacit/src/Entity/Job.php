@@ -41,7 +41,7 @@ class Job
     private $job_picture;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $job_date;
 

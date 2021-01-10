@@ -48,6 +48,11 @@ class JobRepository extends ServiceEntityRepository
 
         $user = $userRepository->find($params['user_id']);
 
+        $job->setJobTitle('');
+        $job->setJobDescription('');
+        $job->setJobPicture('');
+        $job->setJobLevel('');
+        $job->setJobLocation('');
         $job->setUser($user);
 
         $em = $this->getEntityManager();
@@ -83,11 +88,17 @@ class JobRepository extends ServiceEntityRepository
         return $allJobsForThisUser['0'];
     }
 
-    public function findAllJobs()
+    public function findAllJobsByEmployer($user_id)
     {
+        $allJobsForThisUser = $this->findby(array('user' => $user_id), array('id'=>'desc'));
+     
+        return $allJobsForThisUser;
     }
 
-    public function findJobsByEmployer()
+    public function findAllJobs()
     {
+
     }
+
+  
 }

@@ -18,6 +18,8 @@ class JobController extends AbstractController
      */
     public function deleteJob(JobService $jobService, $id)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
@@ -35,6 +37,8 @@ class JobController extends AbstractController
      */
     public function updateJob(Request $request, JobService $jobService, $id)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
@@ -61,7 +65,9 @@ class JobController extends AbstractController
      * @Route("/createJob", name="createJob")
      */
     public function createJob(JobService $jobService)
-    {
+    {   
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
@@ -78,11 +84,25 @@ class JobController extends AbstractController
             'controller_name' => 'JobController',
             'job' => $job,
         ]);
-
         } return $this->render('user/noaccess.html.twig');
     }
 
+    /**
+     * @Route("/showAllJobsByEmployer/{user_id}", name="showAllJobsByEmployer")
+     */
+    public function showAllJobsByEmployer(JobService $jobService, $user_id) 
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $allJobsByEmployer = $jobService->findAllJobsByEmployer($user_id);
+
+        dump($allJobsByEmployer);
+        die();
+    }
+
     public function showAllJobs() {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
     }
 }

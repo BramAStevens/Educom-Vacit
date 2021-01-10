@@ -41,8 +41,22 @@ class JobService
         return $job;
     }
 
-    public function findHighestJob($user_id) {
+    public function findHighestJob($user_id)
+    {
         $job = $this->jr->findHighestJob($user_id);
         return $job;
     }
+
+    public function findAllJobsByEmployer($user_id)
+    {
+        $job = $this->jr->findAllJobsByEmployer($user_id);
+        return $job;
+    }
+
+    public function findAllJobs()
+    {
+
+    }
+
+
 }

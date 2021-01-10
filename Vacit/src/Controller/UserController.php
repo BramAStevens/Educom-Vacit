@@ -18,6 +18,8 @@ class UserController extends AbstractController
      */
     public function showUserById(UserService $userService, $id)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
 
@@ -39,6 +41,8 @@ class UserController extends AbstractController
      */
     public function updateUserProfile(Request $request,UserService $userService,$id)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
@@ -81,6 +85,8 @@ class UserController extends AbstractController
      */
     public function deleteUserProfile(UserService $userService, $id)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
@@ -93,7 +99,3 @@ class UserController extends AbstractController
         return $this->render('user/noaccess.html.twig');
     }
 }
-
-// GOOD - use of the normal security methods
-// $hasAccess = $this->isGranted('ROLE_ADMIN');
-// $this->denyAccessUnlessGranted('ROLE_ADMIN');
