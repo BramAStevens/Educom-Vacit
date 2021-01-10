@@ -13,13 +13,17 @@ use App\Entity\Job;
 
 class JobController extends AbstractController
 {
+    private function auth(&$isAdmin) {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+    }
+
      /**
      * @Route("/createJob", name="createJob")
      */
     public function createJob(JobService $jobService)
     {   
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
         $user_id = $currentUser->getId();
@@ -41,8 +45,7 @@ class JobController extends AbstractController
      */
     public function updateJob(Request $request, JobService $jobService, $id)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
         
@@ -60,8 +63,7 @@ class JobController extends AbstractController
      */
     public function deleteJob(JobService $jobService, $id)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
 

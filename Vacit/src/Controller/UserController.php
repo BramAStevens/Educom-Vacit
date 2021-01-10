@@ -12,7 +12,12 @@ use App\Service\UserService;
 use App\Entity\User;
 
 class UserController extends AbstractController
-{
+{   
+    private function auth(&$isAdmin) {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+    }
+
     /**
      * @Route("/showUser/{id}", name="showUser")
      */
@@ -36,10 +41,9 @@ class UserController extends AbstractController
     /**
      * @Route("/updateUserProfile/{id}", name="updateUserProfile")
      */
-    public function updateUserProfile(Request $request,UserService $userService,$id)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
+    public function updateUserProfile(Request $request, UserService $userService, $id)
+    {   
+        $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
@@ -64,9 +68,8 @@ class UserController extends AbstractController
      * @Route("/deleteUserProfile/{id}", name="deleteUserProfile")
      */
     public function deleteUserProfile(UserService $userService, $id)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
+    {   
+        $this->auth($isAdmin);
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
