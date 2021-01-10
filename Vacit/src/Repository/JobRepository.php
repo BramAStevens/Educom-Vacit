@@ -101,5 +101,5 @@ class JobRepository extends ServiceEntityRepository
         return($alljobs);
     }
 
-  
+    
 }

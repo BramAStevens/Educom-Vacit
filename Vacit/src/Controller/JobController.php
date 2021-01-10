@@ -13,50 +13,7 @@ use App\Entity\Job;
 
 class JobController extends AbstractController
 {
-    /**
-     * @Route("/deleteJob/{id}", name="deleteJob")
-     */
-    public function deleteJob(JobService $jobService, $id)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
-        $currentUser = $this->getUser();
-        $job = $jobService->findJobById($id);
-
-        if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
-            $result = $jobService->deleteJobById($id);
-            dump($result);
-            die();
-        } return $this->render('user/noaccess.html.twig');
-    }
-
-    /**
-     * @Route("/updateJob/{id}", name="updateJob")
-     */
-    public function updateJob(Request $request, JobService $jobService, $id)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
-        $currentUser = $this->getUser();
-        $job = $jobService->findJobById($id);
-        
-        if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
-            $params['id'] = $id;
-            $params['job_title'] = $request->request->get('job_title',$job->getJobTitle());
-            $params['job_description'] = $request->request->get('job_description',$job->getJobDescription());
-            $params['job_picture'] = $request->request->get('job_picture',$job->getJobPicture());
-            $params['job_level'] = $request->request->get('job_level',$job->getJobLevel());
-            $params['job_location'] = $request->request->get('job_location',$job->getJobLocation());
-
-            $jobService->updateJob($params);
-
-            return $this->render('job/update_job.html.twig', [
-                'controller_name' => 'JobController',
-                'job' => $job]);
-        } return $this->render('user/noaccess.html.twig');
-    }
-
-    /**
+     /**
      * @Route("/createJob", name="createJob")
      */
     public function createJob(JobService $jobService)
@@ -80,6 +37,42 @@ class JobController extends AbstractController
     }
 
     /**
+     * @Route("/updateJob/{id}", name="updateJob")
+     */
+    public function updateJob(Request $request, JobService $jobService, $id)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $currentUser = $this->getUser();
+        $job = $jobService->findJobById($id);
+        
+        if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
+            $jobService->updateJob($request, $id);
+
+            return $this->render('job/update_job.html.twig', [
+                'controller_name' => 'JobController',
+                'job' => $job]);
+        } return $this->render('user/noaccess.html.twig');
+    }
+
+    /**
+     * @Route("/deleteJob/{id}", name="deleteJob")
+     */
+    public function deleteJob(JobService $jobService, $id)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        $currentUser = $this->getUser();
+        $job = $jobService->findJobById($id);
+
+        if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
+            $result = $jobService->deleteJobById($id);
+            dump($result);
+            die();
+        } return $this->render('user/noaccess.html.twig');
+    }
+
+    /**
      * @Route("/showAllJobsByEmployer/{user_id}", name="showAllJobsByEmployer")
      */
     public function showAllJobsByEmployer(JobService $jobService, $user_id) 
@@ -97,7 +90,6 @@ class JobController extends AbstractController
     public function showAllJobs(JobService $jobService)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         $allJobs = $jobService->findAllJobs();
 
         dump($allJobs);

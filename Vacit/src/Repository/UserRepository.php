@@ -58,6 +58,18 @@ class UserRepository extends ServiceEntityRepository implements
             $this->passwordEncoder->encodePassword($user, 'password')
         );
         $user->setRoles(['ROLE_EMPLOYER']);
+        $user->setUserPicture('');
+        $user->setUserSurname('');
+        $user->setUserLastname('');
+        $user->setUserEmail('');
+        $user->setUserDob('');
+        $user->setUserPhoneNumber('');
+        $user->setUserAddress('');
+        $user->setUserPostcode('');
+        $user->setUserCity('');
+        $user->setUserMotivation('');
+        $user->setUserCv('');
+        
         $em = $this->getEntityManager();
         $em->persist($user);
         $em->flush();

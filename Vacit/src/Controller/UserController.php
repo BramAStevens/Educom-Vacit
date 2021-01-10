@@ -32,7 +32,7 @@ class UserController extends AbstractController
                 'user' => $user]);
         }
     }
-    
+
     /**
      * @Route("/updateUserProfile/{id}", name="updateUserProfile")
      */
@@ -45,20 +45,7 @@ class UserController extends AbstractController
         $currentUser = $this->getUser();
 
         if ($user == $currentUser || $currentUser == $isAdmin) {
-            $params['id'] = $id;
-            $params['user_picture'] = $request->request->get('user_picture', $user->getUserPicture());
-            $params['user_surname'] = $request->request->get('user_surname', $user->getUserSurname());
-            $params['user_lastname'] = $request->request->get('user_lastname', $user->getUserLastname());
-            $params['user_email'] = $request->request->get('user_email', $user->getUserEmail());
-            $params['user_dob'] = $request->request->get('user_dob', $user->getUserDob());
-            $params['user_phone_number'] = $request->request->get('user_phone_number', $user->getUserPhoneNumber());
-            $params['user_address'] = $request->request->get('user_address', $user->getUserAddress());
-            $params['user_postcode'] = $request->request->get('user_postcode', $user->getUserPostcode());
-            $params['user_city'] = $request->request->get('user_city', $user->getUserCity());
-            $params['user_motivation'] = $request->request->get('user_motivation', $user->getUserMotivation());
-            $params['user_cv'] = $request->request->get('user_cv', $user->getUserCv());
-
-            $userService->updateUserProfile($params);
+            $userService->updateUserProfile($request, $id);
 
             if ($user == $isEmployer) {
                 return $this->render('user/update_employer_profile.html.twig', [

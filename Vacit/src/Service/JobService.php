@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\JobRepository;
 use App\Entity\Job;
@@ -29,10 +30,17 @@ class JobService
         return $job;
     }
 
-    public function updateJob($params)
-    {
-        $job = $this->jr->updateJob($params);
-        return $job;
+    public function updateJob(Request $request, $id)
+    {   
+        $job = $this->findJobById($id);
+        $params['id'] = $id;
+        $params['job_title'] = $request->request->get('job_title',$job->getJobTitle());
+        $params['job_description'] = $request->request->get('job_description',$job->getJobDescription());
+        $params['job_picture'] = $request->request->get('job_picture',$job->getJobPicture());
+        $params['job_level'] = $request->request->get('job_level',$job->getJobLevel());
+        $params['job_location'] = $request->request->get('job_location',$job->getJobLocation());
+        $update = $this->jr->updateJob($params);
+        return $update;
     }
 
     public function createJob($params)
