@@ -55,7 +55,8 @@ class JobService
 
     public function findAllJobs()
     {
-
+        $jobs = $this->jr->findAllJobs();
+        return($jobs);
     }
 
 

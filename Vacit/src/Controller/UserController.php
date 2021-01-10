@@ -19,30 +19,26 @@ class UserController extends AbstractController
     public function showUserById(UserService $userService, $id)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
 
         if ($user == $isEmployer) {
             return $this->render('user/show_employer_profile.html.twig', [
                 'controller_name' => 'UserController',
-                'user' => $user,
-            ]);
+                'user' => $user]);
         } else {
             return $this->render('user/show_candidate_profile.html.twig', [
                 'controller_name' => 'UserController',
-                'user' => $user,
-            ]);
+                'user' => $user]);
         }
     }
-
+    
     /**
      * @Route("/updateUserProfile/{id}", name="updateUserProfile")
      */
     public function updateUserProfile(Request $request,UserService $userService,$id)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
@@ -67,17 +63,14 @@ class UserController extends AbstractController
             if ($user == $isEmployer) {
                 return $this->render('user/update_employer_profile.html.twig', [
                     'controller_name' => 'UserController',
-                    'user' => $user,
-                ]);
+                    'user' => $user]);
             } else {
                 return $this->render(
                     'user/update_candidate_profile.html.twig',[
                     'controller_name' => 'UserController',
-                    'user' => $user,
-                ]);
+                    'user' => $user]);
             }
-        }
-        return $this->render('user/noaccess.html.twig');
+        } return $this->render('user/noaccess.html.twig');
     }
 
     /**
@@ -86,7 +79,6 @@ class UserController extends AbstractController
     public function deleteUserProfile(UserService $userService, $id)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
         $isAdmin = $this->isGranted('ROLE_ADMIN');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
@@ -95,7 +87,6 @@ class UserController extends AbstractController
             $result = $userService->deleteUserById($id);
             dump($result);
             die();
-        }
-        return $this->render('user/noaccess.html.twig');
+        } return $this->render('user/noaccess.html.twig');
     }
 }

@@ -81,13 +81,6 @@ class JobRepository extends ServiceEntityRepository
         return $job;
     }
 
-    public function findHighestJob($user_id) 
-    {
-        $allJobsForThisUser = $this->findby(array('user' => $user_id), array('id'=>'desc'));
-     
-        return $allJobsForThisUser['0'];
-    }
-
     public function findAllJobsByEmployer($user_id)
     {
         $allJobsForThisUser = $this->findby(array('user' => $user_id), array('id'=>'desc'));
@@ -95,9 +88,17 @@ class JobRepository extends ServiceEntityRepository
         return $allJobsForThisUser;
     }
 
+    public function findHighestJob($user_id) 
+    {
+        $allJobsForThisUser = $this->findAllJobsByEmployer($user_id);
+     
+        return $allJobsForThisUser['0'];
+    }
+
     public function findAllJobs()
     {
-
+        $alljobs = $this->findAll();
+        return($alljobs);
     }
 
   
