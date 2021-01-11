@@ -35,7 +35,7 @@ class Application
     private $Application_date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $application_company;
 

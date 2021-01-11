@@ -56,8 +56,7 @@ class UserController extends AbstractController
                     'controller_name' => 'UserController',
                     'user' => $user]);
             } else {
-                return $this->render(
-                    'user/update_candidate_profile.html.twig',[
+                return $this->render('user/update_candidate_profile.html.twig',[
                     'controller_name' => 'UserController',
                     'user' => $user]);
             }

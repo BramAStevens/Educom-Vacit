@@ -5,17 +5,21 @@ namespace App\Service;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\JobRepository;
+use App\Repository\UserRepository;
 use App\Entity\Job;
+use App\Entity\User;
 
 class JobService
 {
     private $em;
     private $jr;
+    private $ur;
 
-    public function __construct(EntityManagerInterface $em, JobRepository $jr)
+    public function __construct(EntityManagerInterface $em, JobRepository $jr, UserRepository $ur)
     {
         $this->em = $em;
         $this->jr = $jr;
+        $this->ur = $ur;
     }
 
     public function deleteJobById($id)
@@ -45,6 +49,7 @@ class JobService
 
     public function createJob($params)
     {
+        $user = $this->ur->find($params['user_id']);
         $job = $this->jr->createJob($params);
         return $job;
     }
@@ -66,6 +71,4 @@ class JobService
         $jobs = $this->jr->findAllJobs();
         return($jobs);
     }
-
-
 }

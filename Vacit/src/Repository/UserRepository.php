@@ -54,9 +54,7 @@ class UserRepository extends ServiceEntityRepository implements
     {
         $user = new User();
         $user->setUsername($params['username']);
-        $user->setPassword(
-            $this->passwordEncoder->encodePassword($user, 'password')
-        );
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
         $user->setRoles(['ROLE_EMPLOYER']);
         $user->setUserPicture('');
         $user->setUserSurname('');

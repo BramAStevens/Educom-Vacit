@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
+use App\Entity\Job;
 use App\Entity\Application;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,36 +21,72 @@ class ApplicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Application::class);
     }
 
-    public function findAllApplicationsByJob()
+    public function findAllApplicationsByJob($job_id) // for employer
     {
+        $applicationsByJob = $this->findby(array('job' => $job_id),  array('id'=>'desc'));
+        return $applicationsByJob;
     }
 
-    // /**
-    //  * @return Application[] Returns an array of Application objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllApplicationsByUser($user_id) // by candidate
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $applicationsByUser = $this->findby(array('user' => $user_id),  array('id'=>'desc'));
+        return $applicationsByUser;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Application
+    public function findApplicationById($id)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $job = $this->find($id);
+        return $job;
     }
-    */
+
+    public function createApplication($params)
+    {
+        $application = new Application(); 
+    
+        $em = $this->getEntityManager();
+        $userRepository = $em->getRepository(User::class); // put this kind of stuff in service and only crud in this file
+        $jobRepository = $em->getRepository(Job::class);
+
+        $user_id = $userRepository->find($params['user_id']);
+        $job_id = $jobRepository->find($params['job_id']);
+        $applicationEmployerId = $jobRepository->find($params['job_id'])->getUser()->getId();
+        $application_company = $userRepository->find($applicationEmployerId)->getUsername();
+    
+        $application->setUser($user_id);
+        $application->setJob($job_id);
+        $application->setApplicationCompany($application_company);
+        $application->setApplicationDate(new \DateTime());
+        $application->setApplicationInvitation(0);
+
+        $em = $this->getEntityManager();
+        $em->persist($application);
+        $em->flush();
+
+        return $application;
+    }
+
+    public function deleteApplication($id)
+    {
+        $application = $this->find($id);
+        if ($application) {
+            $em = $this->getEntityManager();
+            $em->remove($application);
+            $em->flush();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateApplication($id)
+    {
+        $application = $this->find($id);
+
+        $application->setApplicationInvitation(1);
+        $em = $this->getEntityManager();
+        $em->persist($application);
+        $em->flush();
+        return $application;
+    }
+
 }
