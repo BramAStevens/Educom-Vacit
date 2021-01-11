@@ -37,16 +37,10 @@ class JobRepository extends ServiceEntityRepository
         return $job;
     }
 
-    public function createJob($params)
+    public function createJob($user)
     {
         $job = new Job();
         $job->setJobDate(new \DateTime());
-
-        $em = $this->getEntityManager();
-
-        $userRepository = $em->getRepository(User::class);
-
-        $user = $userRepository->find($params['user_id']);
 
         $job->setJobTitle('');
         $job->setJobDescription('');

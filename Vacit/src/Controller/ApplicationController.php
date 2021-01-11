@@ -6,10 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Service\UserService;
-use App\Entity\User;
-use App\Service\JobService;
-use App\Entity\Job;
 use App\Service\ApplicationService;
 use App\Entity\Application;
 
@@ -28,14 +24,11 @@ class ApplicationController extends AbstractController
         $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
-        if($currentUser == $isAdmin || $currentUser == $isEmployer){
+        if($currentUser == $isAdmin || $currentUser != $isEmployer){
         $user_id = $currentUser->getId();
-        $application = $applicationService->findApplicationById($job_id);
         $params['user_id'] = $user_id;
         $params['job_id'] = $job_id;
-
         $applicationService->createApplication($params);
-
         return $this->render('application/apply_vacancy.html.twig');
         } return $this->render('user/noaccess.html.twig');
     }
@@ -43,11 +36,15 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/removeApplication/{id}", name="removeApplication")
      */
-    public function deleteApplication(ApplicationService $applicationService, $id) {
+    public function deleteApplication(ApplicationService $applicationService, $id) { 
         $this->auth($isAdmin);
+        $currentUser = $this->getUser();
+        $application = $applicationService->findApplicationById($id);
+        if($currentUser == $application->getUser() || $currentUser == $isAdmin) {
         $remove = $applicationService->deleteApplication($id);
         dump($remove);
         die();
+        } return $this->render('user/noaccess.html.twig');
     }
 
     /**
@@ -55,28 +52,40 @@ class ApplicationController extends AbstractController
      */
     public function findAllApplicationsByJob(ApplicationService $applicationService, $job_id) {
         $this->auth($isAdmin);
+        $currentUser = $this->getUser();
+        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
+        $application = $applicationService->findApplicationById($job_id);
+        if($currentUser == $isEmployer || $currentUser == $isAdmin) {
         $applications = $applicationService->findAllApplicationsByJob($job_id);
         dump($applications);
         die();
+        } return $this->render('user/noaccess.html.twig');
     }
 
      /**
      * @Route("/applicationsByUser/{user_id}", name="applicationsByUser")
      */
-    public function findAllApplicationsByUser(ApplicationService $applicationService, $user_id) {
+    public function findAllApplicationsByUser(ApplicationService $applicationService, $user_id) { 
         $this->auth($isAdmin);
+        $currentUserId = $this->getUser()->getId();
+        if($currentUser == $user_id || $currentUserId == $isAdmin) {
         $applications = $applicationService->findAllApplicationsByUser($user_id);
         dump($applications);
         die();
+        } return $this->render('user/noaccess.html.twig');
     }
 
     /**
      * @Route("/inviteApplicant/{id}", name="inviteApplicant")
      */
-    public function inviteApplicant(ApplicationService $applicationService, $id) {
+    public function inviteApplicant(ApplicationService $applicationService, $id) { 
         $this->auth($isAdmin);
+        $currentUser = $this->getUser()->getUsername();
+        $application = $applicationService->findApplicationById($id);
+        if($currentUser == $application->getApplicationCompany() || $currentUser == $isAdmin) {
         $invite = $applicationService->updateApplication($id);
         dump($invite);
         die();
+        } return $this->render('user/noaccess.html.twig');
     }
 }

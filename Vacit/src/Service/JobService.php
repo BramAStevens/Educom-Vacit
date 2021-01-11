@@ -50,7 +50,8 @@ class JobService
     public function createJob($params)
     {
         $user = $this->ur->find($params['user_id']);
-        $job = $this->jr->createJob($params);
+        $job = $this->jr->createJob($user);
+        
         return $job;
     }
 

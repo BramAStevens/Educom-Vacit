@@ -35,33 +35,21 @@ class ApplicationRepository extends ServiceEntityRepository
 
     public function findApplicationById($id)
     {
-        $job = $this->find($id);
-        return $job;
+        $application = $this->find($id);
+        return $application;
     }
 
-    public function createApplication($params)
+    public function createApplication($user_id, $job_id, $application_company)
     {
         $application = new Application(); 
-    
-        $em = $this->getEntityManager();
-        $userRepository = $em->getRepository(User::class); // put this kind of stuff in service and only crud in this file
-        $jobRepository = $em->getRepository(Job::class);
-
-        $user_id = $userRepository->find($params['user_id']);
-        $job_id = $jobRepository->find($params['job_id']);
-        $applicationEmployerId = $jobRepository->find($params['job_id'])->getUser()->getId();
-        $application_company = $userRepository->find($applicationEmployerId)->getUsername();
-    
         $application->setUser($user_id);
         $application->setJob($job_id);
         $application->setApplicationCompany($application_company);
         $application->setApplicationDate(new \DateTime());
         $application->setApplicationInvitation(0);
-
         $em = $this->getEntityManager();
         $em->persist($application);
         $em->flush();
-
         return $application;
     }
 
@@ -81,7 +69,6 @@ class ApplicationRepository extends ServiceEntityRepository
     public function updateApplication($id)
     {
         $application = $this->find($id);
-
         $application->setApplicationInvitation(1);
         $em = $this->getEntityManager();
         $em->persist($application);
