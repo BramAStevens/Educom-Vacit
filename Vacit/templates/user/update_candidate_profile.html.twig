@@ -6,7 +6,16 @@
 
 
 <form method="post">
-  <div class="grid-container width-75">
+    <svg style= "width: 8%; margin-left: 10%;" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" class="float-left margin-top-3 margin-left-3">
+        <defs>
+          <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" x="-25" width="150%" height="100%" />
+          </pattern>
+        </defs>
+        <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
+      </svg>
+  <div class="grid-container width-75 padding-top-3">
+
     <h2>My Profile</h2>
     <div class="grid-x grid-padding-x">
         
@@ -52,8 +61,10 @@
       </div>
     </div>
     <h3>Motivation</h3>
-     <textarea cols="80" id="editor1" name="user_motivation" rows="10" data-sample-short>{{user.usermotivation}}</textarea>
-      <input class="button float-right margin-top-1" type="submit" value="Save">
+     <textarea cols="80" id="editor1" name="user_motivation" rows="10">{{user.usermotivation}}</textarea>
+     <label for="fileUpload" class="button margin-top-2">Upload CV</label>
+      <input type="file" id="fileUpload" class="show-for-sr">
+      <input class="button float-right margin-top-2" type="submit" value="Save">
     </div>
   </div>
   
