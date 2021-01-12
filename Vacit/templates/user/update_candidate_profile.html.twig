@@ -3,32 +3,75 @@
 {% block title %}User profile!{% endblock %}
 
 {% block body %}
+
+
 <form method="post">
-    <h1 class="h3 mb-3 font-weight-normal">Please fill in your user profile - Candidate</h1>
-    <label for="inputPicture">Picture</label>
-    <input type="text" name="user_picture" id="inputPicture" value="{{user.userpicture}}">
-    <label for="inputSurname">Surname</label>
-    <input type="text" name="user_surname" id="inputSurname" value="{{user.usersurname}}">
-    <label for="inputLastname">Last name</label>
-    <input type="text" name="user_lastname" id="inputLastname" value="{{user.userlastname}}">
-    <label for="inputEmail">Email</label>
-    <input type="text" name="user_email" id="inputEmail" value="{{user.useremail}}">
-    <label for="inputDOB">Date of Birth</label>
-    <input type="text" name="user_dob" id="inputDOB" value="{{user.userdob}}">
-    <label for="inputPhone">Phone Number</label>
-    <input type="text" name="user_phone_number" id="inputPhone" value="{{user.userphonenumber}}">
-    <label for="inputAddress">address</label>
-    <input type="text" name="user_address" id="inputAddress" value="{{user.useraddress}}">
-    <label for="inputPostcode">Postcode</label>
-    <input type="text" name="user_postcode" id="inputPostcode" value="{{user.userpostcode}}">
-    <label for="inputCity">City</label>
-    <input type="text" name="user_city" id="inputCity" value="{{user.usercity}}">
-    <label for="inputMotivation">Motivation Letter</label>
+  <div class="grid-container width-75">
+    <h2>My Profile</h2>
+    <div class="grid-x grid-padding-x">
+        
+      <div class="cell medium-4 medium-cell-block-y">
+        <label for="inputSurname">Surname
+          <input type="text" name="user_surname" id="inputSurname" value="{{user.usersurname}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="cell medium-8 medium-cell-block-y">
+        <label for="inputLastname">Last name
+          <input type="text" name="user_lastname" id="inputLastname" value="{{user.userlastname}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="medium-12 cell">
+        <label for="inputEmail">Email
+          <input type="text" name="user_email" id="inputEmail" value="{{user.useremail}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="medium-4 cell">
+        <label for="inputDOB">Date of birth
+          <input type="date" name="user_dob" id="inputDOB" value="{{user.userdob}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="medium-8 cell">
+        <label for="inputPhone">Phone number
+          <input type="text" name="user_phone_number" id="inputPhone" value="{{user.userphonenumber}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="medium-12 cell">
+        <label for="inputAddress">Address
+          <input type="text" name="user_address" id="inputAddress" value="{{user.useraddress}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="medium-4 cell">
+        <label for="inputPostcode">Postcode
+          <input type="text" name="user_postcode" id="inputPostcode" value="{{user.userpostcode}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+      <div class="medium-8 cell">
+        <label for="inputCity">Province
+          <input type="text" name="user_city" id="inputCity" value="{{user.usercity}}" placeholder=".medium-6.cell">
+        </label>
+      </div>
+    </div>
+    <h3>Motivation</h3>
+     <textarea cols="80" id="editor1" name="user_motivation" rows="10" data-sample-short>{{user.usermotivation}}</textarea>
+      <input class="button float-right margin-top-1" type="submit" value="Save">
+    </div>
+  </div>
+  
+</form>
+
+    <!-- <label for="inputMotivation">Motivation Letter</label>
     <input type="text" name="user_motivation" id="inputMotivation" value="{{user.usermotivation}}">
     <label for="inputCV">CV</label>
     <input type="text" name="user_cv" id="inputCV" value="{{user.usercv}}">
     <button class="btn btn-lg btn-primary" type="submit">
         Submit
     </button>
-</form>
+</form> -->
+{% endblock %}
+{% block javascripts %}
+<script>
+    CKEDITOR.replace('editor1', {
+      height: 150
+    });
+  </script>
 {% endblock %}
