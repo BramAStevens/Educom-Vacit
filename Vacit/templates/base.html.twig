@@ -22,7 +22,7 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-
+<div class="container">
         <header>
         {% include "headerfooter/header.html.twig" %}
         </header>
@@ -30,8 +30,10 @@
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         </main>
-        <footer style=" position: relative; width: 100%; height: 5%; ">
+     
+        <footer class="footer" style="">
         {% include "headerfooter/footer.html.twig" %}
         </footer>
+</div>
     </body>
 </html>
