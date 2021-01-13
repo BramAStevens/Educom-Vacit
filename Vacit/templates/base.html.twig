@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
-<link rel="stylesheet" type="text/css" href="/assets/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/main.css") }}"/> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <!-- Compressed CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
 <!-- Compressed JavaScript -->
@@ -15,12 +17,16 @@
 <!-- foundation-rtl.min.css: Compressed CSS with right-to-left reading direction -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation-rtl.min.css" integrity="sha256-F+9Ns8Z/1ZISonBbojH743hsmF3x3AlQdJEeD8DhQsE=" crossorigin="anonymous">
 <script src="https://cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
+<script src="{{ asset('assets/js/SimpleAjaxUploader.js') }}"></script>  
+    <script src="{{ asset('assets/js/jquery.js')}}"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
         {% include "headerfooter/header.html.twig" %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         {% include "headerfooter/footer.html.twig" %}
+
     </body>
 </html>

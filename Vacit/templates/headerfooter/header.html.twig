@@ -1,20 +1,23 @@
 <div class="header">
-<div class="grid-x align-middle" id="headerbar"  style="text-align: right;">
- <div class="cell medium-4 medium-cell-block-y">
-<img src="/assets/logo/vacit-logo-white.png" class="media-object margin-left-1 margin-top-1" style="height: 30%; width: 30%;">
+	<div class="grid-x align-middle" id="headerbar">
+		<div class="cell medium-4 medium-cell-block-y">
+			<img src="/assets/logo/vacit-logo-white.png" class="media-object-section align-middle margin-left-1" style="height: 30%; width: 30%;">
+		</div>
+     
+		{% if app.user %}
+			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
+				<ul id="headertext" class="float-right">LOGOUT</ul>
+				<ul id="headertext" class="float-right">MY PROFILE</ul>
+				<ul id="headertext" class="float-right">MY APPLICATIONS</ul>
+			</div>
+    
+		{% else %}
+			<div class="cell medium-8 medium-cell-block-y float-right" style="margin-bottom: -1%">
+				<ul id="headertext" class="float-right">REGISTER</ul>
+				<ul id="headertext" class="float-right">LOGIN</ul>
+			</div>
+		{% endif %}
+  
+	</div>
+  <div class="a"></div>
 </div>
-{% if app.user %}
-    <div class="cell medium-8 medium-cell-block-y float-right margin-top-3">
-    <ul id="headertext" class="float-right">LOGOUT</ul>
-    <ul id="headertext" class="float-right">MY PROFILE</ul>
-    <ul id="headertext" class="float-right">MY APPLICATIONS</ul>
-    </div>
-    {% else %}
-    <p>nay</p>
-    {% endif %}
-
-    </div>
-  </div>
-
-
-

@@ -1,83 +1,201 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User profile!{% endblock %}
+{% block stylesheets %}
+<script>
+ $(document).ready(function() {
 
+            let uploader = new ss.SimpleUpload({
+                button: "uploadcv",
+                url: "{{ path('upload_file') }}",
+                name: 'file', // upload parameter name die gebruikt wordt in de controller
+                responseType: 'json',
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'pdf'],
+                hoverClass: 'hover-class-upload',
+                focusClass: 'hover-class-upload',
+                multiple: false,
+                disabledClass: 'ui-state-disabled',
+                autoSubmit: true,
+
+                onSizeError: function() {
+                    alert('File may not exceed 100MB');
+                },
+
+                onExtError: function() {
+                    alert('Invalid file type. Please use a PNG, JPG or JPEG or PDF file');
+                },
+
+                onSubmit: function( filename, extension, uploadBtn, fileSize ) {
+                    return(true);
+                },
+
+                onComplete: function (filename, response) {
+
+                    if(response.success === false) {
+                        alert(response.errors);
+                    } else {
+
+                      $("#cvfile").val(response.file_id);
+                      $("#cvactual").attr("title", response.file_id);
+                        
+                    }
+                }
+            });
+
+        });
+    </script>      
+    <script>
+ $(document).ready(function() {
+
+            let uploader = new ss.SimpleUpload({
+                button: "upload",
+                url: "{{ path('upload_file') }}",
+                name: 'file', // upload parameter name die gebruikt wordt in de controller
+                responseType: 'json',
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'pdf'],
+                hoverClass: 'hover-class-upload',
+                focusClass: 'hover-class-upload',
+                multiple: false,
+                disabledClass: 'ui-state-disabled',
+                autoSubmit: true,
+
+                onSizeError: function() {
+                    alert('File may not exceed 100MB');
+                },
+
+                onExtError: function() {
+                    alert('Invalid file type. Please use a PNG, JPG or JPEG or PDF file');
+                },
+
+                onSubmit: function( filename, extension, uploadBtn, fileSize ) {
+                    return(true);
+                },
+
+                onComplete: function (filename, response) {
+
+                    if(response.success === false) {
+                        alert(response.errors);
+                    } else {
+
+                      $("#imgfile").val(response.file_id);
+                      $("#imgactual").attr("src", "/"+response.file_id);
+                        
+                    }
+                }
+            });
+
+        });
+    </script>      
+ {% endblock %}
+ {% block title %}User profile!{% endblock %}
 {% block body %}
 
 
 <form method="post">
-    <svg style= "width: 8%; margin-left: 10%;" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" class="float-left margin-top-3 margin-left-3">
-        <defs>
-          <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" x="-25" width="150%" height="100%" />
-          </pattern>
-        </defs>
-        <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
-      </svg>
-  <div class="grid-container width-75 padding-top-3">
+<input type="hidden" name="user_cv" id="cvfile" value="{{user.usercv}}">
+<input type="hidden" name="user_picture" id="imgfile" value="{{user.userpicture}}">
 
-    <h2>My Profile</h2>
-    <div class="grid-x grid-padding-x">
-        
-      <div class="cell medium-4 medium-cell-block-y">
-        <label for="inputSurname">Surname
-          <input type="text" name="user_surname" id="inputSurname" value="{{user.usersurname}}" placeholder=".medium-6.cell">
+
+<div class="hexagon float-left margin-top-1 show-for-medium" id="upload">
+{% if user.userpicture|length > 2 %}
+    <img class="hexagonpic" src="{{ asset( user.userpicture )}}" id="imgactual" style="border: none"></img>
+    {% else %}
+    <img class="hexagonpic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" id="imgactual" style="border: none"></img>
+    {% endif %}               
+    </div>
+
+<div class="hexagonsmall float-left show-for-small-only margin-right-1" id="upload">
+      {% if user.userpicture|length > 2 %}
+          <img class="hexagonpic" src="{{ asset( user.userpicture )}}" id="imgactual" style="border: none"></img>
+          {% else %}
+          <img class="hexagonpic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" id="imgactual" style="border: none"></img>
+          {% endif %}               
+          </div>
+
+  <div class="grid-container width-75 small-flex-child-auto margin-top-3 margin-bottom-3">
+
+    <h2 id="Arial">MY PROFILE</h2>
+    <div class="grid-x grid-padding-x">  
+      <div class="cell medium-4 small-4 medium-cell-block-y">
+        <label for="inputSurname"style="font-size: 60%;">Surname
+          <input id="input" type="text" name="user_surname"  id="inputSurname" value="{{user.usersurname}}">
         </label>
       </div>
-      <div class="cell medium-8 medium-cell-block-y">
-        <label for="inputLastname">Last name
-          <input type="text" name="user_lastname" id="inputLastname" value="{{user.userlastname}}" placeholder=".medium-6.cell">
-        </label>
-      </div>
-      <div class="medium-12 cell">
-        <label for="inputEmail">Email
-          <input type="text" name="user_email" id="inputEmail" value="{{user.useremail}}" placeholder=".medium-6.cell">
-        </label>
-      </div>
-      <div class="medium-4 cell">
-        <label for="inputDOB">Date of birth
-          <input type="date" name="user_dob" id="inputDOB" value="{{user.userdob}}" placeholder=".medium-6.cell">
-        </label>
-      </div>
-      <div class="medium-8 cell">
-        <label for="inputPhone">Phone number
-          <input type="text" name="user_phone_number" id="inputPhone" value="{{user.userphonenumber}}" placeholder=".medium-6.cell">
-        </label>
-      </div>
-      <div class="medium-12 cell">
-        <label for="inputAddress">Address
-          <input type="text" name="user_address" id="inputAddress" value="{{user.useraddress}}" placeholder=".medium-6.cell">
-        </label>
-      </div>
-      <div class="medium-4 cell">
-        <label for="inputPostcode">Postcode
-          <input type="text" name="user_postcode" id="inputPostcode" value="{{user.userpostcode}}" placeholder=".medium-6.cell">
-        </label>
-      </div>
-      <div class="medium-8 cell">
-        <label for="inputCity">Province
-          <input type="text" name="user_city" id="inputCity" value="{{user.usercity}}" placeholder=".medium-6.cell">
+      <div class="cell medium-8 small-8 medium-cell-block-y">
+        <label for="inputLastname"style="font-size: 60%;">Last name
+          <input id="input" type="text" name="user_lastname" id="inputLastname" value="{{user.userlastname}}">
         </label>
       </div>
     </div>
-    <h3>Motivation</h3>
-     <textarea cols="80" id="editor1" name="user_motivation" rows="10">{{user.usermotivation}}</textarea>
-     <label for="fileUpload" class="button margin-top-2">Upload CV</label>
-      <input type="file" id="fileUpload" class="show-for-sr">
-      <input class="button float-right margin-top-2" type="submit" value="Save">
+      <div class="grid-x padding-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputEmail"style="font-size: 60%;">Email
+          <input id="input" type="text" name="user_email" id="inputEmail" value="{{user.useremail}}">
+        </label>
+      </div>
+    </div>
+      <div class="grid-x padding-x">
+      <div class="medium-4 small-6 cell">
+        <label for="inputDOB"style="font-size: 60%;">Date of birth
+          <input id="input" type="date" name="user_dob" id="inputDOB" value="{{user.userdob}}">
+        </label>
+      </div>
+      <div class="medium-8 small-6 cell">
+        <label for="inputPhone"style="font-size: 60%;">Phone number
+          <input id="input" type="text" name="user_phone_number" id="inputPhone" value="{{user.userphonenumber}}">
+        </label>
+      </div>
+    </div>
+      <div class="grid-x padding-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputAddress"style="font-size: 60%;">Address
+          <input id="input" type="text" name="user_address" id="inputAddress" value="{{user.useraddress}}">
+        </label>
+      </div>
+    </div>
+      <div class="grid-x padding-x">
+      <div class="medium-4 small-6 cell">
+        <label for="inputPostcode"style="font-size: 60%;">Postcode
+          <input id="input" type="text" name="user_postcode" id="inputPostcode" value="{{user.userpostcode}}">
+        </label>
+      </div>
+      <div class="medium-8 small-6 cell">
+        <label for="inputCity" style="font-size: 60%;">Province
+          <input id="input" type="text" name="user_city" id="inputCity" value="{{user.usercity}}">
+        </label>
+      </div>
+    </div>
+    <div class="grid-x padding-x">
+    <div class="medium-12 small-12 cell">
+      <h3 id="Arial">MOTIVATION</h3>
+     <textarea cols="80" id="editor1" name="user_motivation" rows="10" >{{user.usermotivation}}</textarea>
+     </div>
+    </div>
+   <div class="medium-12 small-12" id="bottom">
+
+
+    <div class="medium-8 small-8 float-left" id="uploadcv">
+    <div style="display: inline-flex;">
+    <i class="fas fa-file-pdf" style="margin-top: 3%;"></i><p style="cursor: pointer;">&nbsp; &nbsp;UPLOAD CV</p>
+   </div>
+
+</div>
+
+    <div class="medium-4 small-4 float-right" type="submit">
+    <button  class="btn btn-success float-right">
+      <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 150%; cursor: pointer;"></i><p class="float-right" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;SAVE</p>
+    </button>
+    <!-- <input class="button float-right" type="submit" value="Save"> -->
+  </div>
+
+
+  </div>
+
+
     </div>
   </div>
-  
+  </div>
 </form>
 
-    <!-- <label for="inputMotivation">Motivation Letter</label>
-    <input type="text" name="user_motivation" id="inputMotivation" value="{{user.usermotivation}}">
-    <label for="inputCV">CV</label>
-    <input type="text" name="user_cv" id="inputCV" value="{{user.usercv}}">
-    <button class="btn btn-lg btn-primary" type="submit">
-        Submit
-    </button>
-</form> -->
 {% endblock %}
 {% block javascripts %}
 <script>
