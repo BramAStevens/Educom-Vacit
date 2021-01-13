@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/main.css") }}"/> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
@@ -23,10 +23,15 @@
     </head>
     <body>
 
+        <header>
         {% include "headerfooter/header.html.twig" %}
+        </header>
+        <main class="content">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        </main>
+        <footer style=" position: relative; width: 100%; height: 5%; ">
         {% include "headerfooter/footer.html.twig" %}
-
+        </footer>
     </body>
 </html>
