@@ -4,7 +4,7 @@
 
 	<div class="grid-x align-middle" id="headerbar">
 	
-		<div class="cell medium-4 medium-cell-block-y" >
+		<div class="cell medium-4 medium-cell-block-y float-center" >
 			<img src="/assets/logo/vacit-logo-white.png" class="media-object-section align-middle margin-left-1" id="icon">
 		</div>
      
@@ -18,7 +18,7 @@
 			</div>
      
 		{% else %}
-			<div class="cell medium-8 medium-cell-block-y float-right" style="margin-bottom: -1%">
+			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
 				<ul id="headertext" class="float-right">REGISTER</ul>
 				<ul id="headertext" class="float-right">LOGIN</ul>
 			</div>
@@ -60,8 +60,32 @@
   </div>
 </nav>
 {% else %}
-	<div class="cell medium-8 small-8 medium-cell-block-y float-right hide-for-medium" style="margin-bottom: -1%">
-				<ul id="headertext" class="float-right" style="">REGISTER</ul>
-				<ul id="headertext" class="float-right">LOGIN</ul>
-			</div>
+<nav role='navigation' class="hide-for-medium" >
+  <div id="menuToggle" style="margin-top: -10%; margin-right: -4%;">
+    <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+    <input type="checkbox" />
+    
+    <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+    <span></span>
+    <span></span>
+    <span></span>
+    
+    <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+    <ul id="menu">
+      <a href="#"><li>LOGIN</li></a>
+      <a href="#"><li>REGISTER</li></a>
+    </ul>
+  </div>
+</nav>
 {% endif %}
