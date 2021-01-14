@@ -14,9 +14,33 @@
         max-height: 90px !important;
         margin-right: 3%;
     }
-
+    #login {
+        margin-top: 20% !important;
+        margin-left: 34% !important;
+    }
 }
 
+@media (min-width:600px){
+   #loginlogo {
+     height: 150px !important;
+     width: 150px !important;
+    margin-right: 100px !important;
+
+   } 
+}
+
+#logocontainer {
+  display: flex;
+}
+#loginlogo {
+  height: 75px; 
+  width: 75px; 
+  margin-top: 13%;
+  margin-left: 5%;
+}
+#login {
+    margin-top: 8%;
+}
 
 #icon {
 
@@ -212,8 +236,8 @@ font-size: 4px;
     height: 4px;
     margin-bottom: 5px;
     position: relative;
-    
-    background: black;
+
+    background: white;
     border-radius: 3px;
     
     z-index: 1;
@@ -223,6 +247,7 @@ font-size: 4px;
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                 background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                 opacity 0.55s ease;
+    
   }
   
   #menuToggle span:first-child
@@ -243,7 +268,7 @@ font-size: 4px;
   {
     opacity: 1;
     transform: rotate(45deg) translate(-2px, -1px);
-    background: #232323;
+    background: #F15A24;
   }
   
   /*
