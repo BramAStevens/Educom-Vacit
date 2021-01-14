@@ -28,10 +28,12 @@
         </header>
         <main class="content">
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+
+{% endblock %}
         </main>
      
-        <footer class="footer" style="">
+        <footer class="footer">
         {% include "headerfooter/footer.html.twig" %}
         </footer>
 </div>
