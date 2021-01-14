@@ -9,21 +9,21 @@
 {% if app.user %}
 
 			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-				<ul id="headertext" class="float-right">LOGOUT</ul>
-				<ul id="headertext" class="float-right">MY PROFILE</ul>
-				<ul id="headertext" class="float-right">MY APPLICATIONS</ul>
+				<a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
+				<a id="headertext" style="margin-bottom: 2%;" class="float-right">MY PROFILE</a>
+				<a id="headertext" style="margin-bottom: 2%;" class="float-right">MY APPLICATIONS</a>
 
 			</div>
 
 {% else %}
 			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-				<ul id="headertext" class="float-right">REGISTER</ul>
-				<ul id="headertext" class="float-right">LOGIN</ul>
+				<a href="/register" id="headertext" style="margin-bottom: 2%;" class="float-right">REGISTER</a>
+				<a href="/login" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGIN</a>
 			</div>
 {% endif %}
 
 	</div>
-	<div class="a hide-for-small-only"></div>
+	<div class="e hide-for-small-only"></div>
 	<div class="b hide-for-medium"></div>
 </div>
 
@@ -56,10 +56,10 @@
 			<span></span>
 			<span></span>
 			<ul id="menu">
-				<a href="#">
+				<a href="/login">
 					<li>LOGIN</li>
 				</a>
-				<a href="#">
+				<a href="/register">
 					<li>REGISTER</li>
 				</a>
 			</ul>
