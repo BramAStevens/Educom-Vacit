@@ -95,8 +95,6 @@
 <input type="hidden" name="user_cv" id="cvfile" value="{{user.usercv}}">
 <input type="hidden" name="user_picture" id="imgfile" value="{{user.userpicture}}">
 
-
-
 <div class="hexagon float-left margin-top-1" id="upload">
 {% if user.userpicture|length > 2 %}
     <img class="hexagonpic" src="{{ asset( user.userpicture )}}" id="imgactual" style="border: none"></img>

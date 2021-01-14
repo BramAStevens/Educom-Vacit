@@ -7,15 +7,20 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
+    
+    <div class="width-50 float-center margin-top-3">
     <h1>Register</h1>
-
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+        {{ form_row(registrationForm.username, {
+            id:"input"
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password', id:"input"
+        })  }}
+      
+        <button  class="btn btn-success float-right">
+      <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 200%; cursor: pointer;"></i>
+    </button>
     {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
