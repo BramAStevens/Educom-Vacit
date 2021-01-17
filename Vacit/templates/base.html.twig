@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
+<link rel="stylesheet" href="/assets/datatables.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/main.css") }}"/> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <!-- Compressed CSS -->
@@ -18,7 +20,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation-rtl.min.css" integrity="sha256-F+9Ns8Z/1ZISonBbojH743hsmF3x3AlQdJEeD8DhQsE=" crossorigin="anonymous">
 <script src="https://cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 <script src="{{ asset('assets/js/SimpleAjaxUploader.js') }}"></script>  
-    <script src="{{ asset('assets/js/jquery.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.js')}}"></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>

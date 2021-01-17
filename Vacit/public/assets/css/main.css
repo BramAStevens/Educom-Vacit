@@ -1,56 +1,70 @@
 @font-face {
-    font-family: 'Roboto';
-    src: url('/assets/fonts/Roboto-Condensed.ttf')
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto-Condensed.ttf')
 }
 
 @font-face {
-    font-family: 'BebasNeue';
-    src: url('/assets/fonts/BebasNeue.ttf')
+  font-family: 'BebasNeue';
+  src: url('/assets/fonts/BebasNeue.ttf')
 }
 
 @media (max-width:600px){
-    .hexagon{
-        max-width: 90px !important;
-        max-height: 90px !important;
-        margin-right: 3%;
-    }
-    #login {
-        margin-top: 20% !important;
-        margin-left: 34% !important;
-    }
+  .hexagon{
+      max-width: 90px !important;
+      max-height: 90px !important;
+      margin-right: 3%;
+  }
+  #login {
+      margin-top: 20% !important;
+      margin-left: 34% !important;
+  }
+
+  #whitep {
+    font-size: 10px !important;
+    margin-right: 10% !important;
+    margin-bottom: -1% !important;
+  }
 }
 
 @media (min-width:600px){
-   #loginlogo {
-     height: 150px !important;
-     width: 150px !important;
-    margin-left: 7% !important;
-    margin-top: 3% !important;
+ #loginlogo {
+   height: 150px !important;
+   width: 150px !important;
+  margin-left: 7% !important;
+  margin-top: 3% !important;
 
-   } 
+ } 
 }
 
 label {
-  font-family: Arial, Helvetica, sans-serif;
+font-family: Arial, Helvetica, sans-serif;
 }
 
 #logocontainer {
-  display: flex;
+display: flex;
 }
 #loginlogo {
-  height: 75px; 
-  width: 75px; 
-  margin-top: 13%;
-  margin-left: 5%;
+height: 75px; 
+width: 75px; 
+margin-top: 13%;
+margin-left: 5%;
 }
 #login {
-    margin-top: 8%;
+  margin-top: 8%;
 }
 
 #icon {
 
-    height: 30%;
-    width: 30%;
+  height: 30%;
+  width: 30%;
+}
+
+#whitep {
+color: white !important;
+}
+
+#whiteh {
+color: white !important;
 }
 
 #headertext {
@@ -68,59 +82,59 @@ width: 100%;
 
 
 #ht {
-    margin-bottom:-5%;
+  margin-bottom:-5%;
 }
 
 .e {
-    width: 100%;
-    height:24px;
-    background-color: #F15A24;
-    -ms-transform: rotate(2deg); /* IE 9 */
-    transform: rotate(-0.5deg);
-    z-index: -1;
-    position: relative;
-    margin-top: -0.5%;
-    box-shadow: 3px 4px 35px;
-  }
+  width: 100%;
+  height:24px;
+  background-color: #F15A24;
+  -ms-transform: rotate(2deg); /* IE 9 */
+  transform: rotate(-0.5deg);
+  z-index: -1;
+  position: relative;
+  margin-top: -0.5%;
+  box-shadow: 3px 4px 35px;
+}
 
-  .b {
-    width: 100%;
-    height:8px;
-    background-color: #F15A24;
-    -ms-transform: rotate(2deg); /* IE 9 */
-    transform: rotate(-0.7deg);
-    z-index: -1;
-    position: relative;
-    margin-top: -0.5%;
-    box-shadow: 1px 1px 8px;
-  }
-  .c {
-    width: 100%;
-    height:29px;
-    background-color: #F15A24;
-    -ms-transform: rotate(2deg); /* IE 9 */
-    transform: rotate(-0.7deg);
-    z-index: -1;
-    position: relative;
-    margin-top: -0.9%;
-    box-shadow: 3px 4px 35px;
-  }
+.b {
+  width: 100%;
+  height:8px;
+  background-color: #F15A24;
+  -ms-transform: rotate(2deg); /* IE 9 */
+  transform: rotate(-0.7deg);
+  z-index: -1;
+  position: relative;
+  margin-top: -0.5%;
+  box-shadow: 1px 1px 8px;
+}
+.c {
+  width: 100%;
+  height:29px;
+  background-color: #F15A24;
+  -ms-transform: rotate(2deg); /* IE 9 */
+  transform: rotate(-0.7deg);
+  z-index: -1;
+  position: relative;
+  margin-top: -0.9%;
+  box-shadow: 3px 4px 35px;
+}
 
-  .d {
-    width: 100%;
-    height:10px;
-    background-color: #F15A24;
-    -ms-transform: rotate(2deg); /* IE 9 */
-    transform: rotate(-0.9deg);
-    z-index: -1;
-    position: relative;
-    margin-top: -1.5%;
-    box-shadow: 1px 1px 8px;
-  }
+.d {
+  width: 100%;
+  height:10px;
+  background-color: #F15A24;
+  -ms-transform: rotate(2deg); /* IE 9 */
+  transform: rotate(-0.9deg);
+  z-index: -1;
+  position: relative;
+  margin-top: -1.5%;
+  box-shadow: 1px 1px 8px;
+}
 
 h1, h2, h3, h4 {
-    font-family: BebasNeue !important;
-    color: #F15A24 !important;
+  font-family: BebasNeue !important;
+  color: #F15A24 !important;
 }
 
 #input {
@@ -134,215 +148,225 @@ font-family: Roboto !important;
 font-size: 22px;
 }
 
+#orangestripe {
+border-style:solid;
+border-width: 3px;
+border-top: none;
+border-left: none;
+border-right: none;
+border-color:#F15A24;
+font-family: Roboto !important;
+font-size: 22px;
+}
 #labelid {
 font-size: 4px;
 }
 
 .hexagon{
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    width: 100%;
-    max-width: 150px;
-    max-height: 150px;
-    margin-left: 5%;
-     
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  width: 100%;
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: 5%;
+   
 }
 
 
 
 
 .hexagonpic{
-    width: 100%;
+  width: 100%;
 }
 
 .cv-imgbox{
-    width: 75px;
-    height: 75px;
-    background-color:white;
-    color: #F15A24;
+  width: 75px;
+  height: 75px;
+  background-color:white;
+  color: #F15A24;
 }
 
 #uploadcv {
-    color: #F15A24;  
+  color: #F15A24;  
 }
 
 #bottom {
 
-    margin-bottom: 8%;
-    margin-top: 1%;
+  margin-bottom: 8%;
+  margin-top: 1%;
 
 }
 #footerbar {
-    background-color: #333333;   
-    width: 100%;
-    bottom: 0;
-    position: relative;
+  background-color: #333333;   
+  width: 100%;
+  bottom: 0;
+  position: relative;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  main {
-    flex: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  a
-  {
-    text-decoration: none;
-    color: #232323;
-    
-    transition: color 0.3s ease;
-  }
-  
-  a:hover
-  {
-    color: tomato;
-  }
-  
-  #menuToggle
-  {
-    display: block;
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    
-    z-index: 1;
-    
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  
-  #menuToggle input
-  {
-    display: block;
-    width: 40px;
-    height: 32px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
-    
-    cursor: pointer;
-    
-    opacity: 0; /* hide this */
-    z-index: 2; /* and place it over the hamburger */
-    
-    -webkit-touch-callout: none;
-  }
-  
-  /*
-   * Just a quick hamburger
-   */
-  #menuToggle span
-  {
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
+main {
+  flex: 1;
+}
 
-    background: white;
-    border-radius: 3px;
-    
-    z-index: 1;
-    
-    transform-origin: 4px 0px;
-    
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                opacity 0.55s ease;
-    
-  }
+a
+{
+  text-decoration: none;
+  color: #232323;
   
-  #menuToggle span:first-child
-  {
-    transform-origin: 0% 0%;
-  }
+  transition: color 0.3s ease;
+}
+
+a:hover
+{
+  color: tomato;
+}
+
+#menuToggle
+{
+  display: block;
+  position: absolute;
+  top: 50px;
+  right: 50px;
   
-  #menuToggle span:nth-last-child(2)
-  {
-    transform-origin: 0% 100%;
-  }
+  z-index: 1;
   
-  /* 
-   * Transform all the slices of hamburger
-   * into a crossmark.
-   */
-  #menuToggle input:checked ~ span
-  {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    background: #F15A24;
-  }
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
   
-  /*
-   * But let's hide the middle one.
-   */
-  #menuToggle input:checked ~ span:nth-last-child(3)
-  {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-  }
+  cursor: pointer;
   
-  /*
-   * Ohyeah and the last one should go the other direction
-   */
-  #menuToggle input:checked ~ span:nth-last-child(2)
-  {
-    opacity: 1;
-    transform: rotate(-45deg) translate(0, -1px);
-  }
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
   
-  /*
-   * Make this absolute positioned
-   * at the top left of the screen
-   */
-  #menu
-  {
-    position: absolute;
-    width: 150px;
-    margin: -100px 0 0 0;
-    
-    padding-top: 125px;
-    right: -35px;
-    
-    background: #333333;
-    list-style-type: none;
-    -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
-    
-    transform-origin: 0% 0%;
-    transform: translate(100%, 0);
-    
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  }
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background: white;
+  border-radius: 3px;
   
-  #menu li
-  {
-    padding: 10px 0;
-    font-size: 12px;
-    text-align: left;
-    margin-left: 15%;
-    margin-top: -10%;
-    margin-bottom: 5%;
-    color: #F15A24;
-  }
+  z-index: 1;
   
-  /*
-   * And let's fade it in from the left
-   */
-  #menuToggle input:checked ~ ul
-  {
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+  
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #F15A24;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 150px;
+  margin: -100px 0 0 0;
+  
+  padding-top: 125px;
+  right: -25px;
+  
+  background: #333333;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 12px;
+  text-align: left;
+  margin-left: 15%;
+  margin-top: -10%;
+  margin-bottom: 5%;
+  color: #F15A24;
+}
+
+/*
+ * And let's fade it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  #menu {
     transform: none;
-    opacity: 1;
+    opacity: 0;
+
+    transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   }
-  
-  @media screen and (max-width: 768px) {
-    #menu {
-      transform: none;
-      opacity: 0;
-  
-      transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-    }
-  }
+}

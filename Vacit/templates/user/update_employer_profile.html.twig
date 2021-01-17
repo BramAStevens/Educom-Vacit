@@ -1,36 +1,189 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User profile!{% endblock %}
+{% block stylesheets %}
+<script>
+ $(document).ready(function() {
 
+            let uploader = new ss.SimpleUpload({
+                button: "uploadcv",
+                url: "{{ path('upload_file') }}",
+                name: 'file', // upload parameter name die gebruikt wordt in de controller
+                responseType: 'json',
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'pdf'],
+                hoverClass: 'hover-class-upload',
+                focusClass: 'hover-class-upload',
+                multiple: false,
+                disabledClass: 'ui-state-disabled',
+                autoSubmit: true,
+
+                onSizeError: function() {
+                    alert('File may not exceed 100MB');
+                },
+
+                onExtError: function() {
+                    alert('Invalid file type. Please use a PNG, JPG or JPEG or PDF file');
+                },
+
+                onSubmit: function( filename, extension, uploadBtn, fileSize ) {
+                    return(true);
+                },
+
+                onComplete: function (filename, response) {
+
+                    if(response.success === false) {
+                        alert(response.errors);
+                    } else {
+
+                      $("#cvfile").val(response.file_id);
+                      $("#cvactual").attr("data-id", "/"+response.file_id);
+                        
+                    }
+                }
+            });
+
+        });
+    </script>      
+    <script>
+      
+ $(document).ready(function() {
+
+            let uploader = new ss.SimpleUpload({
+                button: "upload",
+                url: "{{ path('upload_file') }}",
+                name: 'file', // upload parameter name die gebruikt wordt in de controller
+                responseType: 'json',
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'pdf'],
+                hoverClass: 'hover-class-upload',
+                focusClass: 'hover-class-upload',
+                multiple: false,
+                disabledClass: 'ui-state-disabled',
+                autoSubmit: true,
+
+                onSizeError: function() {
+                    alert('File may not exceed 100MB');
+                },
+
+                onExtError: function() {
+                    alert('Invalid file type. Please use a PNG, JPG or JPEG or PDF file');
+                },
+
+                onSubmit: function( filename, extension, uploadBtn, fileSize ) {
+                    return(true);
+                },
+
+                onComplete: function (filename, response) {
+
+                    if(response.success === false) {
+                        alert(response.errors);
+                    } else {
+
+                      $("#imgfile").val(response.file_id);
+                      $("#imgactual").attr("src", "/"+response.file_id);
+                        
+                    }
+                }
+            });
+
+        });
+    </script>      
+ {% endblock %}
+ {% block title %}Update Company Profile{% endblock %}
 {% block body %}
 
 
 <form method="post">
-    <h1 class="h3 mb-3 font-weight-normal">Please fill in your profile - Employer</h1>
-    <label for="inputPicture">Picture</label>
-    <input type="text" name="user_picture" id="inputPicture" class="form-control" value="{{user.userpicture}}">
-    <label for="inputSurname">Surname</label>
-    <input type="text" name="user_surname" id="inputSurname" class="form-control" value="{{user.usersurname}}">
-    <label for="inputLastname">Last name</label>
-    <input type="text" name="user_lastname" id="inputLastname" class="form-control" value="{{user.userlastname}}">
-    <label for="inputEmail">Email</label>
-    <input type="text" name="user_email" id="inputEmail" class="form-control" value="{{user.useremail}}">
-    <label for="inputDOB">Date of Birth</label>
-    <input type="text" name="user_dob" id="inputDOB" class="form-control" value="{{user.userdob}}">
-    <label for="inputPhone">Phone Number</label>
-    <input type="text" name="user_phone_number" id="inputPhone" class="form-control" value="{{user.userphonenumber}}">
-    <label for="inputAddress">address</label>
-    <input type="text" name="user_address" id="inputAddress" class="form-control" value="{{user.useraddress}}">
-    <label for="inputPostcode">Postcode</label>
-    <input type="text" name="user_postcode" id="inputPostcode" class="form-control" value="{{user.userpostcode}}">
-    <label for="inputCity">City</label>
-    <input type="text" name="user_city" id="inputCity" class="form-control" value="{{user.usercity}}">
-    <label for="inputMotivation">Motivation Letter</label>
-    <input type="text" name="user_motivation" id="inputMotivation" class="form-control" value="{{user.usermotivation}}">
-    <label for="inputCV">CV</label>
-    <input type="text" name="user_cv" id="inputCV" class="form-control" value="{{user.usercv}}">
-    <button class="btn btn-lg btn-primary" type="submit">
-        Submit
+<input type="hidden" name="user_cv" id="cvfile" value="{{user.usercv}}">
+<input type="hidden" name="user_picture" id="imgfile" value="{{user.userpicture}}">
+
+<div class="hexagon float-left margin-top-1" id="upload">
+{% if user.userpicture|length > 2 %}
+    <img class="hexagonpic" src="{{ asset( user.userpicture )}}" id="imgactual" style="border: none"></img>
+    {% else %}
+    <img class="hexagonpic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" id="imgactual" style="border: none"></img>
+    {% endif %}               
+    </div>
+
+
+
+  <div class="grid-container small-flex-child-auto margin-top-3 margin-bottom-3 width-75">
+
+    <h2>{{user.username}} COMPANY PROFILE</h2>
+  
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputEmail"style="font-size: 60%;">Company Email
+          <input id="input" type="text" name="user_email" id="inputEmail" value="{{user.useremail}}">
+        </label>
+      </div>
+    </div>
+
+    <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputPhone"style="font-size: 60%;">Phone number
+          <input id="input" type="text" name="user_phone_number" id="inputPhone" value="{{user.userphonenumber}}">
+        </label>
+      </div>
+    </div>
+
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputAddress"style="font-size: 60%;">Company Address
+          <input id="input" type="text" name="user_address" id="inputAddress" value="{{user.useraddress}}">
+        </label>
+      </div>
+    </div>
+      
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputPostcode"style="font-size: 60%;">Company Postcode
+          <input id="input" type="text" name="user_postcode" id="inputPostcode" value="{{user.userpostcode}}">
+        </label>
+      </div>
+    </div>
+
+    <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputCity" style="font-size: 60%;">Company Province
+          <input id="input" type="text" name="user_city" id="inputCity" value="{{user.usercity}}">
+        </label>
+      </div>
+    </div>
+
+    <div class="grid-x">
+    <div class="medium-12 small-12 cell">
+      <h3>COMPANY DESCRIPTION</h3>
+     <textarea cols="80" id="editor1" name="user_motivation" rows="10" >{{user.usermotivation}}</textarea>
+     </div>
+    </div>
+   <div class="medium-12 small-12" id="bottom">
+
+
+
+    <div class="medium-8 small-8 float-left" id="uploadcv">
+    <div style="display: inline-flex;">
+    <i class="fas fa-file-pdf" style="margin-top: 4%;"></i><h4 style="cursor: pointer;">&nbsp; &nbsp;UPLOAD COMPANY INFO</p>
+   </div>
+</div>
+
+    <div class="medium-4 small-4 float-right" type="submit">
+    <button  class="btn btn-success float-right">
+      <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 150%; cursor: pointer; margin-top: 5%;"></i><h4 class="float-right" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;SAVE</p>
     </button>
+  </div>
+
+  </div>
+
+
+    </div>
+  </div>
+  </div>
 </form>
+
+{% endblock %}
+{% block javascripts %}
+<script>
+    CKEDITOR.replace('editor1', {
+      height: 150
+    });
+  </script>
 {% endblock %}

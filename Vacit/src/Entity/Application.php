@@ -32,7 +32,7 @@ class Application
     /**
      * @ORM\Column(type="datetime")
      */
-    private $Application_date;
+    private $application_date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -75,13 +75,13 @@ class Application
 
     public function getApplicationDate(): ?\DateTimeInterface
     {
-        return $this->Application_date;
+        return $this->application_date;
     }
 
     public function setApplicationDate(
-        \DateTimeInterface $Application_date
+        \DateTimeInterface $application_date
     ): self {
-        $this->Application_date = $Application_date;
+        $this->application_date = $application_date;
 
         return $this;
     }

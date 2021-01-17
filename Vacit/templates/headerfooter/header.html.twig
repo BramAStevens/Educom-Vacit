@@ -1,68 +1,74 @@
+
 <div class="header">
 
-	<div class="grid-x align-middle" id="headerbar">
+    <div class="grid-x align-middle" id="headerbar" style="width: 100%;">
 
-		<div class="cell medium-4 medium-cell-block-y float-center">
-			<img src="/assets/logo/vacit-logo-white.png" class="media-object-section align-middle margin-left-1" id="icon">
-		</div>
+        <div class="cell medium-4 medium-cell-block-y float-center">
+            <img src="/assets/logo/vacit-logo-white.png" class="media-object-section align-middle margin-left-3" id="icon">
+        </div>
 {# For large screen #}
 {% if app.user %}
 
-			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-				<a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
-				<a id="headertext" style="margin-bottom: 2%;" class="float-right">MY PROFILE</a>
-				<a id="headertext" style="margin-bottom: 2%;" class="float-right">MY APPLICATIONS</a>
+            <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
+                <a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
+                <a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY PROFILE</a>
+                <a id="headertext" style="margin-bottom: 2%;" class="float-right">MY APPLICATIONS</a>
 
-			</div>
+            </div>
 
 {% else %}
-			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-				<a href="/register" id="headertext" style="margin-bottom: 2%;" class="float-right">REGISTER</a>
-				<a href="/login" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGIN</a>
-			</div>
+            <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
+                <a href="/register" id="headertext" style="margin-bottom: 2%;" class="float-right">REGISTER</a>
+                <a href="/login" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGIN</a>
+            </div>
 {% endif %}
 
-	</div>
-	<div class="e hide-for-small-only"></div>
-	<div class="b hide-for-medium"></div>
-</div>
 
 {# For small screen #}
 {% if app.user %}
-	<nav role='navigation' class="hide-for-medium">
-		<div id="menuToggle" style="margin-top: -10%; margin-right: -4%;">
-			<input type="checkbox"/>
-			<span></span>
-			<span></span>
-			<span></span>
-			<ul id="menu">
-				<a href="#">
-					<li>MY PROFILE</li>
-				</a>
-				<a href="#">
-					<li>MY APPLICATIONS</li>
-				</a>
-				<a href="#">
-					<li>INFO</li>
-				</a>
-			</ul>
-		</div>
-	</nav>
+<div class="cell small-4 float-center">
+    <nav role='navigation' class="hide-for-medium">
+        <div id="menuToggle" style=" margin-right: -4%; margin-top: -5%;">
+            <input type="checkbox"/>
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                <a href="/showUser/{{app.user.id}}">
+                    <li>MY PROFILE</li>
+                </a>
+                <a href="#">
+                    <li>MY APPLICATIONS</li>
+                </a>
+                <a href="/logout">
+                    <li>LOGOUT</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
 {% else %}
-	<nav role='navigation' class="hide-for-medium">
-		<div id="menuToggle" style="margin-top: -10%; margin-right: -4%;">
-			<input type="checkbox"/>
-			<span></span>
-			<span></span>
-			<span></span>
-			<ul id="menu">
-				<a href="/login">
-					<li>LOGIN</li>
-				</a>
-				<a href="/register">
-					<li>REGISTER</li>
-				</a>
-			</ul>
-		</div>
-	</nav>
+<div class="cell small-4">
+    <nav role='navigation' class="hide-for-medium">
+        <div id="menuToggle" style="margin-top: -5%; margin-right: -4%;">
+            <input type="checkbox"/>
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                <a href="/login">
+                    <li>LOGIN</li>
+                </a>
+                <a href="/register">
+                    <li>REGISTER</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</div>
 {% endif %}
+
+</div>
+<div class="e hide-for-small-only"></div>
+<div class="b hide-for-medium"></div>
+</div>

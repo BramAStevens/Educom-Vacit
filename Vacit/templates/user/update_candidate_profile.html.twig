@@ -87,7 +87,7 @@
         });
     </script>      
  {% endblock %}
- {% block title %}User profile!{% endblock %}
+ {% block title %}Update User Profile{% endblock %}
 {% block body %}
 
 
@@ -109,7 +109,7 @@
 
     <h2>MY PROFILE</h2>
   
-    <div class="grid-x grid-padding-x">  
+    <div class="grid-x grid-margin-x">  
       <div class="cell medium-4 small-12 medium-cell-block-y">
         <label for="inputSurname"style="font-size: 60%;">Surname
           <input id="input" type="text" name="user_surname"  id="inputSurname" value="{{user.usersurname}}">
@@ -121,14 +121,14 @@
         </label>
       </div>
     </div>
-      <div class="grid-x padding-x">
+      <div class="grid-x">
       <div class="medium-12 small-12 cell">
         <label for="inputEmail"style="font-size: 60%;">Email
           <input id="input" type="text" name="user_email" id="inputEmail" value="{{user.useremail}}">
         </label>
       </div>
     </div>
-      <div class="grid-x padding-x">
+      <div class="grid-x grid-margin-x">
       <div class="medium-4 small-12 cell">
         <label for="inputDOB"style="font-size: 60%;">Date of birth
           <input id="input" type="date" name="user_dob" id="inputDOB" value="{{user.userdob}}">
@@ -140,14 +140,14 @@
         </label>
       </div>
     </div>
-      <div class="grid-x padding-x">
+      <div class="grid-x">
       <div class="medium-12 small-12 cell">
         <label for="inputAddress"style="font-size: 60%;">Address
           <input id="input" type="text" name="user_address" id="inputAddress" value="{{user.useraddress}}">
         </label>
       </div>
     </div>
-      <div class="grid-x padding-x">
+      <div class="grid-x grid-margin-x">
       <div class="medium-4 small-12 cell">
         <label for="inputPostcode"style="font-size: 60%;">Postcode
           <input id="input" type="text" name="user_postcode" id="inputPostcode" value="{{user.userpostcode}}">
@@ -159,7 +159,7 @@
         </label>
       </div>
     </div>
-    <div class="grid-x padding-x">
+    <div class="grid-x">
     <div class="medium-12 small-12 cell">
       <h3>MOTIVATION</h3>
      <textarea cols="80" id="editor1" name="user_motivation" rows="10" >{{user.usermotivation}}</textarea>
