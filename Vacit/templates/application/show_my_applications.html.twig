@@ -6,19 +6,19 @@
         $(document).ready(function () {
             var table = $('#application').DataTable({
                 ajax: "{{ path('applicationsByUser', {'user_id': app.user.id }) }}",
-                
-                columns: [
+                dataType:'json',
+                columns: [  
                     {
-                        applications: "job_id"
+                        data: "job_id"
                     },
                     {
-                        applications: "application_date"
+                        data: "application_date"
                     },
                     {
-                        applications: "application_company"
+                        data: "application_company"
                     },
                     {
-                        applications: "application_invitation"
+                        data: "application_invitation"
                     }
                 ]
 

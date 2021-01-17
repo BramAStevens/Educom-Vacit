@@ -71,9 +71,10 @@ class ApplicationController extends AbstractController
         $currentUser = $user->getId();
         if($currentUser == $user_id || $currentUserId == $isAdmin) {
         $applications = $applicationService->findAllApplicationsByUser($user_id);
+        
         return $this->render('application/show_my_applications.html.twig', [
             'controller_name' => 'ApplicationController',
-            'applications' => $applications,
+            'applications' => $this->json($applications),
             'user' => $user]);
       
 
