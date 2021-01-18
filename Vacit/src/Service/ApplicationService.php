@@ -30,7 +30,8 @@ class ApplicationService
         $job_id = $this->jr->find($params['job_id']);
         $applicationEmployerId = $this->jr->find($params['job_id'])->getUser()->getId();
         $application_company = $this->ur->find($applicationEmployerId)->getUsername();
-        $application = $this->ar->createApplication($user_id, $job_id, $application_company);
+        $job_title = $this->jr->find($params['job_id'])->getJobTitle();
+        $application = $this->ar->createApplication($user_id, $job_id, $application_company, $job_title);
         return $application;
     }
 

@@ -39,12 +39,13 @@ class ApplicationRepository extends ServiceEntityRepository
         return $application;
     }
 
-    public function createApplication($user_id, $job_id, $application_company)
+    public function createApplication($user_id, $job_id, $application_company, $job_title)
     {
         $application = new Application(); 
         $application->setUser($user_id);
         $application->setJob($job_id);
         $application->setApplicationCompany($application_company);
+        $application->setJobTitle($job_title);
         $application->setApplicationDate(new \DateTime());
         $application->setApplicationInvitation(0);
         $em = $this->getEntityManager();

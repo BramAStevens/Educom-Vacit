@@ -39,6 +39,11 @@ class Application
      */
     private $application_company;
 
+      /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $job_title;
+
     /**
      * @ORM\Column(type="integer")
      */
@@ -94,6 +99,18 @@ class Application
     public function setApplicationCompany(string $application_company): self
     {
         $this->application_company = $application_company;
+
+        return $this;
+    }
+
+    public function getJobTitle(): ?string
+    {
+        return $this->job_title;
+    }
+
+    public function setJobTitle(string $job_title): self
+    {
+        $this->job_title = $job_title;
 
         return $this;
     }
