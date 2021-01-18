@@ -19,7 +19,7 @@ class JobController extends AbstractController
     }
 
      /**
-     * @Route("/createJob", name="createJob")
+     * @Route("/createJob/", name="createJob")
      */
     public function createJob(JobService $jobService)
     {   
@@ -32,11 +32,10 @@ class JobController extends AbstractController
         $params['user_id'] = $user_id;
 
         $jobService->createJob($params);
-        $job = $jobService->findHighestJob($user_id);
+        $job_id = $jobService->findHighestJob($user_id)->getId();
+   
+        return $this->redirectToRoute('updateJob',  ['id' => $job_id]);
 
-        return $this->render('job/create_job.html.twig', [
-            'controller_name' => 'JobController',
-            'job' => $job]);
         } return $this->render('user/noaccess.html.twig');
     }
 
@@ -79,11 +78,15 @@ class JobController extends AbstractController
      */
     public function showAllJobsByEmployer(JobService $jobService, $user_id) 
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->auth($isAdmin);
         $allJobsByEmployer = $jobService->findAllJobsByEmployer($user_id);
-
-        dump($allJobsByEmployer);
-        die();
+        $currentUser = $this->getUser();
+    
+        if($currentUser->getId() == $user_id  || $currentUser == $isAdmin) {
+        return $this->render('job/show_jobs_by_employer.html.twig', [
+            'controller_name' => 'JobController',
+            'jobs' => $allJobsByEmployer]);
+    } return $this->render('user/noaccess.html.twig');
     }
 
     /**

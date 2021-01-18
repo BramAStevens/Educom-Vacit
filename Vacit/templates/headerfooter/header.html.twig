@@ -13,7 +13,7 @@
             <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
                 <a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
                 <a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">COMPANY PROFILE</a>
-                <a id="headertext" style="margin-bottom: 2%;" class="float-right">MY JOBS</a>
+                <a href="/showAllJobsByEmployer/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY JOBS</a>
 
             </div>
 
@@ -45,7 +45,7 @@
                 <a href="/showUser/{{app.user.id}}">
                     <li>COMPANY PROFILE</li>
                 </a>
-                <a href="#">
+                <a href="/showAllJobsByEmployer/{{app.user.id}}">
                     <li>MY JOBS</li>
                 </a>
                 <a href="/logout">

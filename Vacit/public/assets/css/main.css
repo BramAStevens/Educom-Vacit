@@ -24,6 +24,19 @@
     margin-right: 10% !important;
     margin-bottom: -1% !important;
   }
+
+  #tablehead {
+    font-size: 80% !important;
+  } 
+}
+
+#tablehead {
+  text-align: center;
+  font-family: arial !important;
+  font-size: 130%; 
+  text-overflow: clip; 
+  overflow: clip;
+  white-space: nowrap;
 }
 
 @media (min-width:600px){
