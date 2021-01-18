@@ -40,18 +40,18 @@
   width: 100%;">
     <thead>
     <tr>
-        <th style="text-align: center;">DATE</th>
-        <th style="text-align: center;">JOB</th>
-        <th style="text-align: center;">COMPANY</th>
-        <th style="text-align: center;">INVITED</th>
+        <th style="text-align: center; font-family: arial !important; font-size: 130%;">DATE</th>
+        <th style="text-align: center;  font-family: arial !important; font-size: 130%;">JOB</th>
+        <th style="text-align: center;  font-family: arial !important; font-size: 130%;">COMPANY</th>
+        <th style="text-align: center;  font-family: arial !important; font-size: 130%;">INVITED</th>
     </tr>
     </thead>
     <tbody style="text-align: center;  text-overflow: clip; overflow: clip; white-space: nowrap">
     {% for application in applications %}
     <tr>
-    <td>{{application.applicationdate|date("d/m/Y")}}</td>
-    <td style=" text-overflow: clip; overflow: clip; white-space: nowrap;  color: #F15A24;">{{application.jobtitle}}</td>
-    <td style=" text-overflow: clip; overflow: clip; white-space: nowrap;">{{application.applicationcompany}}</td>
+    <td >{{application.applicationdate|date("d/m/Y")}}</td>
+    <td style="text-overflow: clip; overflow: clip; white-space: nowrap;  color: #F15A24;">{{application.jobtitle}}</td>
+    <td style="text-overflow: clip; overflow: clip; white-space: nowrap;">{{application.applicationcompany}}</td>
     {% if application.applicationinvitation == 0 %}
     <td></td>
     {% else %}

@@ -24,10 +24,9 @@ class UserController extends AbstractController
     public function showUserById(UserService $userService, $id)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
-
-        if ($user == $isEmployer) {
+        
+        if (in_array('ROLE_EMPLOYER', $user->getRoles())) {
             return $this->render('user/show_employer_profile.html.twig', [
                 'controller_name' => 'UserController',
                 'user' => $user]);
@@ -44,14 +43,13 @@ class UserController extends AbstractController
     public function updateUserProfile(Request $request, UserService $userService, $id)
     {   
         $this->auth($isAdmin);
-        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
         if ($user == $currentUser || $currentUser == $isAdmin) {
             $userService->updateUserProfile($request, $id);
 
-            if ($user == $isEmployer) {
+            if (in_array('ROLE_EMPLOYER', $user->getRoles())) {
                 return $this->render('user/update_employer_profile.html.twig', [
                     'controller_name' => 'UserController',
                     'user' => $user]);
