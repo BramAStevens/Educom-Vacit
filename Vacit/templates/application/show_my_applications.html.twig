@@ -14,6 +14,7 @@
                       bLengthChange: false,
                       pageLength: 10,
                       
+                      
             });
         });
     </script>
@@ -21,8 +22,8 @@
 {% block title %}My Applications{% endblock %}
 
 {% block body %}
-<div class="grid-x padding-x margin-top-2">
- <div class="cell medium-2 hide-for-small-only padding-left-3 padding-right-2">
+<div class="grid-x padding-x margin-top-3 margin-left-2 margin-right-2">
+ <div class="cell medium-1 hide-for-small-only">
 <div class="hexagon">
 {% if user.userpicture|length > 2 %}
     <img class="hexagonpic" src="{{ asset( user.userpicture )}}" style="border: none"></img>
@@ -32,7 +33,7 @@
     </div>
  </div>
 
- <div class="cell medium-10 padding-right-3 padding-left-3 small-12">
+ <div class="cell medium-11 padding-right-3 padding-left-3 small-12">
 <h1>My Applications</h1>
 <table id="application" class="display nowrap dataTable order-column" style="border-collapse: collapse;
   table-layout: fixed;
@@ -45,15 +46,12 @@
         <th style="text-align: center;">INVITED</th>
     </tr>
     </thead>
-    <tbody style="text-align: center;  text-overflow: clip; overflow: clip;
-white-space: nowrap">
+    <tbody style="text-align: center;  text-overflow: clip; overflow: clip; white-space: nowrap">
     {% for application in applications %}
     <tr>
     <td>{{application.applicationdate|date("d/m/Y")}}</td>
-    <td style=" text-overflow: clip; overflow: clip;
-white-space: nowrap;">{{application.jobtitle}}</td>
-    <td style=" text-overflow: clip; overflow: clip;
-white-space: nowrap;">{{application.applicationcompany}}</td>
+    <td style=" text-overflow: clip; overflow: clip; white-space: nowrap;  color: #F15A24;">{{application.jobtitle}}</td>
+    <td style=" text-overflow: clip; overflow: clip; white-space: nowrap;">{{application.applicationcompany}}</td>
     {% if application.applicationinvitation == 0 %}
     <td></td>
     {% else %}
