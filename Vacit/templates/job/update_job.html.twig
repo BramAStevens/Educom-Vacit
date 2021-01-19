@@ -1,23 +1,127 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Update your job!{% endblock %}
+{% block stylesheets %}
+ 
+    <script>   
+ $(document).ready(function() {
 
+            let uploader = new ss.SimpleUpload({
+                button: "uploadCompanyLogo",
+                url: "{{ path('upload_file') }}",
+                name: 'file', // upload parameter name die gebruikt wordt in de controller
+                responseType: 'json',
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'pdf'],
+                hoverClass: 'hover-class-upload',
+                focusClass: 'hover-class-upload',
+                multiple: false,
+                disabledClass: 'ui-state-disabled',
+                autoSubmit: true,
+
+                onSizeError: function() {
+                    alert('File may not exceed 100MB');
+                },
+
+                onExtError: function() {
+                    alert('Invalid file type. Please use a PNG, JPG or JPEG file');
+                },
+
+                onSubmit: function( filename, extension, uploadBtn, fileSize ) {
+                    return(true);
+                },
+
+                onComplete: function (filename, response) {
+
+                    if(response.success === false) {
+                        alert(response.errors);
+                    } else {
+
+                      $("#imgfile").val(response.file_id);
+                      $("#imgactual").attr("src", "/"+response.file_id);
+                        
+                    }
+                }
+            });
+
+        });
+    </script>      
+ {% endblock %}
+ {% block title %}Update Job{% endblock %}
 {% block body %}
-<form method="post">
-    <h1 class="h3 mb-3 font-weight-normal">Please update the below fields</h1>
-    <label for="inputTitle">Job Title</label>
-    <input type="text" name="job_title" id="inputTitle" class="form-control" value="{{job.jobtitle}}" required autofocus>
-    <label for="inputDescription">Job Description</label>
-    <input type="text" name="job_description" id="inputDescription" class="form-control" value="{{job.jobdescription}}" required>
-    <label for="inputPicture">Company Icon</label>
-    <input type="text" name="job_picture" id="inputPicture" class="form-control" value="{{job.jobpicture}}" required>
-    <label for="inputLevel">Job Level</label>
-    <input type="text" name="job_level" id="inputLevel" class="form-control" value="{{job.joblevel}}" required>
-    <label for="inputLocation">Job Location</label>
-    <input type="text" name="job_location" id="inputLocation" class="form-control" value="{{job.joblocation}}" required>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Submit
+<form method="post">
+<input type="hidden" name="user_picture" id="imgfile" value="{{job.jobpicture}}">
+
+<div class="square float-left margin-top-1" id="uploadCompanyLogo">
+{% if job.jobpicture|length > 2 %}
+    <img class="squarepic" src="{{ asset( job.jobpicture )}}" id="imgactual" style="border: none"></img>
+    {% else %}
+    <img class="squarepic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" id="imgactual" style="border: none"></img>
+    {% endif %}               
+    </div>
+
+  <div class="grid-container small-flex-child-auto margin-top-3 margin-bottom-3 width-75">
+    
+    <h2>UPDATE JOB</h2>
+  
+    <div class="grid-x grid-margin-x">  
+      <div class="cell medium-12 small-12 medium-cell-block-y">
+        <label for="inputJobTitle"style="font-size: 60%;">Job Title
+          <input id="input" type="text" name="job_title"  id="inputJobTitle" value="{{job.jobtitle}}">
+        </label>
+      </div>
+      <div class="cell medium-12 small-12 medium-cell-block-y">
+        <label for="inputJobLevel"style="font-size: 60%;">Job Level
+          <input id="input" type="text" name="job_level" id="inputJobLevel" value="{{job.joblevel}}">
+        </label>
+      </div>
+    </div>
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label for="inputJobLocation"style="font-size: 60%;">Job Location
+          <input id="input" type="text" name="job_location" id="inputJobLocation" value="{{job.joblocation}}">
+        </label>
+      </div>
+    </div>
+    <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label style="font-size: 60%;">Select Technology
+  <input type="hidden" name="technology_id"/>
+   <select id="input" name="technology_id">
+     <option value="{{job.technology.id}}" selected disabled hidden>{{job.technology.techname}}</option>
+     <option value="1">Java</option>
+     <option value="2">Linux</option>
+     <option value="3">PHP</option>
+     <option value="4">Python</option>
+     <option value="5">Windows</option>
+   </select>
+  </label>
+       </div>
+    <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <h3>JOB DESCRIPTION</h3>
+        </div>
+      </div>
+    <div class="medium-12 small-12 cell">
+     <textarea cols="80" id="editor1" name="job_description" rows="10" >{{job.jobdescription}}</textarea>
+     </div>
+    </div>
+
+    <div class="medium-12 small-12 float-right margin-top-1 margin-bottom-1" type="submit">
+    <button  class="btn btn-success float-right">
+      <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 150%; cursor: pointer; margin-top: 6%;"></i><h4 class="float-right" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;SAVE</p>
     </button>
+  </div>
+
+
+ </div>
+
 </form>
+
+{% endblock %}
+{% block javascripts %}
+<script>
+    CKEDITOR.replace('editor1', {
+      height: 150
+    });
+  </script>
 {% endblock %}

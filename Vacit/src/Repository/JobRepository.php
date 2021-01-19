@@ -20,7 +20,7 @@ class JobRepository extends ServiceEntityRepository
         parent::__construct($registry, Job::class);
     }
 
-    public function updateJob($params)
+    public function updateJob($params, $technology)
     {
         $job = $this->find($params['id']);
 
@@ -29,6 +29,7 @@ class JobRepository extends ServiceEntityRepository
         $job->setJobPicture($params['job_picture']);
         $job->setJobLevel($params['job_level']);
         $job->setJobLocation($params['job_location']);
+        $job->setTechnology($technology);
 
         $em = $this->getEntityManager();
         $em->persist($job);
@@ -47,12 +48,13 @@ class JobRepository extends ServiceEntityRepository
         $job->setJobPicture('');
         $job->setJobLevel('');
         $job->setJobLocation('');
+        $job->setTechnology(NULL);
         $job->setUser($user);
 
         $em = $this->getEntityManager();
         $em->persist($job);
         $em->flush();
-
+     
         return $job;
     }
 

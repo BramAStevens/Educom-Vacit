@@ -75,8 +75,6 @@ class ApplicationController extends AbstractController
             'controller_name' => 'ApplicationController',
             'applications' => $applications,
             'user' => $user]);
-      
-
         } return $this->render('user/noaccess.html.twig');
     }
 

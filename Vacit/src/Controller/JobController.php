@@ -47,10 +47,9 @@ class JobController extends AbstractController
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
-        
-        if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
+        $jobEmployer = $job->getUser();
+        if ($currentUser == $jobEmployer || $currentUser == $isAdmin) {
             $jobService->updateJob($request, $id);
-
             return $this->render('job/update_job.html.twig', [
                 'controller_name' => 'JobController',
                 'job' => $job]);

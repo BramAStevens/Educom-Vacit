@@ -60,6 +60,11 @@ class Job
      */
     private $applications;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Technology::class, inversedBy="job")
+     */
+    private $technology;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -180,6 +185,18 @@ class Job
                 $application->setJob(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTechnology(): ?Technology
+    {
+        return $this->technology;
+    }
+
+    public function setTechnology(?Technology $technology): self
+    {
+        $this->technology = $technology;
 
         return $this;
     }
