@@ -88,9 +88,9 @@
   <input type="hidden" name="technology_id"/>
    <select id="input" name="technology_id">
      {% for technology in technologies %}
-     <option value="{{technology.id}}" selected disabled hidden>{{job.technology.techname}}</option>
      <option value="{{technology.id}}">{{technology.techname}}</option>
      {% endfor %}
+      <option value="{{job.technology.id}}" selected disabled hidden>{{job.technology.techname}}</option>
    </select>
   </label>
        </div>

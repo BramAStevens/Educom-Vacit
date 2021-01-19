@@ -29,15 +29,11 @@ class JobController extends AbstractController
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
         $user_id = $currentUser->getId();
-        
         if ($currentUser == $isEmployer || $currentUser == $isAdmin) {
         $params['user_id'] = $user_id;
-
         $jobService->createJob($params);
         $job_id = $jobService->findHighestJob($user_id)->getId();
-   
         return $this->redirectToRoute('updateJob',  ['id' => $job_id]);
-
         } return $this->render('user/noaccess.html.twig');
     }
 
@@ -68,7 +64,6 @@ class JobController extends AbstractController
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
-
         if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
             $result = $jobService->deleteJobById($id);
             dump($result);
@@ -114,7 +109,6 @@ class JobController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $allJobs = $jobService->findAllJobs();
-
         dump($allJobs);
         die();
     }
