@@ -80,9 +80,12 @@ class JobController extends AbstractController
         $job = $jobService->findJobById($id);
         $technology_id = $job->getTechnology()->getId();
         $technology = $technologyService->findTechnologyArrayById($technology_id);
+        $employer_id = $job->getUser();
+        $allJobsByEmployer = $jobService->findAllJobsByEmployer($employer_id);
             return $this->render('job/show_job.html.twig', [
                 'controller_name' => 'JobController',
                 'job' => $job,
+                'allJobsByEmployer' => $allJobsByEmployer
                 ]);
     }
 
