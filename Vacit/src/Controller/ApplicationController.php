@@ -29,7 +29,7 @@ class ApplicationController extends AbstractController
         $params['user_id'] = $user_id;
         $params['job_id'] = $job_id;
         $applicationService->createApplication($params);
-        return $this->render('application/apply_vacancy.html.twig');
+        return $this->redirectToRoute('showJob',  ['id' => $job_id]);
         } return $this->render('user/noaccess.html.twig');
     }
 
@@ -71,6 +71,7 @@ class ApplicationController extends AbstractController
         $currentUser = $user->getId();
         if($currentUser == $user_id || $currentUserId == $isAdmin) {
         $applications = $applicationService->findAllApplicationsByUser($user_id);
+        
         return $this->render('application/show_my_applications.html.twig', [
             'controller_name' => 'ApplicationController',
             'applications' => $applications,
@@ -90,5 +91,14 @@ class ApplicationController extends AbstractController
         dump($invite);
         die();
         } return $this->render('user/noaccess.html.twig');
+    }
+
+    /**
+     * @Route("/deleteAll/{job_id}", name="deleteAll")
+     */
+    public function deleteAll(ApplicationService $applicationService, $job_id) { 
+        $application = $applicationService->deleteApplicationsByJob($job_id);
+        dump($application);
+        die();
     }
 }

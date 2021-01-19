@@ -67,11 +67,11 @@
 </div>
 
 <div class="cell medium-6 small-6">
-<p class="float-left">{{job.joblevel}}</p>
+<h3 class="float-left">level:&nbsp;</h3><h3 class="float-left" style="color: black !important;">{{job.joblevel}}</h3>
 </div>
 
 <div class="cell medium-6 small-6">
-<p class="float-right">{{job.joblocation}}</p>
+<i class="fas fa-map-marker-alt float-right" style="color: #F15A24; font-size: 150%; margin-right: 5%;" id="iconsmall1"><h3 class="float-right" style="color: black !important;  margin-top: -8%; margin-right: -5%;">{{job.joblocation}}</h3></i>
 </div>
 
 <div class="cell medium-12 small-12">
@@ -81,11 +81,13 @@
 </div>
 
 <div class="cell medium-12 small-12">
-    <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 300%; cursor: pointer; margin-top: 0.5%;"></i><h1 class="float-left" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;APPLY</h1>
+    <a href="/applyToVacancy/{{job.id}}">
+    <i class="fas fa-arrow-right float-left"  id="iconsmall2" style="color: #F15A24;  font-size: 300%; cursor: pointer; margin-top: 0.5%;"></i><h1 class="float-left" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;APPLY</h1>
+    </a>   
 </div>
 
 <div class="cell medium-12 small-12">
-    <h1>MORE JOBS FROM COMPANY</h1>
+    <h3 class="float-left" style="color: black !important;">MORE JOBS FROM </h3><h3>&nbsp;{{job.user.username}}</h3>
     <table id="jobsByEmployer" class="display nowrap dataTable order-column" style="border-collapse: collapse;
       table-layout: fixed;
       width: 100%;">
@@ -100,9 +102,9 @@
         {% for vacancy in allJobsByEmployer %}
         <tr>
         <td >{{vacancy.jobdate|date("d-m-Y")}}</td>
-        <a href="/showjob/{{vacancy.id}}">
-        <td style="text-overflow: clip; overflow: clip; white-space: nowrap;  color: #F15A24;">{{vacancy.jobtitle}}</td>
-        </a>
+        
+        <td style="text-overflow: clip; overflow: clip; white-space: nowrap;  "><a style="color: #F15A24 !important;" href="/showJob/{{vacancy.id}}">{{vacancy.jobtitle}}</a></td>
+    
         <td style="text-overflow: clip; overflow: clip; white-space: nowrap;">{{vacancy.joblevel}}</td>
         </tr>
         {% endfor %}

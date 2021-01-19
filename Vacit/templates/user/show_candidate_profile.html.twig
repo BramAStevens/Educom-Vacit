@@ -80,7 +80,11 @@
 <div class="medium-12 small-12 ">
 
     <div class="medium-6 small-6 float-left margin-bottom-3">
+{% if user.usercv|length > 2 %}
 <a href="{{ asset(user.usercv) }}" download>
+{% else %}
+<a onclick="sweetAlert('Oh no!', 'This user has not uploaded a CV' , 'error');">
+{% endif %}
     <div style="display: inline-flex;">
     <i class="fas fa-file-pdf float-center" style="margin-top: 4%; color: #F15A24;"></i><h4 style="cursor: pointer; margin-bottom:-5%;">&nbsp; &nbsp;DOWNLOAD CV</h4>
    </div>

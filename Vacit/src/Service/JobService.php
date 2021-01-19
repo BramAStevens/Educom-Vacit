@@ -7,9 +7,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\JobRepository;
 use App\Repository\UserRepository;
 use App\Repository\TechnologyRepository;
+use App\Repository\ApplicationRepository;
 use App\Entity\Job;
 use App\Entity\User;
 use App\Entity\Technology;
+use App\Entity\Application;
 
 class JobService
 {
@@ -17,17 +19,20 @@ class JobService
     private $jr;
     private $ur;
     private $tr;
+    private $ar;
 
-    public function __construct(EntityManagerInterface $em, JobRepository $jr, UserRepository $ur, TechnologyRepository $tr)
+    public function __construct(EntityManagerInterface $em, ApplicationRepository $ar, JobRepository $jr, UserRepository $ur, TechnologyRepository $tr)
     {
         $this->em = $em;
         $this->jr = $jr;
         $this->ur = $ur;
         $this->tr = $tr;
+        $this->ar = $ar;
     }
 
     public function deleteJobById($id)
-    {
+    {   
+        $value= $this->ar->deleteApplicationsByJob($id);
         $job = $this->jr->deleteJob($id);
         return $job;
     }
@@ -60,8 +65,6 @@ class JobService
     {
         $user = $this->ur->find($params['user_id']);
         $job = $this->jr->createJob($user);
-        // dump($user);
-        // die();
         return $job;
     }
 

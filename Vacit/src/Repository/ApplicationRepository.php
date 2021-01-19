@@ -27,6 +27,15 @@ class ApplicationRepository extends ServiceEntityRepository
         return $applicationsByJob;
     }
 
+    public function deleteApplicationsByJob($job_id) {
+        $applicationsByJob = $this->findby(array('job' => $job_id));
+        foreach ($applicationsByJob as $job) {
+            $em = $this->getEntityManager();
+            $em->remove($job);
+            $em->flush();
+        } 
+    }
+
     public function findAllApplicationsByUser($user_id) // by candidate
     {
         $applicationsByUser = $this->findby(array('user' => $user_id),  array('id'=>'desc'));

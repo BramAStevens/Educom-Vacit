@@ -28,6 +28,15 @@
   #tablehead {
     font-size: 80% !important;
   } 
+  #iconsmall1 {
+    font-size: 100% !important;
+
+  }
+
+  #iconsmall2 {
+    font-size: 150% !important;
+    margin-bottom: -5% !important;
+  }
 }
 
 #tablehead {

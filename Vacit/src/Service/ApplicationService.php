@@ -65,4 +65,9 @@ class ApplicationService
         return $application;
     }
 
+    public function deleteApplicationsByJob($job_id) {
+        $application = $this->ar->deleteApplicationsByJob($job_id);
+        return $application;
+    }
+
 } 

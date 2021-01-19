@@ -47,7 +47,7 @@
     {% for application in applications %}
     <tr>
     <td >{{application.applicationdate|date("d/m/Y")}}</td>
-    <td style="text-overflow: clip; overflow: clip; white-space: nowrap;  color: #F15A24;">{{application.jobtitle}}</td>
+    <td style="text-overflow: clip; overflow: clip; white-space: nowrap;  color: #F15A24;"><a style="color: #F15A24 !important;" href="/showJob/{{application.job.id}}">{{application.jobtitle}}</a></td>
     <td style="text-overflow: clip; overflow: clip; white-space: nowrap;">{{application.applicationcompany}}</td>
     {% if application.applicationinvitation == 0 %}
     <td></td>

@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
 <body onload="onload()">
 <script>
 function onload() {
-  alert("⚠️ You do not have permission to perform this action! ⚠️");
-  window.location = 'javascript:history.back()';
+swal({
+    title: "Oops, you took a wrong turn!",
+    icon: "error",
+     button: { text:'Go back' },
+}).then(function() {
+    window.location = 'javascript:history.back()';
+});
 }
 </script>
 
 </body>
 </html>
+
+  {# swal("Oh noes!", "The AJAX request failed!", "error");
+  
+  window.location = 'javascript:history.back()'; #}
