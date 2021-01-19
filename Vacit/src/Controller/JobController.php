@@ -10,6 +10,8 @@ use App\Service\UserService;
 use App\Entity\User;
 use App\Service\JobService;
 use App\Entity\Job;
+use App\Service\TechnologyService;
+use App\Entity\Technology;
 
 class JobController extends AbstractController
 {
@@ -42,17 +44,19 @@ class JobController extends AbstractController
     /**
      * @Route("/updateJob/{id}", name="updateJob")
      */
-    public function updateJob(Request $request, JobService $jobService, $id)
+    public function updateJob(Request $request, JobService $jobService, TechnologyService $technologyService, $id)
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
         $jobEmployer = $job->getUser();
+        $technologies = $technologyService->findAllTechnologies();
         if ($currentUser == $jobEmployer || $currentUser == $isAdmin) {
             $jobService->updateJob($request, $id);
             return $this->render('job/update_job.html.twig', [
                 'controller_name' => 'JobController',
-                'job' => $job]);
+                'job' => $job,
+                'technologies' => $technologies]);
         } return $this->render('user/noaccess.html.twig');
     }
 
@@ -70,6 +74,21 @@ class JobController extends AbstractController
             dump($result);
             die();
         } return $this->render('user/noaccess.html.twig');
+    }
+
+    /**
+     * @Route("/showJob/{id}", name="showJob")
+     */
+    public function showJobById(JobService $jobService, TechnologyService $technologyService, $id)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $job = $jobService->findJobById($id);
+        $technology_id = $job->getTechnology()->getId();
+        $technology = $technologyService->findTechnologyArrayById($technology_id);
+            return $this->render('job/show_job.html.twig', [
+                'controller_name' => 'JobController',
+                'job' => $job,
+                ]);
     }
 
     /**

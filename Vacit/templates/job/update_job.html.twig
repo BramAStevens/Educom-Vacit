@@ -49,7 +49,7 @@
 {% block body %}
 
 <form method="post">
-<input type="hidden" name="user_picture" id="imgfile" value="{{job.jobpicture}}">
+<input type="hidden" name="job_picture" id="imgfile" value="{{job.jobpicture}}">
 
 <div class="square float-left margin-top-1" id="uploadCompanyLogo">
 {% if job.jobpicture|length > 2 %}
@@ -87,12 +87,10 @@
         <label style="font-size: 60%;">Select Technology
   <input type="hidden" name="technology_id"/>
    <select id="input" name="technology_id">
-     <option value="{{job.technology.id}}" selected disabled hidden>{{job.technology.techname}}</option>
-     <option value="1">Java</option>
-     <option value="2">Linux</option>
-     <option value="3">PHP</option>
-     <option value="4">Python</option>
-     <option value="5">Windows</option>
+     {% for technology in technologies %}
+     <option value="{{technology.id}}" selected disabled hidden>{{job.technology.techname}}</option>
+     <option value="{{technology.id}}">{{technology.techname}}</option>
+     {% endfor %}
    </select>
   </label>
        </div>

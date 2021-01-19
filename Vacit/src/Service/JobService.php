@@ -35,6 +35,7 @@ class JobService
     public function findJobById($id)
     {
         $job = $this->jr->findJobById($id);
+   
         return $job;
     }
 
