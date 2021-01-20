@@ -1,14 +1,28 @@
-{% extends 'base.html.twig' %}
-{% block stylesheets %}
-<script>
-    $(document).ready(function() {
-   var mySlides = [
+<html>
+  <head>    
+
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+
+
+    <link rel="stylesheet" href="{{ asset('assets/vegas/vegas.css') }}"/>     
+
+
+    <script src="{{ asset('assets/js/jquery.js')}}"></script>
+
+
+    <script src="{{ asset('assets/vegas/vegas.js') }}"></script>
+
+
+    <script>
+      $(document).ready( function() {
+
+        var mySlides = [
             { src: "https://cdn.plein.nl/afbeeldingen/-1534947491.jpg", title: "A City", subtitle: "Somewhere" },
             { src: "https://cdn.webshopapp.com/shops/122302/files/280641790/854x640x1/de-beste-tips-om-je-hond-alleen-thuis-te-laten.jpg", title: "Cats are cute", subtitle: "Sometimes" },
             { src: "https://images1.persgroep.net/rcs/8MfaIkowAdei9GIFM4fmdzVyaUA/diocontent/100419143/_fitwidth/763?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.8", title: "All people are different", subtitle: "On this planet anyway..." },
-        ];
-
-$("#background-image").vegas({
+        ]
+        
+        $("#background-image").vegas({
             overlay: 'vegas/overlays/02.png',
             slides: mySlides,
             walk: function (index, slideSettings) {
@@ -17,24 +31,12 @@ $("#background-image").vegas({
             }
         });
 
-      }) 
-</script>
-
-{% endblock %}
-{% block title %}Hello HomepageController!{% endblock %}
-
-{% block body %}
-<main class="content" style="background-color: #F15A25; z-index: 50 !important;">
-
-     <div id="background-image">
-        <div class="container">
-            <div class="text-block">
-                <h1>Title</h1>
-                <h4>Subtitle</h4>
-            </div>
-        </div>
+      })  
+    </script>
+  </head>
+  <body>
+    <div id="background-image" style="height: 50%; width: 50%;">
+        
     </div>     
-    
-</main>
-{# {{dump(jobs)}} #}
-{% endblock %}
+  </body>
+</html>

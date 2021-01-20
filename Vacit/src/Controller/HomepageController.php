@@ -18,10 +18,12 @@ class HomepageController extends AbstractController
     /**
      * @Route("/homepage", name="homepage")
      */
-    public function index(): Response
-    {
+    public function index(JobService $jobService)
+    {   
+        $jobs = $jobService->findAllJobs();
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
+            'jobs' => $jobs
         ]);
     }
 }

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<script>
+ $(document).ready(function() {
+  var imagecollection = [{
+      src: 'https://i.stack.imgur.com/oURrw.png'
+    },
+    {
+      src: 'http://i.imgur.com/SZPjHwz.jpg'
+    },
+    {
+      src: 'http://www.boyter.org/wp-content/uploads/2016/08/ChJzv9lUYAA9D5E.jpg'
+    },
+    {
+      src: 'https://pbs.twimg.com/media/Cg0x8vnXEAEB2Le.jpg'
+    }
+    /* Slideshow not working? Check your image links. */
+  ];
+
+  $("#ShowSlideShowHere").vegas({
+    slides: imagecollection,
+    transition: 'fade',
+    preloadImage: true,
+    timer: true,
+    shuffle: true,
+    delay: 5000,
+    animation: 'kenburns',
+    cover: true,
+    overlay: 'https://media.istockphoto.com/vectors/isolated-christmas-falling-snow-overlay-on-transparent-background-vector-id628152000'
+  });
+});
+</script>
+
+{% endblock %}
+{% block title %}Hello HomepageController!{% endblock %}
+
+{% block body %}
+<main class="content" style="background-color: #F15A25; z-index: 50 !important;">
+
+ <div style="height:50vh; width:50vh;">
+    <div id="ShowSlideShowHere" style="height: 50vh; width:50vh;">sadasdasdas</div>
+  </div>
+
+</main>
+{# {{dump(jobs)}} #}
+{% endblock %}
