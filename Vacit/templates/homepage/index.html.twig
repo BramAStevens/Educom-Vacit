@@ -5,7 +5,6 @@
 {% block body %}
 {% block stylesheets %}
 <script>
-
     $(document).ready(function() {
    var mySlides = [
      {% for job in jobs %}
@@ -13,7 +12,6 @@
       {% endfor %}
           
         ];
-href: "/showJob/{{job.id}}"
 $("#background-image").vegas({
             slides: mySlides,
             timer: false,

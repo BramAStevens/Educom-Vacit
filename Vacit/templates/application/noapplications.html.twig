@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body onload="onload()">
+<script>
+function onload() {
+swal({
+    title: "Nobody has applied yet!",
+    icon: "error",
+     button: { text:'Go back' },
+}).then(function() {
+    window.location = 'javascript:history.back()';
+});
+}
+</script>
+
+</body>
+</html>
+
+  {# swal("Oh noes!", "The AJAX request failed!", "error");
+  
+  window.location = 'javascript:history.back()'; #}

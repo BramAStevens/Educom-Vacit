@@ -82,6 +82,7 @@ class JobController extends AbstractController
         $technology = $technologyService->findTechnologyArrayById($technology_id);
         $employer_id = $job->getUser();
         $allJobsByEmployer = $jobService->findAllJobsByEmployer($employer_id);
+
             return $this->render('job/show_job.html.twig', [
                 'controller_name' => 'JobController',
                 'job' => $job,
@@ -103,7 +104,7 @@ class JobController extends AbstractController
         return $this->render('job/show_jobs_by_employer.html.twig', [
             'controller_name' => 'JobController',
             'jobs' => $allJobsByEmployer]);
-    } return $this->render('user/noaccess.html.twig');
+        } return $this->render('user/noaccess.html.twig');
     }
 
     /**
