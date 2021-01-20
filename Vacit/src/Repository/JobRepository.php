@@ -48,7 +48,7 @@ class JobRepository extends ServiceEntityRepository
         $job->setJobPicture('');
         $job->setJobLevel('');
         $job->setJobLocation('');
-        $job->setTechnology(NULL);
+        $job->setTechnology(NULL)->getId(1);
         $job->setUser($user);
 
         $em = $this->getEntityManager();

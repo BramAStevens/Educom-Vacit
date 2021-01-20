@@ -80,11 +80,19 @@
          {% endautoescape %}
 </div>
 
-<div class="cell medium-12 small-12">
+<div class="cell medium-6 small-6">
     <a href="/applyToVacancy/{{job.id}}">
-    <i class="fas fa-arrow-right float-left"  id="iconsmall2" style="color: #F15A24;  font-size: 300%; cursor: pointer; margin-top: 0.5%;"></i><h1 class="float-left" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;APPLY</h1>
+    <i class="fas fa-arrow-right float-left"  id="iconsmall2" style="color: #F15A24; font-size: 300%; cursor: pointer; margin-top: 1%; margin-left: -8%"></i><h1 class="float-left" style="cursor: pointer; font-family: Arial; color: #F15A24; margin-left: -3%;">&nbsp; &nbsp;APPLY</h1>
     </a>   
 </div>
+
+{% if app.user.id == job.user.id %}
+<div class="cell medium-6 small-6">
+<a href="/updateJob/{{job.id}}">
+<i class="fas fa-arrow-right float-right" style="color: #F15A24; margin-right: 2%; font-size: 300%; cursor: pointer; margin-top: 0.5%;" id="iconsmall2"><h1 class="float-right" style="margin-top: -4%; margin-right: -5%;">UPDATE</h1></i>
+</a>
+</div>
+{% endif %}
 
 <div class="cell medium-12 small-12">
     <h3 class="float-left" style="color: black !important;">MORE JOBS FROM </h3><h3>&nbsp;{{job.user.username}}</h3>

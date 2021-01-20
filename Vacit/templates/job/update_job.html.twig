@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
- 
-    <script>   
+<script>
+
  $(document).ready(function() {
 
             let uploader = new ss.SimpleUpload({
@@ -41,8 +41,8 @@
                     }
                 }
             });
-
         });
+
     </script>      
  {% endblock %}
  {% block title %}Update Job{% endblock %}
@@ -89,8 +89,10 @@
    <select id="input" name="technology_id">
      {% for technology in technologies %}
      <option value="{{technology.id}}">{{technology.techname}}</option>
+      {% if technology is defined and technology is not null %}
+      <option value="{{job.technology.id}}" selected hidden>{{job.technology.techname}}</option>
+       {% endif %}
      {% endfor %}
-      <option value="{{job.technology.id}}" selected disabled hidden>{{job.technology.techname}}</option>
    </select>
   </label>
        </div>
@@ -104,11 +106,21 @@
      </div>
     </div>
 
-    <div class="medium-12 small-12 float-right margin-top-1 margin-bottom-1" type="submit">
+    <div class="medium-6 small-6 float-left margin-top-1 margin-bottom-1">
+    <button >
+    <a href="/deleteJob/{{job.id}}" style="color: #F15A24 !important;">
+      <i class="fas fa-arrow-right" style="color: #F15A24 !important; font-size: 150%; cursor: pointer; margin-top: 6%;"></i><h4 class="float-right" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;DELETE</p>
+    </a>
+    </button>
+
+  </div>
+
+    <div class="medium-6 small-6 float-right margin-top-1 margin-bottom-1" type="submit">
     <button  class="btn btn-success float-right">
       <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 150%; cursor: pointer; margin-top: 6%;"></i><h4 class="float-right" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;SAVE</p>
     </button>
   </div>
+
 
 
  </div>

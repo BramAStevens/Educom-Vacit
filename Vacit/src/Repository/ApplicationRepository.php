@@ -85,5 +85,4 @@ class ApplicationRepository extends ServiceEntityRepository
         $em->flush();
         return $application;
     }
-
 }
