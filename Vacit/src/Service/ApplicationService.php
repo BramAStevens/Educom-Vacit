@@ -53,6 +53,11 @@ class ApplicationService
         return $applications;
     }
 
+    public function findApplicationByUserId($user_id) {
+        $application = $this->ar->findApplicationByUserId($user_id);
+        return $application;
+    }
+
     public function updateApplication($id)
     {
         $invite = $this->ar->updateApplication($id);

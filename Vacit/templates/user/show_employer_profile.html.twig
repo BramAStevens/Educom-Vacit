@@ -1,9 +1,99 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employer profile!{% endblock %}
+{% block title %}Company profile!{% endblock %}
 
 {% block body %}
 
-<h1>{{user.usersurname}}</h1>
+
+<div class="hexagon float-left margin-top-3">
+{% if user.userpicture|length > 2 %}
+    <img class="hexagonpic" src="{{ asset( user.userpicture )}}" id="imgactual" style="border: none"></img>
+    {% else %}
+    <img class="hexagonpic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" id="imgactual" style="border: none"></img>
+    {% endif %}               
+    </div>
+
+  <div class="grid-container small-flex-child-auto margin-top-3 margin-bottom-3 width-75">
+
+    <h2>{{user.username}} PROFILE</h2>
+  
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label style="font-size: 60%;">Company Email
+          <p id="orangestripe">{{user.useremail}}</p>
+        </label>
+      </div>
+    </div>
+
+      <div class="grid-x"> 
+      <div class="medium-12 small-12 cell">
+        <label style="font-size: 60%;">Phone number
+          <p id="orangestripe">{{user.userphonenumber}}</p>
+        </label>
+      </div>
+    </div>
+
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label style="font-size: 60%;">Company Address
+          <p id="orangestripe">{{user.useraddress}}</p>
+        </label>
+      </div>
+    </div>
+
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label style="font-size: 60%;">Company Postcode
+          <p id="orangestripe">{{user.userpostcode}}</p>
+        </label>
+      </div>
+      </div>
+
+      <div class="grid-x">
+      <div class="medium-12 small-12 cell">
+        <label style="font-size: 60%;">Company Province
+          <p id="orangestripe">{{user.usercity}}</p>
+        </label>
+      </div>
+      </div>
+
+    <div class="grid-x">
+    <div class="medium-12 small-12 cell">
+      <h3>COMPANY DESCRIPTION</h3>
+     {% autoescape false %}
+   {{user.usermotivation}}
+    {% endautoescape %}
+     </div>
+    </div>
+
+<div class="medium-12 small-12 ">
+
+    <div class="medium-6 small-6 float-left margin-bottom-3">
+{% if user.usercv|length > 2 %}
+<a href="{{ asset(user.usercv) }}" download>
+{% else %}
+<a onclick="sweetAlert('Oh no!', 'This company has not uploaded a factsheet' , 'error');">
+{% endif %}
+    <div style="display: inline-flex;">
+    <i class="fas fa-file-pdf float-center" style="margin-top: 4%; color: #F15A24;"></i><h4 style="cursor: pointer; margin-bottom:-5%;">&nbsp; &nbsp;DOWNLOAD COMPANY FACTSHEET</h4>
+   </div>
+   </a>
+</div>
+
+{% if app.user.id == user.id %}
+ <div class="medium-6 small-6 float-right">
+  <a href="/updateUserProfile/{{app.user.id}}">
+   <div style="display: inline-flex;" class="float-right">
+      <i class="fas fa-arrow-right" style="color: #F15A24;  font-size: 150%; cursor: pointer; margin-top: 1%;"></i><h4 class="float-right" style="cursor: pointer; font-family: Arial; color: #F15A24;">&nbsp; &nbsp;UPDATE PROFILE</p>
+    </div>
+    </a>
+  </div>
+{% endif %}
+ </div>
+
+    </div>
+  </div>
+  </div> 
+
 
 {% endblock %}

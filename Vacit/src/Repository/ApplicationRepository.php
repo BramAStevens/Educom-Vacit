@@ -76,13 +76,21 @@ class ApplicationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findApplicationByUserId($user_id) {
+        $applicationByUser = $this->findBy(array('user' => $user_id));
+        return $applicationByUser; 
+    }
+
     public function updateApplication($id)
     {
-        $application = $this->find($id);
-        $application->setApplicationInvitation(1);
+        $application = $this->findApplicationByUserId($id);
+
+        foreach($application as $app) {
+        $app->setApplicationInvitation(1);
         $em = $this->getEntityManager();
-        $em->persist($application);
+        $em->persist($app);
         $em->flush();
+        }
         return $application;
     }
 }

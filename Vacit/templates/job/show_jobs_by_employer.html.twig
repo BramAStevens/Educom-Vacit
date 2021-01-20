@@ -33,7 +33,7 @@
     <tr>
         <th id="tablehead">DATE</th>
         <th id="tablehead">TITLE</th>
-        <th id="tablehead">LEVEL</th>
+        <th id="tablehead">APPLICANTS</th>
         <th id="tablehead">LOCATION</th>
         <th id="tablehead">UPDATE</th>
     </tr>
@@ -44,7 +44,7 @@
     <tr>
     <td >{{job.jobdate|date("d/m/Y")}}</td>
     <td style="text-overflow: clip; overflow: clip; white-space: nowrap;"><a style="color: #F15A24 !important;" href="/showJob/{{job.id}}">{{job.jobtitle}}</a></td>
-    <td style="text-overflow: clip; overflow: clip; white-space: nowrap;">{{job.joblevel}}</td>
+    <td><a href="/applicationsByJob/{{job.id}}"><i class="fas fa-users" style="  color: #F15A24;"></i></a></td>
     <td style="text-overflow: clip; overflow: clip; white-space: nowrap;">{{job.joblocation}}</td>
     <td><a href="/updateJob/{{job.id}}"><i class="fas fa-edit" style="  color: #F15A24;"></i></a></td>
   
