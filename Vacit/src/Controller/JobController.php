@@ -98,13 +98,13 @@ class JobController extends AbstractController
         $this->auth($isAdmin);
         $allJobsByEmployer = $jobService->findAllJobsByEmployer($user_id);
         $currentUser = $this->getUser();
-    
+        
         if($currentUser->getId() == $user_id  || $currentUser == $isAdmin) {
-         
         return $this->render('job/show_jobs_by_employer.html.twig', [
             'controller_name' => 'JobController',
             'jobs' => $allJobsByEmployer]);
         } return $this->render('user/noaccess.html.twig');
+    //   }  return $this->render('application/noapplications.html.twig');
     }
 
     /**

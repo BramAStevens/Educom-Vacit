@@ -56,15 +56,13 @@ class ApplicationController extends AbstractController
         $applications = $applicationService->findAllApplicationsByJob($job_id);
         foreach ($applications as $application) {
             $appUsername = $application->getUser()->getUsername();
-            if ($applications) {
                 if ($currentUser == $appUsername || $currentUser == $isAdmin) {
                     return $this->render('application/applications_by_job.html.twig', [
                             'controller_name' => 'ApplicationController',
                             'applications' => $applications,
                         ]);
                 } return $this->render('user/noaccess.html.twig');
-            }
-        } return $this->render('application/noapplications.html.twig');
+        } 
     }
 
     /**
@@ -91,16 +89,13 @@ class ApplicationController extends AbstractController
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser()->getUsername();
-        $application = $applicationService->findApplicationByUserId($id);
-        foreach ($application as $app) {
-            $appCompany = $app->getApplicationCompany();
-            $job_id = $app->getJob()->getId();
-            if ($currentUser == $appCompany || $currentUser == $isAdmin) {
+        $application = $applicationService->findApplicationById($id);
+        $job_id = $application->getJob()->getId();
+        if ($currentUser == $isAdmin) {
                 $invite = $applicationService->updateApplication($id);
                 return $this->redirectToRoute('applicationsByJob', [
                     'job_id' => $job_id,
                 ]);
-            } return $this->render('user/noaccess.html.twig');
-        }
+        } return $this->render('user/noaccess.html.twig');
     }
 }
