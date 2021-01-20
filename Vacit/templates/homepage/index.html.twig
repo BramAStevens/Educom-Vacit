@@ -25,16 +25,18 @@ $("#background-image").vegas({
 
 {% block body %}
 <main class="content" style="background-color: #F15A25; z-index: 50 !important;">
-
-     <div id="background-image">
+<div class="vegashexagon">
+  
+     <div id="background-image" style="overflow: hidden !important; height: 400px; width: 400px;">
         <div class="container">
             <div class="text-block">
-                <h1>Title</h1>
-                <h4>Subtitle</h4>
+                <h1 style="text-align: center;">Title</h1>
             </div>
         </div>
-    </div>     
     
+    </div>     
+
+</div>
 </main>
 {# {{dump(jobs)}} #}
 {% endblock %}
