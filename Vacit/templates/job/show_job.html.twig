@@ -19,23 +19,6 @@
 {% block body %}
 <main class="content">
 
-<!-- <div class="grid-x grid-margin-x float-left hide-for-medium">  
-<div class="cell small-11"> 
-
-<div class="cell">
-<div class="hexagon margin-top-3 margin-left-2">
-    <img class="hexagonpic" src="{{ asset( job.technology.techpicture )}}" style="border: none"></img>            
-</div>
-</div>
-
-<div class="cell">
-<div class="square margin-top-1 padding-left-1 padding-right-1">
-    <img class="squarepic" src="{{ asset( job.jobpicture )}}" style="border: none"></img>            
-</div>
-</div>
-
-</div>
-</div> -->
 {# medium screen #}
 <div class="grid-x grid-margin-x float-left margin-left-3 margin-right-3 hide-for-small-only">  
 <div class="cell medium-11"> 
@@ -45,13 +28,19 @@
     <img class="hexagonpic" src="{{ asset( job.technology.techpicture )}}" style="border: none"></img>            
 </div>
 </div>
-
+{% if job.jobpicture|length > 2 %}
 <div class="cell">
 <div class="square margin-top-3">
     <img class="squarepic" src="{{ asset( job.jobpicture )}}" style="border: none"></img>            
 </div>
 </div>
-
+{% else %}
+<div class="cell">
+<div class="square margin-top-3">
+    <img class="squarepic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" style="border: none"></img>            
+</div>
+</div>
+{% endif %}  
 </div>
 </div>
 
