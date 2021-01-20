@@ -93,12 +93,14 @@ color: white !important;
 color:white;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 padding-top: 4%;
+
 padding-right: 3%;
 }
 
 #headerbar {
 background-color: #333333;
-z-index: 1;
+z-index: 600 !important;
+position: relative;
 width: 100%;
 }
 
@@ -109,36 +111,39 @@ width: 100%;
 
 .e {
   width: 100%;
-  height:24px;
+  height:30px;
   background-color: #F15A24;
   -ms-transform: rotate(2deg); /* IE 9 */
-  transform: rotate(-0.5deg);
-  z-index: -1;
+  transform: rotate(-0.4deg);
+  z-index: 500;
   position: relative;
-  margin-top: -0.5%;
+  margin-top: -1%;
+  margin-bottom: -1%;
   box-shadow: 3px 4px 35px;
 }
 
 .b {
   width: 100%;
-  height:8px;
+  height:15px;
   background-color: #F15A24;
   -ms-transform: rotate(2deg); /* IE 9 */
-  transform: rotate(-0.7deg);
-  z-index: -1;
+  transform: rotate(-1.1deg);
+  z-index: 500;
   position: relative;
-  margin-top: -0.5%;
+  margin-top: -1%;
+  margin-bottom: -3%;
   box-shadow: 1px 1px 8px;
 }
 .c {
   width: 100%;
-  height:29px;
+  height:33px;
   background-color: #F15A24;
   -ms-transform: rotate(2deg); /* IE 9 */
   transform: rotate(-0.7deg);
-  z-index: -1;
+  z-index: -500;
   position: relative;
-  margin-top: -0.9%;
+  margin-top: -1.4%;
+  margin-bottom: -1.6%;
   box-shadow: 3px 4px 35px;
 }
 
