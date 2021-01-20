@@ -36,10 +36,7 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/removeApplication/{id}", name="removeApplication")
      */
-    public function deleteApplication(
-        ApplicationService $applicationService,
-        $id
-    ) {
+    public function deleteApplication(ApplicationService $applicationService, $id) {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $application = $applicationService->findApplicationById($id);

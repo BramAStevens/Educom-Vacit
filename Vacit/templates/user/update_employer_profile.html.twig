@@ -90,7 +90,6 @@
  {% block title %}Update Company Profile{% endblock %}
 {% block body %}
 
-
 <form method="post">
 <input type="hidden" name="user_cv" id="cvfile" value="{{user.usercv}}">
 <input type="hidden" name="user_picture" id="imgfile" value="{{user.userpicture}}">
@@ -102,8 +101,6 @@
     <img class="hexagonpic" src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0" id="imgactual" style="border: none"></img>
     {% endif %}               
     </div>
-
-
 
   <div class="grid-container small-flex-child-auto margin-top-3 margin-bottom-3 width-75">
 
@@ -172,13 +169,14 @@
   </div>
 
   </div>
-
-
     </div>
   </div>
   </div>
 </form>
-
+</main>
+  <footer class="footer">
+{% include "headerfooter/footer.html.twig" %}
+</footer>  
 {% endblock %}
 {% block javascripts %}
 <script>
