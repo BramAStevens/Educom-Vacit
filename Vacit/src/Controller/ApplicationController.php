@@ -19,11 +19,7 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/applyToVacancy/{job_id}", name="applyToVacancy")
      */
-    public function applyToVacancy(
-        Request $request,
-        ApplicationService $applicationService,
-        $job_id
-    ) {
+    public function applyToVacancy(Request $request, ApplicationService $applicationService,$job_id) {
         $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
@@ -58,32 +54,27 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/applicationsByJob/{job_id}", name="applicationsByJob")
      */
-    public function findAllApplicationsByJob(
-        ApplicationService $applicationService,
-        $job_id
-    ) {
+    public function findAllApplicationsByJob(ApplicationService $applicationService, $job_id) {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
-        $isEmployer = $this->isGranted('ROLE_EMPLOYER');
-        if ($currentUser == $isEmployer || $currentUser == $isAdmin) {
-            $applications = $applicationService->findAllApplicationsByJob(
-                $job_id
-            );
+        $currentUsername = $currentUser->getUsername();
+        $applications = $applicationService->findAllApplicationsByJob($job_id);
+        foreach ($applications as $application) {
+        $appUsername = $application->getUser()->getUsername();
+        if ($currentUser == $appUsername || $currentUser == $isAdmin) {
             return $this->render('application/applications_by_job.html.twig', [
                 'controller_name' => 'ApplicationController',
                 'applications' => $applications,
             ]);
         }
         return $this->render('user/noaccess.html.twig');
+      }
     }
 
     /**
      * @Route("/applicationsByUser/{user_id}", name="applicationsByUser")
      */
-    public function findAllApplicationsByUser(
-        ApplicationService $applicationService,
-        $user_id
-    ) {
+    public function findAllApplicationsByUser(ApplicationService $applicationService, $user_id) {
         $this->auth($isAdmin);
         $user = $this->getUser();
         $currentUser = $user->getId();
