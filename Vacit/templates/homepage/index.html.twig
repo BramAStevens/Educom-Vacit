@@ -28,7 +28,7 @@
 </script>
 
 <main class="content" style="background-color: #F15A25;">
-
+  
     <div class="grid-x float-left margin-left-3" id="pleasemercy">
         <div class="cell medium-12 hide-for-small-only">
             <div class="grid-x align-middle">
@@ -47,35 +47,39 @@
         </div>
     </div>
 
-    <div class="grid-x margin-top-2 margin-left-3">
-        {% for job in jobs|slice(1,5) %}
-        <div class="cell medium-12 small-12 margin-top-1">
-            <div class="grid-container">
-                <div class="grid-x padding-x float-middle">
+<div class="grid-x margin-top-3 margin-left-1 margin-right-1">
+    {% for job in jobs|slice(0,5) %}
+    <div class="cell medium-12 small-12 margin-top-1 margin-bottom-1">
+        <div class="grid-container">
+            <div class="grid-x padding-x float-middle">
 
-                    <div class="cell medium-2 small-4">
-                        <div class="hexagon">
-                            {% if job.jobpicture|length > 2 %}
-                            <img class="hexagonpic" src="{{ asset( job.jobpicture )}}"></img>
-                            {% else %}
-                            <img class="hexagonpic"
-                                src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0"></img>
-                            {% endif %}
-                        </div>
-                    </div>
 
-                    <div class="cell medium-3 small-4 margin-top-3">
-                        <h3 style="color: white !important; text-align: left !important;">{{job.jobtitle}}</h3>
-                    </div>
-                    <div class="cell medium-3 small-2 margin-top-3">
-                        <p>hello</p>
-                    </div>
-                    <div class="cell medium-4 small-2 margin-top-3 float-left">
-                        <p>hello</p>
+                <div class="cell medium-2 small-4">
+                    <div class="hexagonhome" style="background-color: black !important;">
+                        <img class="hexagonpic" src="{{ asset( job.technology.techpicture )}}"></img>
                     </div>
                 </div>
+
+                <div class="cell medium-8 small-8">
+                    <p style="margin-bottom: -0.5%;">{{job.jobdate|date("d F Y")}}</p>
+                    <h3 style="color: white !important; text-align: left !important;">{{job.jobtitle}}</h3>
+                    <p>{{job.jobdescription|slice(0, 200)}}</p>
+                <!-- for small -->
+                    <button  class="btn btn-success float-left margin-bottom-2 hide-for-medium">
+                        <i class="fas fa-arrow-right hide-for-medium" style="color: white; font-size: 400%; cursor: pointer;"></i>
+                      </button>
+                </div>
+
+                <!-- for medium -->
+                <div class="cell medium-2 hide-for-small-only">
+                    <button  class="btn btn-success float-right">
+                        <i class="fas fa-arrow-right float-left" style="color: white; margin-top: 60%; font-size: 400%; cursor: pointer;"></i>
+                      </button>
+                </div>
+        
             </div>
         </div>
+    </div>
         {% endfor %}
 
     </div>
