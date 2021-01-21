@@ -4,23 +4,31 @@
 
 {% block body %}
 <main class="content">
+<div class="grid-x margin-top-3">
+    <div class="cell medium-12 small-12 margin-top-3">
+    <div class="width-50 float-center margin-top-3">
     {% for flashError in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
     <h1>Reset your password</h1>
 
     {{ form_start(requestForm) }}
-        {{ form_row(requestForm.User_email) }}
+        {{ form_row(requestForm.User_email, {
+            label: ' '
+        }) }}
         <div>
             <small>
                 Enter your email address and we we will send you a
                 link to reset your password.
             </small>
         </div>
-
-        <button class="btn btn-primary">Send password reset email</button>
-    
+    <button  class="btn btn-success float-right">
+      <i class="fas fa-arrow-right float-left" style="color: #F15A24; margin-top: -100%;  font-size: 200%; cursor: pointer;"></i>
+    </button>
     {{ form_end(requestForm) }}
+       </div>
+       </div>
+       </div>
 </main>
   <footer class="footer">
         {% include "headerfooter/footer.html.twig" %}

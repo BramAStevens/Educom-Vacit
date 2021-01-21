@@ -1,14 +1,21 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body onload="onload()">
+<script>
+function onload() {
+swal({
+    title: "A link to renew your password has been sent to your email.",
+    text: "If you don't receive an email please check your spam folder.",
+    icon: "success",
+     button: { text:'Return to login' },
+}).then(function() {
+    window.location = '/login';
+});
+}
+</script>
 
-{% block title %}Password Reset Email Sent{% endblock %}
-
-{% block body %}
-<main class="content">
-    <p>An email has been sent that contains a link that you can click to reset your password. This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
-  
-  <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
-</main>
-  <footer class="footer">
-        {% include "headerfooter/footer.html.twig" %}
-        </footer>  
-{% endblock %}
+</body>
+</html>

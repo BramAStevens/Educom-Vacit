@@ -13,7 +13,8 @@ use App\Entity\User;
 
 class UserController extends AbstractController
 {   
-    private function auth(&$isAdmin) {
+    private function auth(&$isAdmin) 
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $isAdmin = $this->isGranted('ROLE_ADMIN');
     }
@@ -34,7 +35,7 @@ class UserController extends AbstractController
             return $this->render('user/show_candidate_profile.html.twig', [
                 'controller_name' => 'UserController',
                 'user' => $user]);
-        }
+        } 
     }
 
     /**
