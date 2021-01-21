@@ -207,7 +207,9 @@ font-size: 4px;
    
 }
 
-
+#pleasemercy {
+  margin-top: -500% !imporant;
+}
 
 .square {
   clip-path: inset(0 0 0 0);

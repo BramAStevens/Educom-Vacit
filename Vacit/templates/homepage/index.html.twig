@@ -3,42 +3,83 @@
 {% block title %}Hello HomepageController!{% endblock %}
 
 {% block body %}
-{% block stylesheets %}
 <script>
-    $(document).ready(function() {
-   var mySlides = [
-     {% for job in jobs %}
-            { src: "{{job.technology.techpicture}}", title: "{{job.jobtitle}}"},
-      {% endfor %}
-          
+    $(document).ready(function () {
+        var mySlides = [
+            {% for job in jobs %}
+            {
+                src: "{{job.technology.techpicture}}",
+                title: "{{job.jobtitle}}"
+            },
+            {% endfor %}
+
         ];
-$("#background-image").vegas({
+        $("#background-image").vegas({
             slides: mySlides,
             timer: false,
             delay: 1700,
             transition: 'slideLeft',
             walk: function (index, slideSettings) {
-                  $(".text-block h1").html(mySlides[index].title);
+                $(".text-block h1").html(mySlides[index].title);
             }
         });
 
-      }) 
+    })
 </script>
-{% endblock %}
 
-<main class="content" style="background-color: #F15A25; z-index: 50 !important;">
-<div class="vegashexagon">
-  
-     <div id="background-image" style="width: 300px; height: 300px; background-color: black;">
-        <div class="container">
-            <div class="text-block">
-                <h1 style="text-align: center; color: white !important; font-size: 20px; margin-left: 10%; margin-bottom: -10%;">Title</h1>
+<main class="content" style="background-color: #F15A25;">
+
+    <div class="grid-x float-left margin-left-3" id="pleasemercy">
+        <div class="cell medium-12 hide-for-small-only">
+            <div class="grid-x align-middle">
+                <div class="vegashexagon">
+                    <div id="background-image" style="width: 300px; height: 300px; background-color: black;">
+                        <div class="container">
+                            <div class="text-block">
+                                <h1
+                                    style="text-align: center; color: white !important; font-size: 20px; margin-left: 10%; margin-bottom: -10%;">
+                                    Title</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    
-    </div>     
+    </div>
 
-</div>
+    <div class="grid-x margin-top-2 margin-left-3">
+        {% for job in jobs|slice(1,5) %}
+        <div class="cell medium-12 small-12 margin-top-1">
+            <div class="grid-container">
+                <div class="grid-x padding-x float-middle">
+
+                    <div class="cell medium-2 small-4">
+                        <div class="hexagon">
+                            {% if job.jobpicture|length > 2 %}
+                            <img class="hexagonpic" src="{{ asset( job.jobpicture )}}"></img>
+                            {% else %}
+                            <img class="hexagonpic"
+                                src="https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0"></img>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="cell medium-3 small-4 margin-top-3">
+                        <h3 style="color: white !important; text-align: left !important;">{{job.jobtitle}}</h3>
+                    </div>
+                    <div class="cell medium-3 small-2 margin-top-3">
+                        <p>hello</p>
+                    </div>
+                    <div class="cell medium-4 small-2 margin-top-3 float-left">
+                        <p>hello</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
 </main>
-
 {% endblock %}

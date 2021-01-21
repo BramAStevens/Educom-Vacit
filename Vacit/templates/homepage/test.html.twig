@@ -1,0 +1,52 @@
+{% extends 'base-homepage.html.twig' %}
+
+{% block title %}Welcome to VacIT!{% endblock %}
+
+{% block vegas %}
+    <div class="grid-x">
+        <div class="small-12 medium-12 large-12">
+            <div class="box">
+                <div class="hexagon-homepage-vegas">
+                    <a id="vegas-link" href=""><div id="hexagon-slideshow" class="vegas-icon"></div></a> 
+                </div>
+            </div>
+            <div class="box">
+                 <a id="vegas-link2" href=""><span id="mainheader" class="mainheader"></span></a>                                   
+            </div>
+            <div class="box">
+                 <a id="vegas-link3" href=""><span id="subheader" class="subheader"></span></a>                                   
+            </div>      
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="grid-x">  
+    {% for vacancy in vacancies %}
+        <div class="cell small-12 medium-12 large-12"> 
+            <div class="grid-x grid-padding-x">
+                <div class="box">
+                    <div class="medium-3 large-3 cell">
+                        <br><br><br>
+                        <div class="hexagon-homepage hide-for-small-only">
+                            <img class="icon-home" src="{{ vacancy.platform.iconurl }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="small-10 medium-8 large-8 cell">
+                    <br><br>
+                    <div class="vacancydatetext">{{ vacancy.vacancydate }}</div>
+                        <a href={{ path('show/vacancy', { "id": vacancy.id } ) }} class="functiontext">{{vacancy.function}} voor {{vacancy.user.companyname}}</a>
+                    <div class="descriptiontext">{{ vacancy.jobdescription |striptags|length > 300 ? vacancy.jobdescription|striptags|slice(0, 300) ~ '...' : vacancy.jobdescription|striptags }}</div>
+                </div>
+                <div class="small-2 medium-1 large-1 cell">
+                    <div class="box">
+                        <a href={{ path('show/vacancy', { "id": vacancy.id } ) }} class="arrowstyle"><i  class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+    <br>
+{% endblock %}    
