@@ -110,9 +110,10 @@ class JobController extends AbstractController
      */
     public function showAllJobs(JobService $jobService)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+       
         $allJobs = $jobService->findAllJobs();
-        dump($allJobs);
-        die();
+        return $this->render('job/show_all_jobs.html.twig', [
+            'controller_name' => 'JobController',
+            'jobs' => $allJobs]);
     }
 }
