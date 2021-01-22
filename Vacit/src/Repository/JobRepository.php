@@ -49,9 +49,9 @@ class JobRepository extends ServiceEntityRepository
         $job->setJobPicture('');
         $job->setJobLevel('');
         $job->setJobLocation('');
-        $job->setTechnology(NULL)->getId(1);
+        $job->setTechnology(null)->getId(1);
         $job->setUser($user);
-        $save= $this->saveJob($job);
+        $save = $this->saveJob($job);
         return $job;
     }
 
@@ -76,20 +76,23 @@ class JobRepository extends ServiceEntityRepository
 
     public function findAllJobsByEmployer($user_id)
     {
-        $allJobsForThisUser = $this->findby(['user' => $user_id], ['id'=>'desc']);
+        $allJobsForThisUser = $this->findby(
+            ['user' => $user_id],
+            ['id' => 'desc']
+        );
         return $allJobsForThisUser;
     }
 
-    public function findHighestJob($user_id) 
+    public function findHighestJob($user_id)
     {
         $allJobsForThisUser = $this->findAllJobsByEmployer($user_id);
-     
+
         return $allJobsForThisUser['0'];
     }
 
     public function findAllJobs()
     {
-        $alljobs = $this->findBy([], ['id'=>'desc']);
-        return($alljobs);
+        $alljobs = $this->findBy([], ['id' => 'desc']);
+        return $alljobs;
     }
 }

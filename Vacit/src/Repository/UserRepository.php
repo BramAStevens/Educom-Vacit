@@ -33,7 +33,8 @@ class UserRepository extends ServiceEntityRepository implements
      */
     public function upgradePassword(
         UserInterface $user,
-        string $newEncodedPassword): void {
+        string $newEncodedPassword
+    ): void {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(
                 sprintf(
@@ -50,7 +51,9 @@ class UserRepository extends ServiceEntityRepository implements
     {
         $user = new User();
         $user->setUsername($params['username']);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword($user, 'password')
+        );
         $user->setRoles(['ROLE_EMPLOYER']);
         $user->setUserPicture('');
         $user->setUserSurname('');
@@ -113,14 +116,12 @@ class UserRepository extends ServiceEntityRepository implements
     public function deleteUser($id)
     {
         $user = $this->find($id);
-        if ($user) 
-        {
+        if ($user) {
             $em = $this->getEntityManager();
             $em->remove($user);
             $em->flush();
             return true;
-        } else 
-        {
+        } else {
             return false;
         }
     }

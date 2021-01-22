@@ -21,8 +21,13 @@ class JobService
     private $tr;
     private $ar;
 
-    public function __construct(EntityManagerInterface $em, ApplicationRepository $ar, JobRepository $jr, UserRepository $ur, TechnologyRepository $tr)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        ApplicationRepository $ar,
+        JobRepository $jr,
+        UserRepository $ur,
+        TechnologyRepository $tr
+    ) {
         $this->em = $em;
         $this->jr = $jr;
         $this->ur = $ur;
@@ -31,8 +36,8 @@ class JobService
     }
 
     public function deleteJobById($id)
-    {   
-        $value= $this->ar->deleteApplicationsByJob($id);
+    {
+        $value = $this->ar->deleteApplicationsByJob($id);
         $job = $this->jr->deleteJob($id);
         return $job;
     }
@@ -44,15 +49,33 @@ class JobService
     }
 
     public function updateJob(Request $request, $id)
-    {   
+    {
         $job = $this->findJobById($id);
         $params['id'] = $id;
-        $params['job_title'] = $request->request->get('job_title',$job->getJobTitle());
-        $params['job_description'] = $request->request->get('job_description',$job->getJobDescription());
-        $params['job_picture'] = $request->request->get('job_picture',$job->getJobPicture());
-        $params['job_level'] = $request->request->get('job_level',$job->getJobLevel());
-        $params['job_location'] = $request->request->get('job_location',$job->getJobLocation());
-        $params['technology_id'] = $request->request->get('technology_id',$job->getTechnology());
+        $params['job_title'] = $request->request->get(
+            'job_title',
+            $job->getJobTitle()
+        );
+        $params['job_description'] = $request->request->get(
+            'job_description',
+            $job->getJobDescription()
+        );
+        $params['job_picture'] = $request->request->get(
+            'job_picture',
+            $job->getJobPicture()
+        );
+        $params['job_level'] = $request->request->get(
+            'job_level',
+            $job->getJobLevel()
+        );
+        $params['job_location'] = $request->request->get(
+            'job_location',
+            $job->getJobLocation()
+        );
+        $params['technology_id'] = $request->request->get(
+            'technology_id',
+            $job->getTechnology()
+        );
         $technology = $this->tr->findTechnologyById($params['technology_id']);
         $update = $this->jr->updateJob($params, $technology);
         return $update;
@@ -80,6 +103,6 @@ class JobService
     public function findAllJobs()
     {
         $jobs = $this->jr->findAllJobs();
-        return($jobs);
+        return $jobs;
     }
 }

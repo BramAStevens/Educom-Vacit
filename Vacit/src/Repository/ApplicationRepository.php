@@ -21,24 +21,33 @@ class ApplicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Application::class);
     }
 
-    public function findAllApplicationsByJob($job_id) // for employer
+    public function findAllApplicationsByJob($job_id)
     {
-        $applicationsByJob = $this->findby(array('job' => $job_id),  ['id'=>'desc']);
+        // for employer
+        $applicationsByJob = $this->findby(
+            ['job' => $job_id],
+            ['id' => 'desc']
+        );
         return $applicationsByJob;
     }
 
-    public function deleteApplicationsByJob($job_id) {
-        $applicationsByJob = $this->findby(array('job' => $job_id));
+    public function deleteApplicationsByJob($job_id)
+    {
+        $applicationsByJob = $this->findby(['job' => $job_id]);
         foreach ($applicationsByJob as $job) {
             $em = $this->getEntityManager();
             $em->remove($job);
             $em->flush();
-        } 
+        }
     }
 
-    public function findAllApplicationsByUser($user_id) // by candidate
+    public function findAllApplicationsByUser($user_id)
     {
-        $applicationsByUser = $this->findby(array('user' => $user_id),  ['id'=>'desc']);
+        // by candidate
+        $applicationsByUser = $this->findby(
+            ['user' => $user_id],
+            ['id' => 'desc']
+        );
         return $applicationsByUser;
     }
 
@@ -48,9 +57,13 @@ class ApplicationRepository extends ServiceEntityRepository
         return $application;
     }
 
-    public function createApplication($user_id, $job_id, $application_company, $job_title)
-    {
-        $application = new Application(); 
+    public function createApplication(
+        $user_id,
+        $job_id,
+        $application_company,
+        $job_title
+    ) {
+        $application = new Application();
         $application->setUser($user_id);
         $application->setJob($job_id);
         $application->setApplicationCompany($application_company);
@@ -76,9 +89,10 @@ class ApplicationRepository extends ServiceEntityRepository
         }
     }
 
-    public function findApplicationByUserId($user_id) {
+    public function findApplicationByUserId($user_id)
+    {
         $applicationByUser = $this->find($user_id);
-        return $applicationByUser; 
+        return $applicationByUser;
     }
 
     public function updateApplication($id)

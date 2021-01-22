@@ -12,18 +12,17 @@ use App\Entity\Job;
 use App\Service\TechnologyService;
 use App\Entity\Technology;
 
-
 class HomepageController extends AbstractController
 {
     /**
      * @Route("/homepage", name="homepage")
      */
     public function index(JobService $jobService)
-    {   
+    {
         $jobs = $jobService->findAllJobs();
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
-            'jobs' => $jobs
+            'jobs' => $jobs,
         ]);
     }
 }

@@ -20,27 +20,25 @@ class TechnologyRepository extends ServiceEntityRepository
     }
 
     public function findTechnologyById($id)
-    {   
+    {
         if (isset($id)) {
-        $technology = $this->find($id);
+            $technology = $this->find($id);
         } else {
             $technology = $this->find(1);
         }
-       
+
         return $technology;
     }
 
     public function findTechnologyArrayById($id)
-    {   
-        $technology = $this->findby(array('id' => $id));
+    {
+        $technology = $this->findby(['id' => $id]);
         return $technology;
     }
-    
+
     public function findAllTechnologies()
     {
         $alltech = $this->findAll();
-        return($alltech);
+        return $alltech;
     }
-
-
 }

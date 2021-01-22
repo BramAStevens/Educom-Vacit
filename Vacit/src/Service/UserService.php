@@ -31,23 +31,54 @@ class UserService
         return $user;
     }
 
-    public function updateUserProfile(
-        Request $request,
-        $id)
-    {   
+    public function updateUserProfile(Request $request, $id)
+    {
         $user = $this->findUserById($id);
         $params['id'] = $id;
-        $params['user_picture'] = $request->request->get('user_picture', $user->getUserPicture());
-        $params['user_surname'] = $request->request->get('user_surname', $user->getUserSurname());
-        $params['user_lastname'] = $request->request->get('user_lastname', $user->getUserLastname());
-        $params['user_email'] = $request->request->get('user_email', $user->getUserEmail());
-        $params['user_dob'] = $request->request->get('user_dob', $user->getUserDob());
-        $params['user_phone_number'] = $request->request->get('user_phone_number', $user->getUserPhoneNumber());
-        $params['user_address'] = $request->request->get('user_address', $user->getUserAddress());
-        $params['user_postcode'] = $request->request->get('user_postcode', $user->getUserPostcode());
-        $params['user_city'] = $request->request->get('user_city', $user->getUserCity());
-        $params['user_motivation'] = $request->request->get('user_motivation', $user->getUserMotivation());
-        $params['user_cv'] = $request->request->get('user_cv', $user->getUserCv());
+        $params['user_picture'] = $request->request->get(
+            'user_picture',
+            $user->getUserPicture()
+        );
+        $params['user_surname'] = $request->request->get(
+            'user_surname',
+            $user->getUserSurname()
+        );
+        $params['user_lastname'] = $request->request->get(
+            'user_lastname',
+            $user->getUserLastname()
+        );
+        $params['user_email'] = $request->request->get(
+            'user_email',
+            $user->getUserEmail()
+        );
+        $params['user_dob'] = $request->request->get(
+            'user_dob',
+            $user->getUserDob()
+        );
+        $params['user_phone_number'] = $request->request->get(
+            'user_phone_number',
+            $user->getUserPhoneNumber()
+        );
+        $params['user_address'] = $request->request->get(
+            'user_address',
+            $user->getUserAddress()
+        );
+        $params['user_postcode'] = $request->request->get(
+            'user_postcode',
+            $user->getUserPostcode()
+        );
+        $params['user_city'] = $request->request->get(
+            'user_city',
+            $user->getUserCity()
+        );
+        $params['user_motivation'] = $request->request->get(
+            'user_motivation',
+            $user->getUserMotivation()
+        );
+        $params['user_cv'] = $request->request->get(
+            'user_cv',
+            $user->getUserCv()
+        );
         $update = $this->ur->updateUserProfile($params);
         return $update;
     }

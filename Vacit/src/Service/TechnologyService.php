@@ -7,19 +7,19 @@ use App\Repository\TechnologyRepository;
 use App\Entity\Technology;
 use Symfony\Component\HttpFoundation\Request;
 
-class TechnologyService 
+class TechnologyService
 {
     private $em;
     private $tr;
 
-
-    public function __construct(EntityManagerInterface $em, TechnologyRepository $tr)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        TechnologyRepository $tr
+    ) {
         $this->em = $em;
         $this->tr = $tr;
-       
     }
-    
+
     public function findAllTechnologies()
     {
         $alltech = $this->tr->findAllTechnologies();
@@ -28,13 +28,13 @@ class TechnologyService
 
     public function findTechnologyById($id)
     {
-    $tech = $this->tr->findTechnologyById($id);
-    return $tech;
+        $tech = $this->tr->findTechnologyById($id);
+        return $tech;
     }
 
     public function findTechnologyArrayById($id)
     {
-    $tech = $this->tr->findTechnologyArrayById($id);
-    return $tech;
+        $tech = $this->tr->findTechnologyArrayById($id);
+        return $tech;
     }
 }

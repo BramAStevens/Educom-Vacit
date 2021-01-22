@@ -15,37 +15,39 @@ use App\Entity\Technology;
 
 class JobController extends AbstractController
 {
-    private function auth(&$isAdmin) {
+    private function auth(&$isAdmin)
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $isAdmin = $this->isGranted('ROLE_ADMIN');
     }
 
-     /**
+    /**
      * @Route("/createJob/", name="createJob")
      */
     public function createJob(JobService $jobService)
-    {   
+    {
         $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
         $user_id = $currentUser->getId();
         if ($currentUser == $isEmployer || $currentUser == $isAdmin) {
-        $params['user_id'] = $user_id;
-        $jobService->createJob($params);
-        $job_id = $jobService->findHighestJob($user_id)->getId();
-        return $this->redirectToRoute('updateJob',  ['id' => $job_id]);
-        } return $this->render('user/noaccess.html.twig');
+            $params['user_id'] = $user_id;
+            $jobService->createJob($params);
+            $job_id = $jobService->findHighestJob($user_id)->getId();
+            return $this->redirectToRoute('updateJob', ['id' => $job_id]);
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
      * @Route("/updateJob/{id}", name="updateJob")
      */
     public function updateJob(
-        Request $request, 
-        JobService $jobService, 
+        Request $request,
+        JobService $jobService,
         TechnologyService $technologyService,
-        $id)
-    {
+        $id
+    ) {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $job = $jobService->findJobById($id);
@@ -56,17 +58,16 @@ class JobController extends AbstractController
             return $this->render('job/update_job.html.twig', [
                 'controller_name' => 'JobController',
                 'job' => $job,
-                'technologies' => $technologies]);
-        } 
+                'technologies' => $technologies,
+            ]);
+        }
         return $this->render('user/noaccess.html.twig');
     }
 
     /**
      * @Route("/deleteJob/{id}", name="deleteJob")
      */
-    public function deleteJob(
-        JobService $jobService, 
-        $id)
+    public function deleteJob(JobService $jobService, $id)
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
@@ -74,7 +75,9 @@ class JobController extends AbstractController
         $job = $jobService->findJobById($id);
         if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
             $result = $jobService->deleteJobById($id);
-            return $this->redirectToRoute('showAllJobsByEmployer',  ['user_id' => $user_id]);
+            return $this->redirectToRoute('showAllJobsByEmployer', [
+                'user_id' => $user_id,
+            ]);
         }
         return $this->render('user/noaccess.html.twig');
     }
@@ -83,39 +86,40 @@ class JobController extends AbstractController
      * @Route("/showJob/{id}", name="showJob")
      */
     public function showJobById(
-        JobService $jobService, 
-        TechnologyService $technologyService, 
-        $id)
-    {
+        JobService $jobService,
+        TechnologyService $technologyService,
+        $id
+    ) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $job = $jobService->findJobById($id);
         $technology_id = $job->getTechnology()->getId();
-        $technology = $technologyService->findTechnologyArrayById($technology_id);
+        $technology = $technologyService->findTechnologyArrayById(
+            $technology_id
+        );
         $employer_id = $job->getUser();
         $allJobsByEmployer = $jobService->findAllJobsByEmployer($employer_id);
 
-            return $this->render('job/show_job.html.twig', [
-                'controller_name' => 'JobController',
-                'job' => $job,
-                'allJobsByEmployer' => $allJobsByEmployer
-                ]);
+        return $this->render('job/show_job.html.twig', [
+            'controller_name' => 'JobController',
+            'job' => $job,
+            'allJobsByEmployer' => $allJobsByEmployer,
+        ]);
     }
 
     /**
      * @Route("/showAllJobsByEmployer/{user_id}", name="showAllJobsByEmployer")
      */
-    public function showAllJobsByEmployer(
-        JobService $jobService, 
-        $user_id) 
+    public function showAllJobsByEmployer(JobService $jobService, $user_id)
     {
         $this->auth($isAdmin);
         $allJobsByEmployer = $jobService->findAllJobsByEmployer($user_id);
         $currentUser = $this->getUser();
-        if($currentUser->getId() == $user_id  || $currentUser == $isAdmin) {
-        return $this->render('job/show_jobs_by_employer.html.twig', [
-            'controller_name' => 'JobController',
-            'jobs' => $allJobsByEmployer]);
-        } 
+        if ($currentUser->getId() == $user_id || $currentUser == $isAdmin) {
+            return $this->render('job/show_jobs_by_employer.html.twig', [
+                'controller_name' => 'JobController',
+                'jobs' => $allJobsByEmployer,
+            ]);
+        }
         return $this->render('user/noaccess.html.twig');
     }
 
@@ -127,6 +131,7 @@ class JobController extends AbstractController
         $allJobs = $jobService->findAllJobs();
         return $this->render('job/show_all_jobs.html.twig', [
             'controller_name' => 'JobController',
-            'jobs' => $allJobs]);
+            'jobs' => $allJobs,
+        ]);
     }
 }
