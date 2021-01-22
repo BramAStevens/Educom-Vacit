@@ -7,13 +7,14 @@
             {% for job in jobs %}
             {
                 src: "{{job.technology.techpicture}}",
-                title: "{{job.jobtitle}}"
+                title: "{{job.jobtitle}}<br>AT {{job.user.username}}"
             },
             {% endfor %}
         ];
         $("#background-image").vegas({
             slides: mySlides,
             timer: false,
+            shuffle: true,
             delay: 1700,
             transition: 'slideLeft',
             walk: function (index, slideSettings) {
@@ -31,7 +32,7 @@
                         <div class="container">
                             <div class="text-block">
                                 <h1
-                                    style="text-align: center; color: white !important; font-size: 20px; margin-left: 10%; margin-bottom: -10%;">
+                                    style="text-align: center; color: white !important; font: arial !important; font-size: 18px; margin-left: 10%; margin-bottom: -15%;">
                                     Title</h1>
                             </div>
                         </div>

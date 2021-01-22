@@ -66,20 +66,16 @@ class ApplicationController extends AbstractController
     ) {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
-        $currentUsername = $currentUser->getUsername();
         $applications = $applicationService->findAllApplicationsByJob($job_id);
         foreach ($applications as $application) {
             $appUsername = $application->getUser()->getUsername();
             if ($currentUser == $appUsername || $currentUser == $isAdmin) {
-                return $this->render(
-                    'application/applications_by_job.html.twig',
-                    [
-                        'controller_name' => 'ApplicationController',
-                        'applications' => $applications,
-                    ]
-                );
+                return $this->render('user/noaccess.html.twig');
             }
-            return $this->render('user/noaccess.html.twig');
+            return $this->render('application/applications_by_job.html.twig', [
+                'controller_name' => 'ApplicationController',
+                'applications' => $applications,
+            ]);
         }
         return $this->render('application/noapplications.html.twig');
     }
