@@ -53,7 +53,6 @@ class JobService
         $params['job_level'] = $request->request->get('job_level',$job->getJobLevel());
         $params['job_location'] = $request->request->get('job_location',$job->getJobLocation());
         $params['technology_id'] = $request->request->get('technology_id',$job->getTechnology());
-       
         $technology = $this->tr->findTechnologyById($params['technology_id']);
         $update = $this->jr->updateJob($params, $technology);
         return $update;

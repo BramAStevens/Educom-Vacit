@@ -88,7 +88,7 @@ class UserRepository extends ServiceEntityRepository implements
         $user->setUserCity($params['user_city']);
         $user->setUserMotivation($params['user_motivation']);
         $user->setUserCv($params['user_cv']);
-        $save = $this->save($user);
+        $save = $this->saveUser($user);
         return $user;
     }
 

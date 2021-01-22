@@ -19,16 +19,18 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/applyToVacancy/{job_id}", name="applyToVacancy")
      */
-    public function applyToVacancy(Request $request, ApplicationService $applicationService, $job_id) {
+    public function applyToVacancy(
+        Request $request, 
+        ApplicationService $applicationService, 
+        $job_id) {
         $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
-        if ($currentUser == $isAdmin || $currentUser != $isEmployer) {
+        if ($currentUser == $isAdmin || $currentUser != $isEmployer) 
+        {
             $user_id = $currentUser->getId();
             $params['user_id'] = $user_id;
             $params['job_id'] = $job_id;
-            dump($params);
-            die();
             $applicationService->createApplication($params);
             return $this->redirectToRoute('showJob', ['id' => $job_id]);
         } return $this->render('user/noaccess.html.twig');
@@ -37,11 +39,15 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/removeApplication/{id}", name="removeApplication")
      */
-    public function deleteApplication(ApplicationService $applicationService, $id) {
+    public function deleteApplication(
+        ApplicationService $applicationService, 
+        $id) 
+        {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $application = $applicationService->findApplicationById($id);
-        if ($currentUser == $application->getUser() || $currentUser == $isAdmin) {
+        if ($currentUser == $application->getUser() || $currentUser == $isAdmin) 
+        {
             $remove = $applicationService->deleteApplication($id);
             dump($remove);
             die();
@@ -51,14 +57,19 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/applicationsByJob/{job_id}", name="applicationsByJob")
      */
-    public function findAllApplicationsByJob(ApplicationService $applicationService, $job_id) {
+    public function findAllApplicationsByJob(
+        ApplicationService $applicationService, 
+        $job_id) 
+        {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $currentUsername = $currentUser->getUsername();
         $applications = $applicationService->findAllApplicationsByJob($job_id);
-        foreach ($applications as $application) {
+        foreach ($applications as $application) 
+        {
             $appUsername = $application->getUser()->getUsername();
-                if ($currentUser == $appUsername || $currentUser == $isAdmin) {
+                if ($currentUser == $appUsername || $currentUser == $isAdmin) 
+                {
                     return $this->render('application/applications_by_job.html.twig', [
                             'controller_name' => 'ApplicationController',
                             'applications' => $applications,
@@ -70,11 +81,15 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/applicationsByUser/{user_id}", name="applicationsByUser")
      */
-    public function findAllApplicationsByUser(ApplicationService $applicationService, $user_id) {
+    public function findAllApplicationsByUser(
+        ApplicationService $applicationService, 
+        $user_id) 
+        {
         $this->auth($isAdmin);
         $user = $this->getUser();
         $currentUser = $user->getId();
-        if ($currentUser == $user_id || $currentUserId == $isAdmin) {
+        if ($currentUser == $user_id || $currentUserId == $isAdmin) 
+        {
             $applications = $applicationService->findAllApplicationsByUser($user_id);
             return $this->render('application/show_my_applications.html.twig', [
                 'controller_name' => 'ApplicationController',
@@ -87,14 +102,17 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/inviteApplicant/{id}", name="inviteApplicant")
      */
-    public function inviteApplicant(ApplicationService $applicationService, $id)
+    public function inviteApplicant(
+        ApplicationService $applicationService, 
+        $id)
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser()->getUsername();
         $application = $applicationService->findApplicationById($id);
         $jobEmployer = $application->getJob()->getUser()->getUsername();
         $job_id = $application->getJob()->getId();
-        if ($currentUser == $jobEmployer || $currentUser == $isAdmin) {
+        if ($currentUser == $jobEmployer || $currentUser == $isAdmin) 
+        {
                 $invite = $applicationService->updateApplication($id);
                 return $this->redirectToRoute('applicationsByJob', [
                     'job_id' => $job_id,

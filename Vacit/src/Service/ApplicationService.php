@@ -28,11 +28,16 @@ class ApplicationService
     {   
         $user_id = $this->ur->find($params['user_id']);
         $job_id = $this->jr->find($params['job_id']);
-        $applicationEmployerId = $this->jr->find($params['job_id'])->getUser()->getId();
-        $application_company = $this->ur->find($applicationEmployerId)->getUsername();
         $job_title = $this->jr->find($params['job_id'])->getJobTitle();
+        $application_company = $this->getApplicationCompany($params['job_id']);
         $application = $this->ar->createApplication($user_id, $job_id, $application_company, $job_title);
         return $application;
+    }
+
+    public function getApplicationCompany($params) {
+        $applicationEmployerId = $this->jr->find($params)->getUser()->getId();
+        $application_company = $this->ur->find($applicationEmployerId)->getUsername();
+        return $application_company;
     }
 
     public function deleteApplication($id)
@@ -74,5 +79,4 @@ class ApplicationService
         $application = $this->ar->deleteApplicationsByJob($job_id);
         return $application;
     }
-
 } 
