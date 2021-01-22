@@ -1,106 +1,95 @@
-
 <div class="header">
-
-    <div class="grid-x align-middle" id="headerbar">
-        <a href="/homepage">
-        <div class="cell medium-4 medium-cell-block-y float-center">
-            <img src="/assets/logo/vacit-logo-white.png"  class="media-object-section align-middle margin-left-3" id="icon">
-        </div>
-        </a>
-{# For large screen #}
-{% if is_granted('ROLE_EMPLOYER') %}
-   
-            <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-                <a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
-                <a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">COMPANY PROFILE</a>
-                <a href="/showAllJobsByEmployer/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY JOBS</a>
-
-            </div>
-   
- {% elseif app.user %}           
-            <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-                <a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
-                <a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY PROFILE</a>
-                <a href="/applicationsByUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY APPLICATIONS</a>
-
-            </div>
-{% else %}
-            <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
-                <a href="/register" id="headertext" style="margin-bottom: 2%;" class="float-right">REGISTER</a>
-                <a href="/login" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGIN</a>
-            </div>
-{% endif %}
-
-
-{# For small screen #}
-{% if is_granted('ROLE_EMPLOYER') %}
-<div class="cell small-4">
-    <nav role='navigation' class="hide-for-medium">
-        <div id="menuToggle" style=" margin-right: -4%; margin-top: -4%;">
-            <input type="checkbox"/>
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-        
-                  <a href="/showUser/{{app.user.id}}">
-                    <li>COMPANY PROFILE</li>
-                </a>
-   
-                <a href="/showAllJobsByEmployer/{{app.user.id}}">
-                    <li>MY JOBS</li>
-                </a>
-                <a href="/logout">
-                    <li>LOGOUT</li>
-                </a>
-            </ul>
-        </div>
-    </nav>
-</div>
-{% elseif app.user %}
-<div class="cell small-4">
-    <nav role='navigation' class="hide-for-medium">
-        <div id="menuToggle" style=" margin-right: -4%; margin-top: -4%;">
-            <input type="checkbox"/>
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                <a href="/showUser/{{app.user.id}}">
-                    <li>MY PROFILE</li>
-                </a>
-                <a href="/applicationsByUser/{{app.user.id}}">
-                    <li>MY APPLICATIONS</li>
-                </a>
-                <a href="/logout">
-                    <li>LOGOUT</li>
-                </a>
-            </ul>
-        </div>
-    </nav>
-</div>
-{% else %}
-<div class="cell small-4">
-    <nav role='navigation' class="hide-for-medium">
-        <div id="menuToggle" style="margin-top: -4%; margin-right: -4%;">
-            <input type="checkbox"/>
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                <a href="/login">
-                    <li>LOGIN</li>
-                </a>
-                <a href="/register">
-                    <li>REGISTER</li>
-                </a>
-            </ul>
-        </div>
-    </nav>
-</div>
-{% endif %}
-
-</div>
-<div class="e hide-for-small-only"></div>
-<div class="b hide-for-medium"></div>
+	<div class="grid-x align-middle" id="headerbar">
+		<a href="/homepage">
+			<div class="cell medium-4 medium-cell-block-y float-center">
+				<img src="/assets/logo/vacit-logo-white.png" class="media-object-section align-middle margin-left-3" id="icon">
+			</div>
+		</a>
+		{# For large screen #}
+		{% if is_granted('ROLE_EMPLOYER') %}
+			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
+				<a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
+				<a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">COMPANY PROFILE</a>
+				<a href="/showAllJobsByEmployer/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY JOBS</a>
+			</div>
+		{% elseif app.user %}
+			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
+				<a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
+				<a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY PROFILE</a>
+				<a href="/applicationsByUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY APPLICATIONS</a>
+			</div>
+		{% else %}
+			<div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
+				<a href="/register" id="headertext" style="margin-bottom: 2%;" class="float-right">REGISTER</a>
+				<a href="/login" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGIN</a>
+			</div>
+		{% endif %}
+		{# For small screen #}
+		{% if is_granted('ROLE_EMPLOYER') %}
+			<div class="cell small-4">
+				<nav role='navigation' class="hide-for-medium">
+					<div id="menuToggle" style=" margin-right: -4%; margin-top: -4%;">
+						<input type="checkbox"/>
+						<span></span>
+						<span></span>
+						<span></span>
+						<ul id="menu">
+							<a href="/showUser/{{app.user.id}}">
+								<li>COMPANY PROFILE</li>
+							</a>
+							<a href="/showAllJobsByEmployer/{{app.user.id}}">
+								<li>MY JOBS</li>
+							</a>
+							<a href="/logout">
+								<li>LOGOUT</li>
+							</a>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		{% elseif app.user %}
+			<div class="cell small-4">
+				<nav role='navigation' class="hide-for-medium">
+					<div id="menuToggle" style=" margin-right: -4%; margin-top: -4%;">
+						<input type="checkbox"/>
+						<span></span>
+						<span></span>
+						<span></span>
+						<ul id="menu">
+							<a href="/showUser/{{app.user.id}}">
+								<li>MY PROFILE</li>
+							</a>
+							<a href="/applicationsByUser/{{app.user.id}}">
+								<li>MY APPLICATIONS</li>
+							</a>
+							<a href="/logout">
+								<li>LOGOUT</li>
+							</a>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		{% else %}
+			<div class="cell small-4">
+				<nav role='navigation' class="hide-for-medium">
+					<div id="menuToggle" style="margin-top: -4%; margin-right: -4%;">
+						<input type="checkbox"/>
+						<span></span>
+						<span></span>
+						<span></span>
+						<ul id="menu">
+							<a href="/login">
+								<li>LOGIN</li>
+							</a>
+							<a href="/register">
+								<li>REGISTER</li>
+							</a>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		{% endif %}
+	</div>
+	<div class="e hide-for-small-only"></div>
+	<div class="b hide-for-medium"></div>
 </div>

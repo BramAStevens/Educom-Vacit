@@ -8,18 +8,21 @@
   src: url('/assets/fonts/BebasNeue.ttf')
 }
 
-@media (max-width:650px){
+@media (max-width:650px) {
   .smallhome {
     margin-bottom: -5% !important;
   }
-  .hexagon{
-      max-width: 90px !important;
-      max-height: 90px !important;
-      margin-right: 3%;
+
+  .hexagon {
+    max-width: 90px !important;
+    max-height: 90px !important;
+    margin-right: 3%;
+   
   }
+
   #login {
-      margin-top: 20% !important;
-      margin-left: 34% !important;
+    margin-top: 20% !important;
+    margin-left: 34% !important;
   }
 
   #whitep {
@@ -30,7 +33,7 @@
 
   #tablehead {
     font-size: 80% !important;
-  } 
+  }
 
   #iconsmall1 {
     font-size: 100% !important;
@@ -40,35 +43,36 @@
   #loginlogo {
     height: 75px !important;
     width: 75px !important;
-   margin-left: 11% !important;
-   margin-top: 18% !important;
- 
-  } 
+    margin-left: 11% !important;
+    margin-top: 18% !important;
+
+  }
 }
 
 #tablehead {
   text-align: center;
   font-family: arial !important;
-  font-size: 130%; 
-  text-overflow: clip; 
+  font-size: 130%;
+  text-overflow: clip;
   overflow: clip;
   white-space: nowrap;
 }
 
 label {
-font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #logocontainer {
-display: flex;
+  display: flex;
 }
 
 #loginlogo {
-height: 150px; 
-width: 150px; 
-margin-top: 10%;
-margin-left: 8%;
+  height: 150px;
+  width: 150px;
+  margin-top: 10%;
+  margin-left: 8%;
 }
+
 #login {
   margin-top: 8%;
 }
@@ -80,38 +84,39 @@ margin-left: 8%;
 }
 
 #whitep {
-color: white !important;
+  color: white !important;
 }
 
 #whiteh {
-color: white !important;
+  color: white !important;
 }
 
 #headertext {
-color:white;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-padding-top: 4%;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-top: 4%;
 
-padding-right: 3%;
+  padding-right: 3%;
 }
 
 #headerbar {
-background-color: #333333;
-z-index: 600 !important;
-position: relative;
-width: 100%;
+  background-color: #333333;
+  z-index: 600 !important;
+  position: relative;
+  width: 100%;
 }
 
 
 #ht {
-  margin-bottom:-5%;
+  margin-bottom: -5%;
 }
 
 .e {
   width: 100%;
-  height:30px;
+  height: 30px;
   background-color: #F15A24;
-  -ms-transform: rotate(2deg); /* IE 9 */
+  -ms-transform: rotate(2deg);
+  /* IE 9 */
   transform: rotate(-0.4deg);
   z-index: 500;
   position: relative;
@@ -122,9 +127,10 @@ width: 100%;
 
 .b {
   width: 100%;
-  height:15px;
+  height: 15px;
   background-color: #F15A24;
-  -ms-transform: rotate(2deg); /* IE 9 */
+  -ms-transform: rotate(2deg);
+  /* IE 9 */
   transform: rotate(-1.1deg);
   z-index: 500;
   position: relative;
@@ -132,11 +138,13 @@ width: 100%;
   margin-bottom: -3%;
   box-shadow: 1px 1px 8px;
 }
+
 .c {
   width: 100%;
-  height:25px;
+  height: 25px;
   background-color: #F15A24;
-  -ms-transform: rotate(2deg); /* IE 9 */
+  -ms-transform: rotate(2deg);
+  /* IE 9 */
   transform: rotate(-0.5deg);
   z-index: -500;
   position: relative;
@@ -147,9 +155,10 @@ width: 100%;
 
 .d {
   width: 100%;
-  height:20px;
+  height: 20px;
   background-color: #F15A24;
-  -ms-transform: rotate(2deg); /* IE 9 */
+  -ms-transform: rotate(2deg);
+  /* IE 9 */
   transform: rotate(-1deg);
   z-index: -1;
   position: relative;
@@ -157,61 +166,65 @@ width: 100%;
   box-shadow: 1px 1px 8px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: BebasNeue !important;
   color: #F15A24 !important;
 }
 
 #input {
-border-color: #F15A24;
-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75); 
-border-width: 3px;
-border-top: none;
-border-left: none;
-border-right: none;
-font-family: Roboto !important;
-font-size: 22px;
+  border-color: #F15A24;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+  border-width: 3px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: Roboto !important;
+  font-size: 22px;
 }
 
 #orangestripe {
-border-style:solid;
-border-width: 3px;
-border-top: none;
-border-left: none;
-border-right: none;
-border-color:#F15A24;
-font-family: Roboto !important;
-font-size: 22px;
-}
-#labelid {
-font-size: 4px;
+  border-style: solid;
+  border-width: 3px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-color: #F15A24;
+  font-family: Roboto !important;
+  font-size: 22px;
 }
 
-.hexagon{
+#labelid {
+  font-size: 4px;
+}
+
+.hexagon {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   width: 100%;
   max-width: 150px;
   max-height: 150px;
   margin-left: 5%;
-   
+
 }
 
-.hexagonhome{
+.hexagonhome {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   width: 100%;
   max-width: 120px;
   max-height: 120px;
   margin-left: 5%;
-   
+
 }
 
-.vegashexagon{
+.vegashexagon {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   max-width: 300px;
   max-height: 300px;
   margin-top: 86%;
   margin-left: 20%;
-   
+
 }
 
 #pleasemercy {
@@ -232,19 +245,20 @@ font-size: 4px;
 }
 
 
-.hexagonpic{
+.hexagonpic {
   width: 100%;
+  background-color: black;
 }
 
-.cv-imgbox{
+.cv-imgbox {
   width: 75px;
   height: 75px;
-  background-color:white;
+  background-color: white;
   color: #F15A24;
 }
 
 #uploadcv {
-  color: #F15A24;  
+  color: #F15A24;
 }
 
 #bottom {
@@ -253,8 +267,9 @@ font-size: 4px;
   margin-top: 1%;
 
 }
+
 #footerbar {
-  background-color: #333333;   
+  background-color: #333333;
   width: 100%;
   bottom: 0;
   position: relative;
@@ -270,80 +285,66 @@ main {
   flex: 1;
 }
 
-a
-{
+a {
   text-decoration: none;
   color: #232323;
-  
+
   transition: color 0.3s ease;
 }
 
-a:hover
-{
+a:hover {
   color: tomato;
 }
 
-#menuToggle
-{
+#menuToggle {
   display: block;
   position: absolute;
   top: 50px;
   right: 50px;
-  
   z-index: 1;
-  
   -webkit-user-select: none;
   user-select: none;
 }
 
-#menuToggle input
-{
+#menuToggle input {
   display: block;
   width: 40px;
   height: 32px;
   position: absolute;
   top: -7px;
   left: -5px;
-  
   cursor: pointer;
-  
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  
+  opacity: 0;
+  /* hide this */
+  z-index: 2;
+  /* and place it over the hamburger */
   -webkit-touch-callout: none;
 }
 
 /*
  * Just a quick hamburger
  */
-#menuToggle span
-{
+#menuToggle span {
   display: block;
   width: 33px;
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-
   background: white;
   border-radius: 3px;
-  
   z-index: 1;
-  
   transform-origin: 4px 0px;
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
-  
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+
 }
 
-#menuToggle span:first-child
-{
+#menuToggle span:first-child {
   transform-origin: 0% 0%;
 }
 
-#menuToggle span:nth-last-child(2)
-{
+#menuToggle span:nth-last-child(2) {
   transform-origin: 0% 100%;
 }
 
@@ -351,8 +352,7 @@ a:hover
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-#menuToggle input:checked ~ span
-{
+#menuToggle input:checked~span {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
   background: #F15A24;
@@ -361,8 +361,7 @@ a:hover
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
+#menuToggle input:checked~span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
@@ -370,8 +369,7 @@ a:hover
 /*
  * Ohyeah and the last one should go the other direction
  */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
+#menuToggle input:checked~span:nth-last-child(2) {
   opacity: 1;
   transform: rotate(-45deg) translate(0, -1px);
 }
@@ -380,28 +378,22 @@ a:hover
  * Make this absolute positioned
  * at the top left of the screen
  */
-#menu
-{
+#menu {
   position: absolute;
   width: 150px;
   margin: -100px 0 0 0;
-  
   padding-top: 125px;
   right: -25px;
-  
   background: #333333;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
-  
   transform-origin: 0% 0%;
   transform: translate(100%, 0);
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
-#menu li
-{
+#menu li {
   padding: 10px 0;
   font-size: 12px;
   text-align: left;
@@ -414,8 +406,7 @@ a:hover
 /*
  * And let's fade it in from the left
  */
-#menuToggle input:checked ~ ul
-{
+#menuToggle input:checked~ul {
   transform: none;
   opacity: 1;
 }
@@ -424,7 +415,6 @@ a:hover
   #menu {
     transform: none;
     opacity: 0;
-
-    transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
   }
 }

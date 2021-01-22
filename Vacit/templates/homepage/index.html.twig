@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}VAC!T{% endblock %}
-
 {% block body %}
 <script>
     $(document).ready(function () {
@@ -12,7 +10,6 @@
                 title: "{{job.jobtitle}}"
             },
             {% endfor %}
-
         ];
         $("#background-image").vegas({
             slides: mySlides,
@@ -23,12 +20,9 @@
                 $(".text-block h1").html(mySlides[index].title);
             }
         });
-
     })
 </script>
-
 <main class="content" style="background-color: #F15A25;">
-  
     <div class="grid-x float-left margin-left-3">
         <div class="cell medium-12 hide-for-small-only">
             <div class="grid-x align-middle">
@@ -49,7 +43,6 @@
             </div>
         </div>
     </div>
-
 <div class="grid-x margin-top-3 margin-left-1 margin-right-1">
     {% for job in jobs|slice(0,5) %}
     <div class="cell medium-12 small-12 margin-top-1 margin-bottom-2">
@@ -68,40 +61,32 @@
                         <img class="hexagonpic" src="{{ asset( job.technology.techpicture )}}"></img>
                     </div>
                 </div>
-
-                
-              
                 <div class="cell medium-8 small-8">
                     <p style="margin-bottom: -0.5%; font-size: 12px !important;">{{job.jobdate|date("d F Y")}}</p>
-                    <h8 style="color: white !important; text-align: left !important; font: arial !important; font-size: 200%;">{{job.jobtitle}}</h8>
-
+                    <h8 style="color: white !important; text-align: left !important; font: arial !important; font-size: 200%;">{{job.joblevel}} {{job.jobtitle}} at {{job.user.username}}</h8>
                 <!-- for small -->
                     <div class="hide-for-medium">
                     {% autoescape false %}
                     <p style="margin-bottom: -0.5%;">{{job.jobdescription|slice(0, 100)}}...</p>
                      {% endautoescape %}
                     </div>
-
                 <!-- for medium --> 
                     <div class="hide-for-small-only">
                         {% autoescape false %}
                         <p style="margin-bottom: -0.5%;">{{job.jobdescription|slice(0, 199)}}...</p>
                          {% endautoescape %}
                         </div>
-
                 <!-- for small -->
                     <a class="btn btn-success float-left hide-for-medium margin-bottom-1" href="/showJob/{{job.id}}">
                         <i class="fas fa-arrow-right hide-for-medium" style="color: white; font-size: 200%; cursor: pointer;"></i>
                     </a>
                 </div>
-
                 <!-- for medium -->
                 <div class="cell medium-2 hide-for-small-only">
                     <a class="float-right" href="/showJob/{{job.id}}">
                         <i class="fas fa-arrow-right float-left" style="color: white; margin-top: 60%; font-size: 400%; cursor: pointer;"></i>
                 </a>
                 </div>
-        
             </div>
         </div>
     </div>

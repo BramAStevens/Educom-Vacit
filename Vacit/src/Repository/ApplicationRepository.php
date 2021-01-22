@@ -23,7 +23,7 @@ class ApplicationRepository extends ServiceEntityRepository
 
     public function findAllApplicationsByJob($job_id) // for employer
     {
-        $applicationsByJob = $this->findby(array('job' => $job_id),  array('id'=>'desc'));
+        $applicationsByJob = $this->findby(array('job' => $job_id),  ['id'=>'desc']);
         return $applicationsByJob;
     }
 
@@ -38,7 +38,7 @@ class ApplicationRepository extends ServiceEntityRepository
 
     public function findAllApplicationsByUser($user_id) // by candidate
     {
-        $applicationsByUser = $this->findby(array('user' => $user_id),  array('id'=>'desc'));
+        $applicationsByUser = $this->findby(array('user' => $user_id),  ['id'=>'desc']);
         return $applicationsByUser;
     }
 

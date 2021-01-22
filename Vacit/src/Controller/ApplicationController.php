@@ -20,103 +20,113 @@ class ApplicationController extends AbstractController
      * @Route("/applyToVacancy/{job_id}", name="applyToVacancy")
      */
     public function applyToVacancy(
-        Request $request, 
-        ApplicationService $applicationService, 
-        $job_id) {
+        Request $request,
+        ApplicationService $applicationService,
+        $job_id
+    ) {
         $this->auth($isAdmin);
         $isEmployer = $this->isGranted('ROLE_EMPLOYER');
         $currentUser = $this->getUser();
-        if ($currentUser == $isAdmin || $currentUser != $isEmployer) 
-        {
+        if ($currentUser == $isAdmin || $currentUser != $isEmployer) {
             $user_id = $currentUser->getId();
             $params['user_id'] = $user_id;
             $params['job_id'] = $job_id;
             $applicationService->createApplication($params);
             return $this->redirectToRoute('showJob', ['id' => $job_id]);
-        } return $this->render('user/noaccess.html.twig');
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
      * @Route("/removeApplication/{id}", name="removeApplication")
      */
     public function deleteApplication(
-        ApplicationService $applicationService, 
-        $id) 
-        {
+        ApplicationService $applicationService,
+        $id
+    ) {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $application = $applicationService->findApplicationById($id);
-        if ($currentUser == $application->getUser() || $currentUser == $isAdmin) 
-        {
+        if (
+            $currentUser == $application->getUser() ||
+            $currentUser == $isAdmin
+        ) {
             $remove = $applicationService->deleteApplication($id);
             dump($remove);
             die();
-        } return $this->render('user/noaccess.html.twig');
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
      * @Route("/applicationsByJob/{job_id}", name="applicationsByJob")
      */
     public function findAllApplicationsByJob(
-        ApplicationService $applicationService, 
-        $job_id) 
-        {
+        ApplicationService $applicationService,
+        $job_id
+    ) {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
         $currentUsername = $currentUser->getUsername();
         $applications = $applicationService->findAllApplicationsByJob($job_id);
-        foreach ($applications as $application) 
-        {
+        foreach ($applications as $application) {
             $appUsername = $application->getUser()->getUsername();
-                if ($currentUser == $appUsername || $currentUser == $isAdmin) 
-                {
-                    return $this->render('application/applications_by_job.html.twig', [
-                            'controller_name' => 'ApplicationController',
-                            'applications' => $applications,
-                        ]);
-                } return $this->render('user/noaccess.html.twig');
-        } return $this->render('application/noapplications.html.twig');
+            if ($currentUser == $appUsername || $currentUser == $isAdmin) {
+                return $this->render(
+                    'application/applications_by_job.html.twig',
+                    [
+                        'controller_name' => 'ApplicationController',
+                        'applications' => $applications,
+                    ]
+                );
+            }
+            return $this->render('user/noaccess.html.twig');
+        }
+        return $this->render('application/noapplications.html.twig');
     }
 
     /**
      * @Route("/applicationsByUser/{user_id}", name="applicationsByUser")
      */
     public function findAllApplicationsByUser(
-        ApplicationService $applicationService, 
-        $user_id) 
-        {
+        ApplicationService $applicationService,
+        $user_id
+    ) {
         $this->auth($isAdmin);
         $user = $this->getUser();
         $currentUser = $user->getId();
-        if ($currentUser == $user_id || $currentUserId == $isAdmin) 
-        {
-            $applications = $applicationService->findAllApplicationsByUser($user_id);
+        if ($currentUser == $user_id || $currentUserId == $isAdmin) {
+            $applications = $applicationService->findAllApplicationsByUser(
+                $user_id
+            );
             return $this->render('application/show_my_applications.html.twig', [
                 'controller_name' => 'ApplicationController',
                 'applications' => $applications,
                 'user' => $user,
-                ]);
-        } return $this->render('user/noaccess.html.twig');
+            ]);
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
      * @Route("/inviteApplicant/{id}", name="inviteApplicant")
      */
-    public function inviteApplicant(
-        ApplicationService $applicationService, 
-        $id)
+    public function inviteApplicant(ApplicationService $applicationService, $id)
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser()->getUsername();
         $application = $applicationService->findApplicationById($id);
-        $jobEmployer = $application->getJob()->getUser()->getUsername();
+        $jobEmployer = $application
+            ->getJob()
+            ->getUser()
+            ->getUsername();
         $job_id = $application->getJob()->getId();
-        if ($currentUser == $jobEmployer || $currentUser == $isAdmin) 
-        {
-                $invite = $applicationService->updateApplication($id);
-                return $this->redirectToRoute('applicationsByJob', [
-                    'job_id' => $job_id,
-                ]);
-        } return $this->render('user/noaccess.html.twig');
+        if ($currentUser == $jobEmployer || $currentUser == $isAdmin) {
+            $invite = $applicationService->updateApplication($id);
+            return $this->redirectToRoute('applicationsByJob', [
+                'job_id' => $job_id,
+            ]);
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 }

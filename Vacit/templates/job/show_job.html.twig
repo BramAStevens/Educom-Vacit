@@ -16,21 +16,19 @@
 {% endblock %}
 {% block title %}{{job.jobtitle}}{% endblock %}
 {% block body %}
-<main
-	class="content">
+<main class="content">
 	{# medium screen #}
 	<div class="grid-x grid-margin-x float-left margin-left-3 margin-right-3 hide-for-small-only">
 		<div class="cell medium-11">
-
 			<div class="cell">
 				<div class="hexagon margin-top-3 margin-right-1" style="width: 160% !important; background-color: black !important;">
 					<img class="hexagonpic" src="{{ asset( job.technology.techpicture )}}" style="border: none"></img>
 			</div>
 		</div>
-		{% if job.jobpicture|length > 2 %}
+		{% if job.user.userpicture|length > 2 %}
 			<div class="cell">
 				<div class="square margin-top-3">
-					<img class="squarepic" src="{{ asset( job.jobpicture )}}" style="border: none"></img>
+					<img class="squarepic" src="{{ asset( job.user.userpicture )}}" style="border: none"></img>
 			</div>
 		</div>
 	{% else %}

@@ -1,33 +1,27 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Log in!{% endblock %}
-
 {% block body %}
 <main class="content">
-<img src="/assets/logo/exc.png" class="float-left" id="loginlogo"> </img>
-<div class="width-50 float-center" id="login">
+<img src="/assets/logo/exc.png" class="float-left" id="loginlogo"></img><div class="width-50 float-center" id="login">
 <form method="post">
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-    <div class="grid-x padding-x">
-    <label>Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="input" class="form-control" required autofocus>
-    </div>
-    <div class="grid-x padding-x">
-    <label>Password</label>
-    <input type="password" name="password" id="input" class="form-control" required>
-    </div>
-    <div class="medium-6 small-8 float-left">
-    <a style="font-size: 70%; color: #F15A24; margin-top: 2%;" href="/reset-password">Forgot your password?</a>
-    </div>
-        <div class="medium-6 small-4 float-right" type="submit">
-    <button  class="btn btn-success float-right">
-       <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}">
-      <i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 200%; cursor: pointer;"></i>
-    </button>
-  </div>
+	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+	<div class="grid-x padding-x">
+		<label>Username</label>
+		<input type="text" value="{{ last_username }}" name="username" id="input" class="form-control" required autofocus>
+	</div>
+	<div class="grid-x padding-x">
+		<label>Password</label>
+		<input type="password" name="password" id="input" class="form-control" required>
+	</div>
+	<div class="medium-6 small-8 float-left">
+		<a style="font-size: 70%; color: #F15A24; margin-top: 2%;" href="/reset-password">Forgot your password?</a>
+	</div>
+	<div class="medium-6 small-4 float-right" type="submit">
+		<button class="btn btn-success float-right">
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<i class="fas fa-arrow-right float-left" style="color: #F15A24;  font-size: 200%; cursor: pointer;"></i>
+		</button>
+	</div>
 </form>
 </div>
 </main>

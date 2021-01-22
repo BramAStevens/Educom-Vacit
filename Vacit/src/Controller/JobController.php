@@ -57,7 +57,8 @@ class JobController extends AbstractController
                 'controller_name' => 'JobController',
                 'job' => $job,
                 'technologies' => $technologies]);
-        } return $this->render('user/noaccess.html.twig');
+        } 
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
@@ -69,12 +70,13 @@ class JobController extends AbstractController
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
+        $user_id = $currentUser->getId();
         $job = $jobService->findJobById($id);
         if ($currentUser == $job->getUser() || $currentUser == $isAdmin) {
             $result = $jobService->deleteJobById($id);
-            dump($result);
-            die();
-        } return $this->render('user/noaccess.html.twig');
+            return $this->redirectToRoute('showAllJobsByEmployer',  ['user_id' => $user_id]);
+        }
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
@@ -113,7 +115,8 @@ class JobController extends AbstractController
         return $this->render('job/show_jobs_by_employer.html.twig', [
             'controller_name' => 'JobController',
             'jobs' => $allJobsByEmployer]);
-        } return $this->render('user/noaccess.html.twig');
+        } 
+        return $this->render('user/noaccess.html.twig');
     }
 
     /**
