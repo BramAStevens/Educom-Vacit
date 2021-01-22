@@ -40,13 +40,11 @@ class JobService
     public function findJobById($id)
     {
         $job = $this->jr->findJobById($id);
-   
         return $job;
     }
 
     public function updateJob(Request $request, $id)
     {   
-
         $job = $this->findJobById($id);
         $params['id'] = $id;
         $params['job_title'] = $request->request->get('job_title',$job->getJobTitle());

@@ -57,7 +57,7 @@ class ImportSpreadsheetCommand extends Command
                 "user_cv" => $worksheet->getCell('M' .$row)->getValue(),
                 
             );
-            $user= $this->ur->saveUser($params);
+            $user= $this->ur->createUser($params);
             $output->writeln($params['username']." User imported!");
         }
         return(0);

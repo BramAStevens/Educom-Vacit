@@ -47,7 +47,6 @@ class UserController extends AbstractController
         $this->auth($isAdmin);
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
-
         if ($user == $currentUser || $currentUser == $isAdmin) 
         {
             $userService->updateUserProfile($request, $id);
@@ -73,7 +72,6 @@ class UserController extends AbstractController
         $this->auth($isAdmin);
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
-
         if ($user == $currentUser || $currentUser == $isAdmin) 
         {
             $result = $userService->deleteUserById($id);

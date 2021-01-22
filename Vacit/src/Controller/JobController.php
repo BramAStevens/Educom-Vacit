@@ -40,7 +40,11 @@ class JobController extends AbstractController
     /**
      * @Route("/updateJob/{id}", name="updateJob")
      */
-    public function updateJob(Request $request, JobService $jobService, TechnologyService $technologyService, $id)
+    public function updateJob(
+        Request $request, 
+        JobService $jobService, 
+        TechnologyService $technologyService,
+        $id)
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
@@ -59,7 +63,9 @@ class JobController extends AbstractController
     /**
      * @Route("/deleteJob/{id}", name="deleteJob")
      */
-    public function deleteJob(JobService $jobService, $id)
+    public function deleteJob(
+        JobService $jobService, 
+        $id)
     {
         $this->auth($isAdmin);
         $currentUser = $this->getUser();
@@ -74,7 +80,10 @@ class JobController extends AbstractController
     /**
      * @Route("/showJob/{id}", name="showJob")
      */
-    public function showJobById(JobService $jobService, TechnologyService $technologyService, $id)
+    public function showJobById(
+        JobService $jobService, 
+        TechnologyService $technologyService, 
+        $id)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $job = $jobService->findJobById($id);
@@ -93,7 +102,9 @@ class JobController extends AbstractController
     /**
      * @Route("/showAllJobsByEmployer/{user_id}", name="showAllJobsByEmployer")
      */
-    public function showAllJobsByEmployer(JobService $jobService, $user_id) 
+    public function showAllJobsByEmployer(
+        JobService $jobService, 
+        $user_id) 
     {
         $this->auth($isAdmin);
         $allJobsByEmployer = $jobService->findAllJobsByEmployer($user_id);
@@ -110,7 +121,6 @@ class JobController extends AbstractController
      */
     public function showAllJobs(JobService $jobService)
     {
-       
         $allJobs = $jobService->findAllJobs();
         return $this->render('job/show_all_jobs.html.twig', [
             'controller_name' => 'JobController',

@@ -23,26 +23,27 @@ class JobRepository extends ServiceEntityRepository
     public function updateJob($params, $technology)
     {
         $job = $this->find($params['id']);
-
         $job->setJobTitle($params['job_title']);
         $job->setJobDescription($params['job_description']);
         $job->setJobPicture($params['job_picture']);
         $job->setJobLevel($params['job_level']);
         $job->setJobLocation($params['job_location']);
         $job->setTechnology($technology);
-
-        $em = $this->getEntityManager();
-        $em->persist($job);
-        $em->flush();
-
+        $save = $this->saveJob($job);
         return $job;
+    }
+
+    public function saveJob($param)
+    {
+        $em = $this->getEntityManager();
+        $em->persist($param);
+        $em->flush();
     }
 
     public function createJob($user)
     {
         $job = new Job();
         $job->setJobDate(new \DateTime());
-
         $job->setJobTitle('');
         $job->setJobDescription('');
         $job->setJobPicture('');
@@ -50,11 +51,7 @@ class JobRepository extends ServiceEntityRepository
         $job->setJobLocation('');
         $job->setTechnology(NULL)->getId(1);
         $job->setUser($user);
-
-        $em = $this->getEntityManager();
-        $em->persist($job);
-        $em->flush();
-     
+        $save= $this->saveJob($job);
         return $job;
     }
 
@@ -92,9 +89,7 @@ class JobRepository extends ServiceEntityRepository
 
     public function findAllJobs()
     {
-        $alljobs = $this->findBy(array(), array('id'=>'desc'));
+        $alljobs = $this->findBy([], ['id'=>'desc']);
         return($alljobs);
     }
-
-    
 }

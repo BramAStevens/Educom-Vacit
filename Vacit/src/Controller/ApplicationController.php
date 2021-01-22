@@ -27,6 +27,8 @@ class ApplicationController extends AbstractController
             $user_id = $currentUser->getId();
             $params['user_id'] = $user_id;
             $params['job_id'] = $job_id;
+            dump($params);
+            die();
             $applicationService->createApplication($params);
             return $this->redirectToRoute('showJob', ['id' => $job_id]);
         } return $this->render('user/noaccess.html.twig');

@@ -33,8 +33,7 @@ class UserRepository extends ServiceEntityRepository implements
      */
     public function upgradePassword(
         UserInterface $user,
-        string $newEncodedPassword
-    ): void {
+        string $newEncodedPassword): void {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(
                 sprintf(
@@ -43,14 +42,11 @@ class UserRepository extends ServiceEntityRepository implements
                 )
             );
         }
-
         $user->setPassword($newEncodedPassword);
-
-        $this->_em->persist($user);
-        $this->_em->flush();
+        $save = $this->saveUser($user);
     }
 
-    public function saveUser($params)
+    public function createUser($params)
     {
         $user = new User();
         $user->setUsername($params['username']);
@@ -67,18 +63,20 @@ class UserRepository extends ServiceEntityRepository implements
         $user->setUserCity('');
         $user->setUserMotivation('');
         $user->setUserCv('');
-        
-        $em = $this->getEntityManager();
-        $em->persist($user);
-        $em->flush();
-
+        $save = $this->saveUser($user);
         return $user;
+    }
+
+    public function saveUser($param)
+    {
+        $em = $this->getEntityManager();
+        $em->persist($param);
+        $em->flush();
     }
 
     public function updateUserProfile($params)
     {
         $user = $this->find($params['id']);
-
         $user->setUserPicture($params['user_picture']);
         $user->setUserSurname($params['user_surname']);
         $user->setUserLastname($params['user_lastname']);
@@ -90,11 +88,7 @@ class UserRepository extends ServiceEntityRepository implements
         $user->setUserCity($params['user_city']);
         $user->setUserMotivation($params['user_motivation']);
         $user->setUserCv($params['user_cv']);
-
-        $em = $this->getEntityManager();
-        $em->persist($user);
-        $em->flush();
-
+        $save = $this->save($user);
         return $user;
     }
 
@@ -119,12 +113,14 @@ class UserRepository extends ServiceEntityRepository implements
     public function deleteUser($id)
     {
         $user = $this->find($id);
-        if ($user) {
+        if ($user) 
+        {
             $em = $this->getEntityManager();
             $em->remove($user);
             $em->flush();
             return true;
-        } else {
+        } else 
+        {
             return false;
         }
     }

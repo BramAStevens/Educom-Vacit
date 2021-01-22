@@ -25,9 +25,9 @@ class UserService
         $this->encoder = $encoder;
     }
 
-    public function saveUser($params)
+    public function createUser($params)
     {
-        $user = $this->ur->saveUser($params);
+        $user = $this->ur->createUser($params);
         return $user;
     }
 
