@@ -64,6 +64,7 @@ class UserService
 
     public function deleteUserById($id)
     {
+        
         $user = $this->ur->deleteUser($id);
         return $user;
     }

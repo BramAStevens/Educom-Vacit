@@ -79,7 +79,7 @@ class JobRepository extends ServiceEntityRepository
 
     public function findAllJobsByEmployer($user_id)
     {
-        $allJobsForThisUser = $this->findby(array('user' => $user_id), array('id'=>'desc'));
+        $allJobsForThisUser = $this->findby(['user' => $user_id], ['id'=>'desc']);
         return $allJobsForThisUser;
     }
 

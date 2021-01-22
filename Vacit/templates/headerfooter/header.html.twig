@@ -9,14 +9,14 @@
         </a>
 {# For large screen #}
 {% if is_granted('ROLE_EMPLOYER') %}
-    
+   
             <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
                 <a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
                 <a href="/showUser/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">COMPANY PROFILE</a>
                 <a href="/showAllJobsByEmployer/{{app.user.id}}" id="headertext" style="margin-bottom: 2%;" class="float-right">MY JOBS</a>
 
             </div>
-
+   
  {% elseif app.user %}           
             <div class="cell medium-8 medium-cell-block-y float-right hide-for-small-only" style="margin-bottom: -1%">
                 <a href="/logout" id="headertext" style="margin-bottom: 2%;" class="float-right">LOGOUT</a>
@@ -42,9 +42,11 @@
             <span></span>
             <span></span>
             <ul id="menu">
-                <a href="/showUser/{{app.user.id}}">
+        
+                  <a href="/showUser/{{app.user.id}}">
                     <li>COMPANY PROFILE</li>
                 </a>
+   
                 <a href="/showAllJobsByEmployer/{{app.user.id}}">
                     <li>MY JOBS</li>
                 </a>

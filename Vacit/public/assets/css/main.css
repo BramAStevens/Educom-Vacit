@@ -8,7 +8,7 @@
   src: url('/assets/fonts/BebasNeue.ttf')
 }
 
-@media (max-width:600px){
+@media (max-width:650px){
   .smallhome {
     margin-bottom: -5% !important;
   }
@@ -23,7 +23,7 @@
   }
 
   #whitep {
-    font-size: 10px !important;
+    font-size: 15px !important;
     margin-right: 10% !important;
     margin-bottom: -1% !important;
   }
@@ -37,10 +37,6 @@
 
   }
 
-  #iconsmall2 {
-    font-size: 150% !important;
-    margin-bottom: -5% !important;
-  }
   #loginlogo {
     height: 150px !important;
     width: 150px !important;
@@ -138,26 +134,26 @@ width: 100%;
 }
 .c {
   width: 100%;
-  height:33px;
+  height:25px;
   background-color: #F15A24;
   -ms-transform: rotate(2deg); /* IE 9 */
-  transform: rotate(-0.7deg);
+  transform: rotate(-0.5deg);
   z-index: -500;
   position: relative;
-  margin-top: -1.4%;
+  margin-top: -1.9%;
   margin-bottom: -1.6%;
   box-shadow: 3px 4px 35px;
 }
 
 .d {
   width: 100%;
-  height:10px;
+  height:20px;
   background-color: #F15A24;
   -ms-transform: rotate(2deg); /* IE 9 */
-  transform: rotate(-0.9deg);
+  transform: rotate(-1deg);
   z-index: -1;
   position: relative;
-  margin-top: -1%;
+  margin-top: -1.3%;
   box-shadow: 1px 1px 8px;
 }
 

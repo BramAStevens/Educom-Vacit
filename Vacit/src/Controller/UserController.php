@@ -27,7 +27,8 @@ class UserController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $userService->findUserById($id);
         
-        if (in_array('ROLE_EMPLOYER', $user->getRoles())) {
+        if (in_array('ROLE_EMPLOYER', $user->getRoles())) 
+        {
             return $this->render('user/show_employer_profile.html.twig', [
                 'controller_name' => 'UserController',
                 'user' => $user]);
@@ -47,10 +48,12 @@ class UserController extends AbstractController
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
-        if ($user == $currentUser || $currentUser == $isAdmin) {
+        if ($user == $currentUser || $currentUser == $isAdmin) 
+        {
             $userService->updateUserProfile($request, $id);
 
-            if (in_array('ROLE_EMPLOYER', $user->getRoles())) {
+            if (in_array('ROLE_EMPLOYER', $user->getRoles())) 
+            {
                 return $this->render('user/update_employer_profile.html.twig', [
                     'controller_name' => 'UserController',
                     'user' => $user]);
@@ -71,7 +74,8 @@ class UserController extends AbstractController
         $user = $userService->findUserById($id);
         $currentUser = $this->getUser();
 
-        if ($user == $currentUser || $currentUser == $isAdmin) {
+        if ($user == $currentUser || $currentUser == $isAdmin) 
+        {
             $result = $userService->deleteUserById($id);
             dump($result);
             die();

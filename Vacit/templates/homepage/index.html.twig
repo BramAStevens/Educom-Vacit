@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomepageController!{% endblock %}
+{% block title %}VAC!T{% endblock %}
 
 {% block body %}
 <script>
@@ -43,9 +43,9 @@
                         </div>
                     </div>
                 </div>
-                <button  class="btn btn-success" href="/showAllJobs/">
-                    <i class="fas fa-arrow-right" style="color: white; margin-top: 20%; margin-right: -540%; font-size: 500%; cursor: pointer;"></i>
-                  </button>
+                <a href="/showAllJobs/">
+                    <i class="fas fa-arrow-right" style="color: white; margin-top: 20%; font-size: 500%; margin-left: 265%;cursor: pointer;"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -108,4 +108,7 @@
         {% endfor %}
     </div>
 </main>
+  <footer class="footer hide-for-medium">
+        {% include "headerfooter/footerhome.html.twig" %}
+        </footer>  
 {% endblock %}
