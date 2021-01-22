@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -8,10 +7,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\ArrayInput;
-
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-
 use App\Repository\UserRepository;
 use App\Entity\Poppodium;
 
@@ -33,7 +30,9 @@ class ImportSpreadsheetCommand extends Command
             ->addArgument('file', InputArgument::REQUIRED, 'Spreadsheet');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(
+    InputInterface $input,
+    OutputInterface $output)
     {
         $inputFileName = $input->getArgument('file');
         $spreadsheet = IOFactory::load('C:\Existentialism\Educom-Vacit\Vacit\UPLOAD_DIR\\'.$inputFileName);
@@ -43,7 +42,6 @@ class ImportSpreadsheetCommand extends Command
 
         for ($row = 2; $row <= $highestRow; $row++) {
             $params = array(
-
                 "username" => $worksheet->getCell('A' .$row)->getValue(),
                 "password" => $worksheet->getCell('B' .$row)->getValue(),
                 "user_picture" => $worksheet->getCell('C' .$row)->getValue(),
@@ -59,7 +57,6 @@ class ImportSpreadsheetCommand extends Command
                 "user_cv" => $worksheet->getCell('M' .$row)->getValue(),
                 
             );
-            
             $user= $this->ur->saveUser($params);
             $output->writeln($params['username']." User imported!");
         }

@@ -31,7 +31,9 @@ class UserService
         return $user;
     }
 
-    public function updateUserProfile(Request $request, $id)
+    public function updateUserProfile(
+        Request $request,
+        $id)
     {   
         $user = $this->findUserById($id);
         $params['id'] = $id;
@@ -64,7 +66,6 @@ class UserService
 
     public function deleteUserById($id)
     {
-        
         $user = $this->ur->deleteUser($id);
         return $user;
     }
