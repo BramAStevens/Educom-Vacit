@@ -1,11 +1,11 @@
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/github.jpg?token=AONYJJYO4NDJ6EBRURSKSB3AB2RRG"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Job.jpg?token=AONYJJ3A5RYWI5AZISWNSWDAB2RPE"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/allJobs.JPG?token=AONYJJ2QOUSMUCQWTAKLGGLAB2P3E"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/homepage.JPG?token=AONYJJ5D45GAHEJKEX3GXELAB2P4E"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/logIn.jpg?token=AONYJJYIRX57QAZOTQIUN23AB2P5C"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myApplications.jpg?token=AONYJJZ3OUMN7XSS4DNMGO3AB2P6C"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myJobs.jpg?token=AONYJJ3FA2WKZTDMNBPUFZDAB2P7I"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myProfile.jpg?token=AONYJJ3XHIEI7IV3753EK5TAB2QAO"/>
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/database.jpg?token=AONYJJZOB5GQLJJADJVYYBDAB2QPA"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Job.jpg?token=AONYJJZQB2PZLY3JAWXHFO3AB2RZC"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/allJobs.JPG?token=AONYJJ7GLPVTFJIVZ3ORN5DAB2RZ6"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/database.jpg?token=AONYJJ6YIFPKH6PN3FQ66VTAB2R3M"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/github.jpg?token=AONYJJY4PLFYR4UCKXCLPNDAB2RY2"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/homepage.JPG?token=AONYJJZWBV4ZJ3NFEW6AXXTAB2R5U"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/logIn.jpg?token=AONYJJYJ6OQGN7ZKD3Q73E3AB2R6Q"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myApplications.jpg?token=AONYJJ2RW2PFDRFNFVNASHDAB2R7I"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myJobs.jpg?token=AONYJJYRKPWE3FNTYLODH3TAB2SAC"/>
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myProfile.jpg?token=AONYJJ6344XILOSX5ZQ6JELAB2SA4"/>
 
 
