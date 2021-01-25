@@ -31,11 +31,11 @@ I found it especially fun working with all the listed technologies but I feel th
 
 Before any lines of code were written, I made a point of it to ensure that my organization and planning were on par to streamline my workflow. To do so, I first mapped out all of my functions from Controller to Entity and put all of these functions in a Github Project. This ensured that I could focus entirely on one function at a time and give myself deadlines. I am confident that this increased my productivity significantly and am continuously aiming to improve the process and do it better every time.
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Planning.png?token=AONYJJ5YTSXODHIZDS4WTLTAB2ZLM">
+<img src="/Vacit/public/assets/githubImages/Planning.png">
 
 Furthermore, I created an entity relation diagram to ensure my database was logically structured and that all fields were incorporated:
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/database.jpg?token=AONYJJ75VRX7CRD6LVZ4PWTAB2ZNM">
+<img src="/Vacit/public/assets/githubImages/database.jpg">
 
 ### Responsive Layout
 
@@ -45,7 +45,7 @@ Due to the prevalence of mobile sites and with the use of Foundation, I took a '
 
 In Vac!t I have used a mandatory stylesheet as can be seen below. All elements of the site were created strictly in accordance to this styleshet:
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/styleSheet.jpg?token=AONYJJ634APT3G2QCH63FLTAB2ZVI">
+<img src="/Vacit/public/assets/githubImages/styleSheet.jpg">
 
 ### Permissions & Security
 
@@ -63,7 +63,7 @@ In Vac!t there are 3 roles each with different permissions (different buttons ar
 
 For Vac!t, candidates can register by means of the 'Register' page; However, for employers to be registered, their user details are input into an excel sheet and imported by use of a symfony bin/console command. Once imported, they receive the role Employer and a default password.
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Import.JPG?token=AONYJJ474XL3HLWIWBZZOVLAB2ZI6">
+<img src="/Vacit/public/assets/githubImages/Import.JPG">
 
 ## UX Design / Prototype
 
@@ -77,24 +77,24 @@ The homepage shows the 5 most recent vacancies and has a link to all vacancies w
 
 ### Login (Candidate)
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/logIn.jpg?token=AONYJJ5ZWUMOUVQ7XLA2HM3AB2ZSM">
+<img src="/Vacit/public/assets/githubImages/logIn.jpg">
 
 ### Current Vacancies
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/allJobs.JPG?token=AONYJJ2GDH5ZCCC74TMYMB3AB2ZMI"> 
+<img src="/Vacit/public/assets/githubImages/allJobs.JPG"> 
 
 ### Vacancy
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Job.jpg?token=AONYJJ2TJE4GRV7JFX53FFTAB2ZKE"> 
+<img src="/Vacit/public/assets/githubImages/Job.jpg"> 
 
 ### My applications (Candidate)
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myApplications.jpg?token=AONYJJZUSSVH65KS3O66DDDAB2ZTC">  
+<img src="/Vacit/public/assets/githubImages/myApplications.jpg">  
 
 ### My Jobs (Employer)
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myJobs.jpg?token=AONYJJZJLSKER5FTYHOBR7LAB2ZTY">
+<img src="/Vacit/public/assets/githubImages/myJobs.jpg">
 
 ### My Profile
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myProfile.jpg?token=AONYJJ5DQ4F7KUCMUQNZVQDAB2ZUU">
+<img src="/Vacit/public/assets/githubImages/myProfile.jpg">
 
 Thank you for viewing my ReadMe of Vac!t. I hope you enjoyed reading it as much as I enjoyed coding it!
