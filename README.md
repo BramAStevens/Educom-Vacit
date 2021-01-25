@@ -6,6 +6,9 @@
 ### Back-end
 
 ## Methods & Techniques
+#### Stylesheet
+
+#### Permissions & Security
 
 ### Entity Relation Diagram
 <img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/database.jpg?token=AONYJJ6YIFPKH6PN3FQ66VTAB2R3M"/> // database
@@ -16,9 +19,11 @@
 
 <img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/homepage.JPG?token=AONYJJZWBV4ZJ3NFEW6AXXTAB2R5U"/> // homepage
 
-### Login
+### Login (Candidate)
 
 <img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/logIn.jpg?token=AONYJJYJ6OQGN7ZKD3Q73E3AB2R6Q"/> // login
+
+### Import Spreadsheet (Employer)
 
 ### Current Vacancies
 
