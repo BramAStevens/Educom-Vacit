@@ -71,7 +71,7 @@ Please refer to below section for an overview of the pages of Vac!t (please note
 
 ### Homepage
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/homepage.JPG?token=AONYJJ5O55GMK5CSHJSAZYLAB2ZPK">
+<img src="/Vacit/public/assets/githubImages/homepage.JPG">
 
 The homepage shows the 5 most recent vacancies and has a link to all vacancies with a vegas slideshow that loops through all the images and names of the current vacancies.
 
