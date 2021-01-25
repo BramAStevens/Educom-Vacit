@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/github.jpg?token=AONYJJY4PLFYR4UCKXCLPNDAB2RY2">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/github.jpg?token=AONYJJ7NHFMT6VVECCOO4NDAB2ZOW">
 As a part of my education at Educom, I have created a Vacancy-website called Vac!t as a case study. I have used Symfony and PHP to generate a site where Candidates can register, update their profile and apply to numerous technology related jobs. Employers can post jobs on Vac!t and receive an overview of all applicants per job, which they can invite for an interview with a simple click.
 
 All in all, I am proud to present to you the result of my work!
@@ -31,11 +31,11 @@ I found it especially fun working with all the listed technologies but I feel th
 
 Before any lines of code were written, I made a point of it to ensure that my organization and planning were on par to streamline my workflow. To do so, I first mapped out all of my functions from Controller to Entity and put all of these functions in a Github Project. This ensured that I could focus entirely on one function at a time and give myself deadlines. I am confident that this increased my productivity significantly and am continuously aiming to improve the process and do it better every time.
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Planning.png?token=AONYJJ4GDCOSF3RVW7LCNMDAB2YZM">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Planning.png?token=AONYJJ5YTSXODHIZDS4WTLTAB2ZLM">
 
 Furthermore, I created an entity relation diagram to ensure my database was logically structured and that all fields were incorporated:
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/database.jpg?token=AONYJJ2Z7TCQ6P7324AVMULAB2Y34"> // database
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/database.jpg?token=AONYJJ75VRX7CRD6LVZ4PWTAB2ZNM">
 
 ### Responsive Layout
 
@@ -45,7 +45,7 @@ Due to the prevalence of mobile sites and with the use of Foundation, I took a '
 
 In Vac!t I have used a mandatory stylesheet as can be seen below. All elements of the site were created strictly in accordance to this styleshet:
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/styleSheet.jpg?token=AONYJJ326OOZ6CUI343UNVDAB2ZD4">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/styleSheet.jpg?token=AONYJJ634APT3G2QCH63FLTAB2ZVI">
 
 ### Permissions & Security
 
@@ -63,7 +63,7 @@ In Vac!t there are 3 roles each with different permissions (different buttons ar
 
 For Vac!t, candidates can register by means of the 'Register' page; However, for employers to be registered, their user details are input into an excel sheet and imported by use of a symfony bin/console command. Once imported, they receive the role Employer and a default password.
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Import.JPG?token=AONYJJYZCFJBONAA4PMJI7TAB2YXE">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Import.JPG?token=AONYJJ474XL3HLWIWBZZOVLAB2ZI6">
 
 ## UX Design / Prototype
 
@@ -71,28 +71,30 @@ Please refer to below section for an overview of the pages of Vac!t (please note
 
 ### Homepage
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/homepage.JPG?token=AONYJJ73VNPHHCSQ4W7Y7X3AB2Y6E">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/homepage.JPG?token=AONYJJ5O55GMK5CSHJSAZYLAB2ZPK">
+
+The homepage shows the 5 most recent vacancies and has a link to all vacancies with a vegas slideshow that loops through all the images and names of the current vacancies.
 
 ### Login (Candidate)
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/logIn.jpg?token=AONYJJYJ6OQGN7ZKD3Q73E3AB2R6Q">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/logIn.jpg?token=AONYJJ5ZWUMOUVQ7XLA2HM3AB2ZSM">
 
 ### Current Vacancies
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/allJobs.JPG?token=AONYJJ744XBTXOKAMYANORTAB2Y2S"> 
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/allJobs.JPG?token=AONYJJ2GDH5ZCCC74TMYMB3AB2ZMI"> 
 
 ### Vacancy
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Job.jpg?token=AONYJJZFRB54P44GZF23QBLAB2YYC"> 
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/Job.jpg?token=AONYJJ2TJE4GRV7JFX53FFTAB2ZKE"> 
 
 ### My applications (Candidate)
 
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myApplications.jpg?token=AONYJJ7ZMKPIZEV2KBMR72TAB2ZB2">  
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myApplications.jpg?token=AONYJJZUSSVH65KS3O66DDDAB2ZTC">  
 
 ### My Jobs (Employer)
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myJobs.jpg?token=AONYJJYRKPWE3FNTYLODH3TAB2SAC">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myJobs.jpg?token=AONYJJZJLSKER5FTYHOBR7LAB2ZTY">
 
 ### My Profile
-<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myProfile.jpg?token=AONYJJ6344XILOSX5ZQ6JELAB2SA4">
+<img src="https://raw.githubusercontent.com/BramAStevens/Educom-Vacit/master/Vacit/public/assets/githubImages/myProfile.jpg?token=AONYJJ5DQ4F7KUCMUQNZVQDAB2ZUU">
 
 Thank you for viewing my ReadMe of Vac!t. I hope you enjoyed reading it as much as I enjoyed coding it!
