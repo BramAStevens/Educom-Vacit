@@ -1,4 +1,4 @@
-<img src="./Vacit/public/assets/github.jpg">
+<img src="/Vacit/public/assets/githubImages/github.jpg">
 As a part of my education at Educom, I have created a Vacancy-website called Vac!t as a case study. I have used Symfony and PHP to generate a site where Candidates can register, update their profile and apply to numerous technology related jobs. Employers can post jobs on Vac!t and receive an overview of all applicants per job, which they can invite for an interview with a simple click.
 
 All in all, I am proud to present to you the result of my work!
