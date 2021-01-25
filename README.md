@@ -1,1 +1,1 @@
-<img src="/assets/logo/github.png" alt="Logo">
+<img src="public/assets/logo/github.png">
