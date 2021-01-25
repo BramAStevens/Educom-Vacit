@@ -1,2 +1,2 @@
-<img src="\Educom-Vacit\Vacit\public\assets\logo\github.jpg">
+<img src="\Educom-Vacit\Vacit\public\assets\logo\githubHead.png">
 
